@@ -1,0 +1,46 @@
+# VS Code
+**/.vscode/
+
+# Build folders
+**/build/
+
+#----------------------------------------
+# C / C++
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.a
+*.lib
+
+#----------------------------------------
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+*.whl
+*.venv/
+.venv/
+env/
+venv/
+
+#----------------------------------------
+# MATLAB
+*.asv        # autosave
+*.m~         # backup
+*.mex*       # compiled MEX files
+*.slxc       # Simulink cache
+*.mdl.autosave
+*.slx.autosave
+
+#----------------------------------------
+# OS / Editor junk
+*~
+.DS_Store
+Thumbs.db
