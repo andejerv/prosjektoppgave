@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+        fmiVersion="2.0"
+        modelName="fmi_dp_mock"
+        guid="@FMU_UUID@"
+        description="FMU for Dynamic Position Controller Simulations"
+        author="Vinicius de Oliveira"
+        version="0.0.1">
+
+    <CoSimulation
+            modelIdentifier="fmi_dp_mock"
+            canHandleVariableCommunicationStepSize="true"/>
+
+    <ModelVariables>
+
+        <!-- Inputs -->
+        <ScalarVariable name="enableReadyForAutonomy" valueReference="0" causality="input" variability="discrete">
+            <Boolean start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="enableAutonomyMode" valueReference="1" causality="input" variability="discrete">
+            <Boolean start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="desiredControlMode" valueReference="2" causality="input" variability="discrete">
+            <String start="STANDBY"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="measurements.northEastHeading[0]" valueReference="3" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="measurements.northEastHeading[1]" valueReference="4" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="measurements.northEastHeading[2]" valueReference="5" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="measurements.nu[0]" valueReference="6" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="measurements.nu[1]" valueReference="7" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="measurements.nu[2]" valueReference="8" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeading[0]" valueReference="9" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeading[1]" valueReference="10" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeading[2]" valueReference="11" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeadingVel[0]" valueReference="12" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeadingVel[1]" valueReference="13" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeadingVel[2]" valueReference="14" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeadingAccel[0]" valueReference="15" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeadingAccel[1]" valueReference="16" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDpManual.northEastHeadingAccel[2]" valueReference="17" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpManual.surgeIntegratorMode" valueReference="90" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpManual.swayIntegratorMode" valueReference="91" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpManual.headingIntegratorMode" valueReference="92" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+
+        <ScalarVariable name="refDpAutonomy.northEastHeading[0]" valueReference="18" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeading[1]" valueReference="19" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeading[2]" valueReference="20" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeadingVel[0]" valueReference="21" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeadingVel[1]" valueReference="22" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeadingVel[2]" valueReference="23" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeadingAccel[0]" valueReference="24" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeadingAccel[1]" valueReference="25" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.northEastHeadingAccel[2]" valueReference="26" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.surgeIntegratorMode" valueReference="93" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.swayIntegratorMode" valueReference="94" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDpAutonomy.headingIntegratorMode" valueReference="95" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refForcesManual[0]" valueReference="27" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refForcesManual[1]" valueReference="28" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refForcesManual[2]" valueReference="29" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refForcesAutonomy[0]" valueReference="30" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refForcesAutonomy[1]" valueReference="31" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refForcesAutonomy[2]" valueReference="32" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <!-- Parameters -->
+        <ScalarVariable name="Kp[0]" valueReference="33" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Kp[1]" valueReference="34" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Kp[2]" valueReference="35" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Ki[0]" valueReference="36" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Ki[1]" valueReference="37" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Ki[2]" valueReference="38" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Kd[0]" valueReference="39" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Kd[1]" valueReference="40" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="Kd[2]" valueReference="41" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="GeneralizedForcesSaturation[0]" valueReference="48" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="GeneralizedForcesSaturation[1]" valueReference="49" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="GeneralizedForcesSaturation[2]" valueReference="50" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="IntegralActionSaturation[0]" valueReference="51" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="IntegralActionSaturation[1]" valueReference="52" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="IntegralActionSaturation[2]" valueReference="53" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+
+        <ScalarVariable name="MassMatrixDiagonal[0]" valueReference="54" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="MassMatrixDiagonal[1]" valueReference="55" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="MassMatrixDiagonal[2]" valueReference="56" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+
+        <ScalarVariable name="DampingMatrixDiagonal[0]" valueReference="57" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="DampingMatrixDiagonal[1]" valueReference="58" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="DampingMatrixDiagonal[2]" valueReference="59" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="MaxEffort[0]" valueReference="105" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="MaxEffort[1]" valueReference="106" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="MaxEffort[2]" valueReference="107" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+
+
+        <!-- Outputs: -->
+        <ScalarVariable name="readyForAutonomyEnabled" valueReference="42" causality="output" variability="discrete">
+            <Boolean/>
+        </ScalarVariable>
+
+        <ScalarVariable name="autonomyModeEnabled" valueReference="43" causality="output" variability="discrete">
+            <Boolean/>
+        </ScalarVariable>
+
+        <ScalarVariable name="controlMode" valueReference="44" causality="output" variability="discrete">
+            <String/>
+        </ScalarVariable>
+
+        <ScalarVariable name="generalizedForces[0]" valueReference="45" causality="output">
+            <Real/>
+        </ScalarVariable>
+
+        <ScalarVariable name="generalizedForces[1]" valueReference="46" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="generalizedForces[2]" valueReference="47" causality="output">
+            <Real/>
+        </ScalarVariable>
+
+        <ScalarVariable name="refDPActive.northEastHeading[0]" valueReference="60" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeading[1]" valueReference="61" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeading[2]" valueReference="62" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeadingVel[0]" valueReference="63" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeadingVel[1]" valueReference="64" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeadingVel[2]" valueReference="65" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeadingAccel[0]" valueReference="66" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeadingAccel[1]" valueReference="67" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.northEastHeadingAccel[2]" valueReference="68" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.surgeIntegratorMode" valueReference="96" causality="output">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.swayIntegratorMode" valueReference="97" causality="output">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="refDPActive.headingIntegratorMode" valueReference="98" causality="output">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <!-- Autopilot inputs: -->
+       <ScalarVariable name="autopilotInputsAutonomy.heading_ref" valueReference="69" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsAutonomy.yaw_rate_ref" valueReference="70" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsAutonomy.yaw_accel_ref" valueReference="71" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsAutonomy.surge_speed_ref" valueReference="72" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsAutonomy.surge_accel_ref" valueReference="73" causality="input">
+            <Real start="0"/>
+         </ScalarVariable>
+        <ScalarVariable name="autopilotInputsAutonomy.surgeIntegratorMode" valueReference="99" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsAutonomy.headingIntegratorMode" valueReference="100" causality="input">
+            <Real start="0"/>
+         </ScalarVariable>
+
+        <ScalarVariable name="autopilotInputsManual.heading_ref" valueReference="74" causality="input">
+            <Real start="0"/>
+         </ScalarVariable>
+        <ScalarVariable name="autopilotInputsManual.yaw_rate_ref" valueReference="75" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsManual.yaw_accel_ref" valueReference="76" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsManual.surge_speed_ref" valueReference="77" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsManual.surge_accel_ref" valueReference="78" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsManual.surgeIntegratorMode" valueReference="101" causality="input">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilotInputsManual.headingIntegratorMode" valueReference="102" causality="input">
+            <Real start="0"/>
+         </ScalarVariable>
+
+        <!-- Autopilot parameters -->
+        <ScalarVariable name="autopilot.heading_pid.Kp" valueReference="79" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilot.heading_pid.Ki" valueReference="80" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilot.heading_pid.Kd" valueReference="81" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+
+        <ScalarVariable name="autopilot.surge_speed_pid.Kp" valueReference="82" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilot.surge_speed_pid.Ki" valueReference="83" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilot.surge_speed_pid.Kd" valueReference="84" causality="parameter"  variability="fixed">
+            <Real start="0"/>
+        </ScalarVariable>
+     
+         <!-- Autopilot outputs -->
+         <ScalarVariable name="autopilot_active_inputs.heading_ref" valueReference="85" causality="output">
+            <Real/>
+        </ScalarVariable>
+         <ScalarVariable name="autopilot_active_inputs.yaw_rate_ref" valueReference="86" causality="output">
+            <Real/>
+        </ScalarVariable>
+         <ScalarVariable name="autopilot_active_inputs.yaw_accel_ref" valueReference="87" causality="output">
+            <Real/>
+        </ScalarVariable>
+         <ScalarVariable name="autopilot_active_inputs.surge_speed_ref" valueReference="88" causality="output">
+            <Real/>
+        </ScalarVariable>
+         <ScalarVariable name="autopilot_active_inputs.surge_accel_ref" valueReference="89" causality="output">
+            <Real/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilot_active_inputs.surgeIntegratorMode" valueReference="103" causality="output">
+            <Real start="0"/>
+        </ScalarVariable>
+        <ScalarVariable name="autopilot_active_inputs.headingIntegratorMode" valueReference="104" causality="output">
+            <Real start="0"/>
+         </ScalarVariable>
+
+
+    </ModelVariables>
+
+    <ModelStructure>
+        <Outputs>
+            <Unknown index="16"/>
+            <Unknown index="17"/>
+            <Unknown index="18"/>
+            <Unknown index="19"/>
+        </Outputs>
+    </ModelStructure>
+</fmiModelDescription>

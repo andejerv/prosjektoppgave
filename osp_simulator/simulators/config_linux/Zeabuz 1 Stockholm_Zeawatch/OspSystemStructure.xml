@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure
+        xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure"
+        version="0.1">
+    <BaseStepSize>0.01</BaseStepSize>
+    <Simulators>
+        <Simulator name="Zeabuz 1" source="../../fmus_linux/fmi_zb_traffic_sim.fmu" stepSize="0.01">
+            <InitialValues>
+              <InitialValue variable="traffic_scene_path">
+                    <String value="Scene1.json"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="zb_sim_clock" source="../../fmus_linux/fmi_zb_sim_clock.fmu" stepSize="0.01">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="3001"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation" source="../../fmus_linux/fmi_advanced_navigation.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_ip">
+                    <String value="133.13.0.3"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16718"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_port">
+                    <String value="6097"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="59.320629"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="18.041725"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation_gps_compass" source="../../fmus_linux/fmi_advanced_navigation.fmu" stepSize="0.2">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16719"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_port">
+                    <String value="0"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="59.320629"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="18.041725"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+               <Simulator name="hatch_control" source="../../fmus_linux/fmi_hatch_control_modbus_tcp.fmu" stepSize="0.1">
+            <InitialValues>
+                <InitialValue variable="modbus_server_ip">
+                    <String value="133.13.0.3"/>
+                </InitialValue>
+                <InitialValue variable="hatch_command_timeout">
+                    <Real value="10"/>
+                </InitialValue>
+                <InitialValue variable="modbus_server_port">
+                    <Real value="502"/>
+                </InitialValue>
+                <InitialValue variable="coil_address_read">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_read_num_bits">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_address_write">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_write_num_bits">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="register_address_read">
+                    <Real value="200"/>
+                </InitialValue>
+                <InitialValue variable="register_read_num_regs">
+                    <Real value="1"/>
+                </InitialValue>
+                <InitialValue variable="register_address_write">
+                    <Real value="32000"/>
+                </InitialValue>
+                <InitialValue variable="register_write_num_regs">
+                    <Real value="1"/>
+                </InitialValue>
+                <InitialValue variable="hatch_start_position_fore">
+                    <Real value="100.0"/>
+                </InitialValue>
+                <InitialValue variable="hatch_start_position_aft">
+                    <Real value="100.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+    </Simulators>        
+    
+    <Connections>    
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="pose"/>
+            <VariableGroup simulator="advanced_navigation" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="twist_body"/>
+            <VariableGroup simulator="advanced_navigation" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="twist_ned"/>
+            <VariableGroup simulator="advanced_navigation" name="twist_ned"/>
+        </VariableGroupConnection>
+        <!-- <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="acceleration_6dof"/>
+        </VariableGroupConnection> -->
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="pose"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="twist_body"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="twist_ned"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_ned"/>
+        </VariableGroupConnection>
+        <!-- <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="acceleration_6dof"/>
+        </VariableGroupConnection> -->
+
+    </Connections>
+</OspSystemStructure>

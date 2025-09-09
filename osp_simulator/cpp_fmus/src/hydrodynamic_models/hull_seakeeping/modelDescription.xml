@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="hull_seakeeping"
+    guid="@FMU_UUID@"
+    description="Simple seakeeping hull model"
+    author="Tobias Rye Torben"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="hull_seakeeping"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="density" valueReference="1"  causality="parameter" variability="fixed"><Real start="1025.9"/></ScalarVariable>
+        <ScalarVariable name="gravity" valueReference="2"  causality="parameter" variability="fixed"><Real start="9.81"/></ScalarVariable>
+
+        <ScalarVariable name="heave_damping"         valueReference="3"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="roll_damping"          valueReference="4"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="pitch_damping" valueReference="5"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+
+        <ScalarVariable name="GM_roll" valueReference="6"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="GM_pitch" valueReference="7"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="mass"         valueReference="8"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="waterplane_area"   valueReference="9" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="heave" valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="roll"  valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="pitch"   valueReference="103" causality="input"><Real start="0.0"/></ScalarVariable>
+        
+        <ScalarVariable name="velocity_heave" valueReference="104" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="velocity_roll"  valueReference="105" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="velocity_pitch"   valueReference="106" causality="input"><Real start="0.0"/></ScalarVariable>
+
+
+        <ScalarVariable name="force_heave" valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_roll"  valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_pitch"  valueReference="203" causality="output"><Real/></ScalarVariable>
+
+        <ScalarVariable name="force_surge"  valueReference="204" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="force_sway"  valueReference="205" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_yaw"  valueReference="206" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

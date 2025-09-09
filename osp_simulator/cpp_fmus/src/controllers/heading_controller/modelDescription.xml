@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="heading_controller"
+    guid="@FMU_UUID@"
+    description="Heading controller"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="heading_controller"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="k_p"       valueReference="1" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="k_i"       valueReference="2" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="k_d"       valueReference="3" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="min_angle" valueReference="4" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="max_angle" valueReference="5" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        
+        <ScalarVariable name="target_heading"    valueReference="11" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="estimated_heading" valueReference="12" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="pid_on"            valueReference="13" causality="input" variability="discrete"><Boolean start="true"/></ScalarVariable>
+        <ScalarVariable name="manual_angle"      valueReference="14" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="gain_adjust"       valueReference="15" causality="input"><Real start="1.0"/></ScalarVariable>
+
+        <ScalarVariable name="angle"  valueReference="21" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="error"  valueReference="22" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

@@ -1,0 +1,109 @@
+parameters:
+- name: simulinkModels
+  displayName: Simulink models
+  type: object
+  default:
+    - current_model
+    - rigid_body
+    - wave_forces
+    - wind_loads
+    - wind_model
+
+
+jobs:
+  - job: simulink_fmus
+    displayName: Build Simulink fmus
+      
+    pool:
+      name: default
+      demands: 
+      - MATLAB_R2023a
+      - Agent.OS -equals Linux
+
+    steps:
+
+    #- powershell: Write-Host '##vso[task.prependpath]C:\Program Files\MATLAB\R2023a\bin'
+
+    - script: mkdir simulink_models/build
+
+    - ${{each simulinkModel in parameters.simulinkModels}}:
+        - task: RunMATLABCommand@0
+          displayName: Build ${{ simulinkModel }}
+          inputs:
+            command: |
+              cd('simulink_models');
+              addpath('${{ simulinkModel }}');
+              init_${{ simulinkModel }};
+              load_system('${{ simulinkModel }}');
+              exportToFMU2CS('${{ simulinkModel }}', 'AddIcon', 'off', 'SaveDirectory', './build');
+              bdclose('${{ simulinkModel }}');
+
+    - task: RunMATLABCommand@0
+      displayName: Build ultrasonic sensors
+      inputs:
+        command: |
+          cd('simulink_models');
+          addpath('ultrasonic_distance_sensor');
+          init_sensor_params;
+          load_system('UltrasonicDistanceSensor');
+          exportToFMU2CS('UltrasonicDistanceSensor', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor');
+          load_system('UltrasonicDistanceSensor_1');
+          exportToFMU2CS('UltrasonicDistanceSensor_1', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_1');
+          load_system('UltrasonicDistanceSensor_2');
+          exportToFMU2CS('UltrasonicDistanceSensor_2', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_2');
+          load_system('UltrasonicDistanceSensor_3');
+          exportToFMU2CS('UltrasonicDistanceSensor_3', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_3');
+          load_system('UltrasonicDistanceSensor_4');
+          exportToFMU2CS('UltrasonicDistanceSensor_4', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_4');
+          load_system('UltrasonicDistanceSensor_5');
+          exportToFMU2CS('UltrasonicDistanceSensor_5', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_5');
+          load_system('UltrasonicDistanceSensor_6');
+          exportToFMU2CS('UltrasonicDistanceSensor_6', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_6');
+          load_system('UltrasonicDistanceSensor_7');
+          exportToFMU2CS('UltrasonicDistanceSensor_7', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('UltrasonicDistanceSensor_7');
+    
+    - task: RunMATLABCommand@0
+      displayName: Build mA2 thrusters
+      inputs:
+        command: |
+          cd('simulink_models');
+          addpath('mA2_thruster');
+          init_mA2_thruster;
+          load_system('mA2_thruster_fp');
+          exportToFMU2CS('mA2_thruster_fp', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('mA2_thruster_fp');
+          load_system('mA2_thruster_fs');
+          exportToFMU2CS('mA2_thruster_fs', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('mA2_thruster_fs');
+          load_system('mA2_thruster_ap');
+          exportToFMU2CS('mA2_thruster_ap', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('mA2_thruster_ap');
+          load_system('mA2_thruster_as');
+          exportToFMU2CS('mA2_thruster_as', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('mA2_thruster_as');
+
+    - task: RunMATLABCommand@0
+      displayName: Build mA2 vessel
+      inputs:
+        command: |
+          cd('simulink_models');
+          addpath('mA2_vessel');
+          bis_to_mA2;
+          init_mA2_vessel;
+          load_system('mA2_vessel');
+          exportToFMU2CS('mA2_vessel', 'AddIcon', 'off', 'SaveDirectory', './build');
+          bdclose('mA2_vessel');
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'simulink_models/build/'
+        ArtifactName: 'Simulink-FMUs (x86_64-linux)'
+        publishLocation: 'Container'

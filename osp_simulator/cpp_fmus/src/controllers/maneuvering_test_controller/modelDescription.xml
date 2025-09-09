@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="maneuvering_test_controller"
+    guid="@FMU_UUID@"
+    description="Controller for performing standard maenuverings tests to check / validate the hydrodynamic modelling framework"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="maneuvering_test_controller"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="init_time"        valueReference="1" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="max_rudder_angle" valueReference="2" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="heading_execute"  valueReference="3" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="heading" valueReference="11" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="rudder_angle"  valueReference="21" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

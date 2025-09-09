@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_zb_traffic_sim"
+    guid="@FMU_UUID@"
+    description="FMU for simulating traffic behavior."
+    author="Vinicius de Oliveira"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_zb_traffic_sim"
+        canHandleVariableCommunicationStepSize="false"/>
+    <ModelVariables>
+
+    <!-- Parameters -->
+    <ScalarVariable name="traffic_scene_path" valueReference="0" causality="parameter" variability="fixed">
+      <String start=""/>
+    </ScalarVariable>
+
+
+    <!-- Outputs -->
+    <ScalarVariable name="eta[1]" valueReference="1" causality="output">      
+     <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="eta[2]" valueReference="2" causality="output">      
+     <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="eta[3]" valueReference="3" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="eta[4]" valueReference="4" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="eta[5]" valueReference="5" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="eta[6]" valueReference="6" causality="output">
+       <Real/>
+    </ScalarVariable>
+
+    <ScalarVariable name="twist_body[1]" valueReference="7" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[2]" valueReference="8" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[3]" valueReference="9" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[4]" valueReference="10" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[5]" valueReference="11" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[6]" valueReference="12" causality="output">
+       <Real/>
+    </ScalarVariable>
+
+    <ScalarVariable name="twist_ned[1]" valueReference="13" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[2]" valueReference="14" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[3]" valueReference="15" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[4]" valueReference="16" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[5]" valueReference="17" causality="output">
+       <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[6]" valueReference="18" causality="output">
+       <Real/>
+    </ScalarVariable>
+ 
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

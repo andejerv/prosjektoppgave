@@ -1,0 +1,2 @@
+# Create targets
+add_fmu(fmi_ultrasonic_distance_sensor_communication_zb1 "fmi_ultrasonic_distance_sensor_communication_zb1.cpp")

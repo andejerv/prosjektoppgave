@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="cstrider_propulsion_interface"
+    guid="@FMU_UUID@"
+    description="FMU for propulsion interface with modbus tcp protocol."
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="cstrider_propulsion_interface"
+        canHandleVariableCommunicationStepSize="true"/>
+
+    <UnitDefinitions>
+        <Unit name="m">
+            <BaseUnit kg="0" m="1" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad">
+            <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="m/s">
+            <BaseUnit kg="0" m="1" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad/s">
+            <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N">
+            <BaseUnit kg="1" m="1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N.m">
+            <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+    </UnitDefinitions>
+    <ModelVariables>
+    <!-- Parameters -->
+    <ScalarVariable name="modbus_server_port" valueReference="1" causality="parameter" variability="fixed">
+      <Integer start="502"/>
+    </ScalarVariable>
+    <ScalarVariable name="modbus_server_ip" valueReference="2" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="holding_register_base_address" valueReference="3" causality="parameter" variability="fixed">
+      <Integer start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="num_holding_registers" valueReference="4" causality="parameter" variability="fixed">
+      <Integer start="57"/>
+    </ScalarVariable>
+    <ScalarVariable name="zeabuz_system_heartbeat_signal_address" valueReference="5" causality="parameter" variability="fixed">
+      <Integer start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="zeabuz_system_available_signal_address" valueReference="6" causality="parameter" variability="fixed">
+      <Integer start="2"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_propulsion_command_signal_address" valueReference="7" causality="parameter" variability="fixed">
+      <Integer start="3"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_steering_command_signal_address" valueReference="8" causality="parameter" variability="fixed">
+      <Integer start="4"/>
+    </ScalarVariable>
+    <ScalarVariable name="port_propulsion_command_signal_address" valueReference="9" causality="parameter" variability="fixed">
+      <Integer start="5"/>
+    </ScalarVariable>
+    <ScalarVariable name="propulsion_system_heartbeat_signal_address" valueReference="10" causality="parameter" variability="fixed">
+      <Integer start="50"/>
+    </ScalarVariable>
+    <ScalarVariable name="ready_for_zeabuz_system_signal_address" valueReference="11" causality="parameter" variability="fixed">
+      <Integer start="51"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_propulsion_ready_signal_address" valueReference="12" causality="parameter" variability="fixed">
+      <Integer start="52"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_propulsion_feedback_signal_address" valueReference="13" causality="parameter" variability="fixed">
+      <Integer start="53"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_steering_ready_signal_address" valueReference="14" causality="parameter" variability="fixed">
+      <Integer start="54"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_steering_feedback_signal_address" valueReference="15" causality="parameter" variability="fixed">
+      <Integer start="55"/>
+    </ScalarVariable>
+    <ScalarVariable name="port_propulsion_ready_signal_address" valueReference="16" causality="parameter" variability="fixed">
+      <Integer start="56"/>
+    </ScalarVariable>
+    <ScalarVariable name="port_propulsion_feedback_signal_address" valueReference="17" causality="parameter" variability="fixed">
+      <Integer start="57"/>
+    </ScalarVariable>
+    <ScalarVariable name="modbus_debug_enable" valueReference="18" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="start_listen_on_init" valueReference="19" causality="parameter" variability="fixed">
+      <Boolean start="true"/>
+    </ScalarVariable>
+    <!-- Output -->
+    <ScalarVariable name="stb_rpm_cmd" valueReference="20" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="port_rpm_cmd" valueReference="21" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_angle_cmd" valueReference="22" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="port_angle_cmd" valueReference="23" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="zeabuz_system_available" valueReference="24" causality="output" variability="discrete">
+      <Boolean/>
+    </ScalarVariable>
+    <ScalarVariable name="zeabuz_system_heartbeat" valueReference="25" causality="output" variability="discrete">
+      <Integer/>
+    </ScalarVariable>
+    <ScalarVariable name="propulsion_system_heartbeat" valueReference="26" causality="output" variability="discrete">
+      <Integer/>
+    </ScalarVariable>
+    <ScalarVariable name="ready_for_zeabuz_system" valueReference="27" causality="output" variability="discrete">
+      <Boolean/>
+    </ScalarVariable>
+    <!-- Input -->
+    <ScalarVariable name="stb_rpm_fb" valueReference="30" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="port_rpm_fb" valueReference="31" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_angle_fb" valueReference="32" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="port_angle_fb" valueReference="33" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_steering_ready" valueReference="34" causality="input" variability="discrete">
+      <Boolean start = "true"/>
+    </ScalarVariable>
+    <ScalarVariable name="stb_propulsion_ready" valueReference="35" causality="input" variability="discrete">
+      <Boolean start = "true"/>
+    </ScalarVariable>
+    <ScalarVariable name="port_propulsion_ready" valueReference="36" causality="input" variability="discrete">
+      <Boolean start = "true"/>
+    </ScalarVariable>
+    <ScalarVariable name="ready_for_zeabuz_system" valueReference="37" causality="input" variability="discrete">
+      <Boolean start = "false"/>
+    </ScalarVariable>
+    <ScalarVariable name="stop_propulsion_system_heartbeat_user_override" valueReference="38" causality="input" variability="discrete">
+      <Boolean start = "false"/>
+    </ScalarVariable>
+    </ModelVariables>
+  <ModelStructure/>
+</fmiModelDescription>

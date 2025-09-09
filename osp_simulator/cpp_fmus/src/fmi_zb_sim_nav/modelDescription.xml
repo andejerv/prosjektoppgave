@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_zb_sim_nav"
+    guid="@FMU_UUID@"
+    description="FMU for communication with autonomy for navigation."
+    author="Brage Saether"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_zb_sim_nav"
+        canHandleVariableCommunicationStepSize="false"/>
+    <ModelVariables>
+
+    <!-- Parameters -->
+    <ScalarVariable name="remote_ip" valueReference="0" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="remote_port" valueReference="2" causality="parameter" variability="fixed">
+      <String start="3000"/>
+    </ScalarVariable>
+    <ScalarVariable name="dump_messages" valueReference="4" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="navigation_time_offset_ms" valueReference="5" causality="parameter" variability="tunable">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+    <!-- Inputs -->
+    <ScalarVariable name="pose[0]" valueReference="18" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[1]" valueReference="19" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[2]" valueReference="20" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[3]" valueReference="21" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[4]" valueReference="22" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[5]" valueReference="23" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="twist_body[0]" valueReference="24" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[1]" valueReference="25" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[2]" valueReference="26" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[3]" valueReference="27" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[4]" valueReference="28" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[5]" valueReference="29" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="twist_ned[0]" valueReference="30" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[1]" valueReference="31" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[2]" valueReference="32" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[3]" valueReference="33" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[4]" valueReference="34" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[5]" valueReference="35" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

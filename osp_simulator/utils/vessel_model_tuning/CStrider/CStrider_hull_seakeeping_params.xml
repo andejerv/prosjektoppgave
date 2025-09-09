@@ -1,0 +1,7 @@
+                <InitialValue variable="mass"><Real value="3385.371"/></InitialValue>
+                <InitialValue variable="waterplane_area"><Real value="18.468"/></InitialValue>
+                <InitialValue variable="GM_roll"><Real value="3.0"/></InitialValue>
+                <InitialValue variable="GM_pitch"><Real value="9.0"/></InitialValue>
+                <InitialValue variable="heave_damping"><Real value="21301.91131"/></InitialValue>
+                <InitialValue variable="roll_damping"><Real value="6095.77467"/></InitialValue>
+                <InitialValue variable="pitch_damping"><Real value="49244.30873"/></InitialValue>

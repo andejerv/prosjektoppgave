@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure
+        xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure"
+        version="0.1">
+    <BaseStepSize>0.01</BaseStepSize>
+    <Simulators>
+        <Simulator name="Vessel" source="../../fmus_linux/rigid_body.fmu">
+            <InitialValues>
+                <InitialValue variable="initial_position[1]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[1]">
+                    <Real value="0.0"/>
+                </InitialValue>	
+                <InitialValue variable="initial_velocity[2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+                <!--Rigid body parameters-->
+                <InitialValue variable="m"><Real value="7200.0"/></InitialValue>
+                <InitialValue variable="m_added[1]"><Real value="237.6"/></InitialValue>
+                <InitialValue variable="m_added[2]"><Real value="7099.2"/></InitialValue>
+                <InitialValue variable="m_added[3]"><Real value="7228.8"/></InitialValue>
+                <InitialValue variable="I[1]"><Real value="8857.5388"/></InitialValue>
+                <InitialValue variable="I[2]"><Real value="28800.0"/></InitialValue>
+                <InitialValue variable="I[3]"><Real value="28800.0"/></InitialValue>
+                <InitialValue variable="I_added[1]"><Real value="723.06439"/></InitialValue>
+                <InitialValue variable="I_added[2]"><Real value="17971.2"/></InitialValue>
+                <InitialValue variable="I_added[3]"><Real value="20736.0"/></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        <!-- Hydrodynamic model for the hull -->
+        <Simulator name="planing_hull_maneuvering" source="../../fmus_linux/planing_hull_maneuvering.fmu">
+			<InitialValues>
+                <!-- Relevant geometric variables for the model -->
+                <InitialValue variable="length"><Real value="8.0"/></InitialValue>
+                <InitialValue variable="beam"><Real value="3.169"/></InitialValue>
+                <InitialValue variable="depth"><Real value="0.7"/></InitialValue>
+                <InitialValue variable="mass"><Real value="7200"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="22.0"/></InitialValue>
+
+                <!-- Low speed resistance parameters -->
+                <InitialValue variable="shape_factor"><Real value=" 0.11530219489019286"/></InitialValue>
+                <InitialValue variable="CR_m"><Real value="0.3052385248245691"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="4.123079171388858"/></InitialValue>
+                <InitialValue variable="CD_lateral"><Real value="0.1"/></InitialValue>
+
+                <!-- Planing resistance parameters -->
+                <InitialValue variable="deadrise_deg"><Real value="23.7"/></InitialValue>
+                <InitialValue variable="lcg"><Real value="2.725"/></InitialValue>
+                <InitialValue variable="vcg"><Real value="1.054"/></InitialValue>
+                <InitialValue variable="vertical_thruster_placement"><Real value="0.2"/></InitialValue>
+
+                <!-- Resistance model mixing parameters -->
+                <InitialValue variable="model_mixing_start"><Real value="3.60"/></InitialValue>
+                <InitialValue variable="model_mixing_end"><Real value="4.63"/></InitialValue>
+
+                <!-- Lateral maneuvering model -->
+                <InitialValue variable="sway_linear_damping"><Real value="1487.52"/></InitialValue>
+                <InitialValue variable="yaw_linear_damping"><Real value="16512.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Seakeeping model for the hull -->
+        <Simulator name="hull_seakeeping" source="../../fmus_linux/hull_seakeeping.fmu">
+			<InitialValues>
+                <InitialValue variable="mass"><Real value="7200.0"/></InitialValue>
+                <InitialValue variable="waterplane_area"><Real value="19.014"/></InitialValue>
+                <InitialValue variable="GM_roll"><Real value="1.249"/></InitialValue>
+                <InitialValue variable="GM_pitch"><Real value="9.992"/></InitialValue>
+                <InitialValue variable="heave_damping"><Real value="31521.6177"/></InitialValue>
+                <InitialValue variable="roll_damping"><Real value="8720.15851"/></InitialValue>
+                <InitialValue variable="pitch_damping"><Real value="108991.39174"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Wave forces" source="../../fmus_linux/wave_forces.fmu">
+            <InitialValues>
+                <InitialValue variable="wave_force_stddev[1,1]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind model" source="../../fmus_linux/wind_model.fmu">
+            <InitialValues>
+                <InitialValue variable="mean_wind_direction">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="mean_wind_speed">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind loads" source="../../fmus_linux/wind_loads.fmu">
+            <InitialValues>
+                <InitialValue variable="A_Fw">
+                    <Real value="8.43"/>
+                </InitialValue>
+                <InitialValue variable="A_Lw">
+                    <Real value="9.94"/>
+                </InitialValue>
+                <InitialValue variable="CD_lAF">
+                    <Real value="0.55"/>
+                </InitialValue>
+                <InitialValue variable="CD_t">
+                    <Real value="0.9"/>
+                </InitialValue>
+                <InitialValue variable="H_Lw">
+                    <Real value="1.0"/>
+                </InitialValue>
+                <InitialValue variable="L_oa">
+                    <Real value="9.246"/>
+                </InitialValue>
+                <InitialValue variable="delta">
+                    <Real value="0.6"/>
+                </InitialValue>
+                <InitialValue variable="kappa">
+                    <Real value="1.1"/>
+                </InitialValue>
+                <InitialValue variable="rho_air">
+                    <Real value="1.225"/>
+                </InitialValue>
+                <InitialValue variable="s_L">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+
+        <Simulator name="DP Mock" source="../../fmus_linux/fmi_dp_mock.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="enableReadyForAutonomy">
+                    <Boolean value="true"/>
+                </InitialValue>
+                <InitialValue variable="desiredControlMode">
+                    <String value="STANDBY"/>
+                </InitialValue>
+                <InitialValue variable="Kp[0]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="Ki[0]">
+                    <Real value="100"/>
+                </InitialValue>
+                <InitialValue variable="Kd[0]">
+                    <Real value="20000"/>
+                </InitialValue>
+                <InitialValue variable="Kp[1]">
+                    <Real value="2000"/>
+                </InitialValue>
+                <InitialValue variable="Ki[1]">
+                    <Real value="90"/>
+                </InitialValue>
+                <InitialValue variable="Kd[1]">
+                    <Real value="20000"/>
+                </InitialValue>
+                <InitialValue variable="Kp[2]">
+                    <Real value="10000"/>
+                </InitialValue>
+                <InitialValue variable="Ki[2]">
+                    <Real value="700"/>
+                </InitialValue>
+                <InitialValue variable="Kd[2]">
+                    <Real value="100000"/>
+                </InitialValue>
+                <InitialValue variable="GeneralizedForcesSaturation[0]">
+                    <Real value="30000"/>
+                </InitialValue>
+                <InitialValue variable="GeneralizedForcesSaturation[1]">
+                    <Real value="30000"/>
+                </InitialValue>
+                <InitialValue variable="GeneralizedForcesSaturation[2]">
+                    <Real value="60000"/>
+                </InitialValue>
+                <InitialValue variable="IntegralActionSaturation[0]">
+                    <Real value="12000"/>
+                </InitialValue>
+                <InitialValue variable="IntegralActionSaturation[1]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="IntegralActionSaturation[2]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="MassMatrixDiagonal[0]">
+                    <Real value="7500"/>
+                </InitialValue>
+                <InitialValue variable="MassMatrixDiagonal[1]">
+                    <Real value="14000"/>
+                </InitialValue>
+                <InitialValue variable="MassMatrixDiagonal[2]">
+                    <Real value="50000"/>
+                </InitialValue>
+                <InitialValue variable="DampingMatrixDiagonal[0]">
+                    <Real value="1000"/>
+                </InitialValue>
+                <InitialValue variable="DampingMatrixDiagonal[1]">
+                    <Real value="3000"/>
+                </InitialValue>
+                <InitialValue variable="DampingMatrixDiagonal[2]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.heading_pid.Kp">
+                    <Real value="70000"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.heading_pid.Ki">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.heading_pid.Kd">
+                    <Real value="100000"/>
+                </InitialValue>
+                  <InitialValue variable="autopilot.surge_speed_pid.Kp">
+                    <Real value="12000"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.surge_speed_pid.Ki">
+                    <Real value="2000"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.surge_speed_pid.Kd">
+                    <Real value="12000"/>
+                </InitialValue>
+                <InitialValue variable="MaxEffort[0]">
+                    <Real value="30000"/>
+                </InitialValue>
+                <InitialValue variable="MaxEffort[1]">
+                    <Real value="30000"/>
+                </InitialValue>
+                <InitialValue variable="MaxEffort[2]">
+                    <Real value="60000"/>
+                </InitialValue>   
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="dp_interface" source="../../fmus_linux/fmi_dp_interface.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="local_ip">
+                    <String value="0.0.0.0"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="5096"/>
+                </InitialValue>
+                <InitialValue variable="local_port">
+                    <String value="5095"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="63.4389029083"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="10.39908278"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="39.923"/>
+                </InitialValue>
+                <InitialValue variable="publish_time_step">
+                    <Real value="1.0"/>
+                </InitialValue>
+                <InitialValue variable="publish_dp_mode_time_step">
+                    <Real value="0.1"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="zb_sim_clock" source="../../fmus_linux/fmi_zb_sim_clock.fmu" stepSize="0.01">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="3001"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation_gps_compass" source="../../fmus_linux/fmi_advanced_navigation.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16719"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="63.4389029083"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="10.39908278"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="39.923"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+    </Simulators>
+    
+    <Functions>
+        <Sum name="vessel_force_sum[1]" inputCount="4"/>
+        <Sum name="vessel_force_sum[2]" inputCount="4"/>
+        <Sum name="vessel_force_sum[3]" inputCount="3"/>
+        <Sum name="vessel_force_sum[4]" inputCount="3"/>
+        <Sum name="vessel_force_sum[5]" inputCount="3"/>
+        <Sum name="vessel_force_sum[6]" inputCount="4"/>
+    </Functions>
+    
+    <Connections>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[1]"/>
+            <Signal function="vessel_force_sum[1]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[2]"/>
+            <Signal function="vessel_force_sum[2]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[3]"/>
+            <Signal function="vessel_force_sum[3]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[4]"/>
+            <Signal function="vessel_force_sum[4]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[5]"/>
+            <Signal function="vessel_force_sum[5]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[6]"/>
+            <Signal function="vessel_force_sum[6]" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[1]"/>
+            <Signal function="vessel_force_sum[1]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[2]"/>
+            <Signal function="vessel_force_sum[2]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[3]"/>
+            <Signal function="vessel_force_sum[3]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[4]"/>
+            <Signal function="vessel_force_sum[4]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[5]"/>
+            <Signal function="vessel_force_sum[5]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[6]"/>
+            <Signal function="vessel_force_sum[6]" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="DP Mock" name="generalizedForces[0]"/>
+            <Signal function="vessel_force_sum[1]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="DP Mock" name="generalizedForces[1]"/>
+            <Signal function="vessel_force_sum[2]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="DP Mock" name="generalizedForces[2]"/>
+            <Signal function="vessel_force_sum[6]" name="in[2]"/>
+        </SignalConnection>
+        
+        <SignalConnection>
+            <Variable simulator="planing_hull_maneuvering" name="force_surge"/>
+            <Signal function="vessel_force_sum[1]" name="in[3]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="planing_hull_maneuvering" name="force_sway"/>
+            <Signal function="vessel_force_sum[2]" name="in[3]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="planing_hull_maneuvering" name="moment_yaw"/>
+            <Signal function="vessel_force_sum[6]" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_seakeeping" name="force_heave"/>
+            <Signal function="vessel_force_sum[3]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_seakeeping" name="moment_roll"/>
+            <Signal function="vessel_force_sum[4]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_seakeeping" name="moment_pitch"/>
+            <Signal function="vessel_force_sum[5]" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="vessel_force_sum[1]" name="out"/>
+            <Variable simulator="Vessel" name="external_force[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[2]" name="out"/>
+            <Variable simulator="Vessel" name="external_force[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[3]" name="out"/>
+            <Variable simulator="Vessel" name="external_force[3]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[4]" name="out"/>
+            <Variable simulator="Vessel" name="external_force[4]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[5]" name="out"/>
+            <Variable simulator="Vessel" name="external_force[5]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[6]" name="out"/>
+            <Variable simulator="Vessel" name="external_force[6]"/>
+        </SignalConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="planing_hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="velocity"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="displacement_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="displacement"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="DP Mock" name="position_measurements_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="DP Mock" name="velocity_measurements_3dof"/>
+        </VariableGroupConnection>
+
+        <!-- Wind -->
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_direction"/>
+            <Variable simulator="Wind loads" name="wind_direction"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_speed"/>
+            <Variable simulator="Wind loads" name="wind_speed"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_velocity"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_position"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_ned"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="acceleration_6dof"/>
+        </VariableGroupConnection>
+
+        <VariableConnection>
+            <Variable simulator="DP Mock" name="controlMode"/>
+            <Variable simulator="dp_interface" name="control_mode"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="dp_interface" name="set_control_mode"/>
+            <Variable simulator="DP Mock" name="desiredControlMode"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="DP Mock" name="readyForAutonomyEnabled"/>
+            <Variable simulator="dp_interface" name="ready_for_autonomy"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="DP Mock" name="autonomyModeEnabled"/>
+            <Variable simulator="dp_interface" name="autonomy_enabled"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="dp_interface" name="pose"/>
+        </VariableGroupConnection>
+
+        <VariableConnection>
+            <Variable simulator="dp_interface" name="autonomy_enable"/>
+            <Variable simulator="DP Mock" name="enableAutonomyMode"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="dp_interface" name="joystick_commands"/>
+            <VariableGroup simulator="DP Mock" name="autonomy_joystick_commands"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="dp_interface" name="dp_commands"/>
+            <VariableGroup simulator="DP Mock" name="autonomy_dp_commands"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="dp_interface" name="autopilot_commands"/>
+            <VariableGroup simulator="DP Mock" name="autonomy_autopilot_commands"/>
+        </VariableGroupConnection>
+
+    </Connections>
+</OspSystemStructure>

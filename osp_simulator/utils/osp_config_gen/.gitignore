@@ -1,0 +1,4 @@
+resources/ros_*
+dist
+build
+*.spec

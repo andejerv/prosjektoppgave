@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="planing_hull_maneuvering"
+    guid="@FMU_UUID@"
+    description="Hydrodynamic forces on a planing hull"
+    author="Tobias Rye Torben"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="planing_hull_maneuvering"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="density"             valueReference="1"  causality="parameter" variability="fixed"><Real start="1025.9"/></ScalarVariable>
+        <ScalarVariable name="kinematic_viscosity" valueReference="2"  causality="parameter" variability="fixed"><Real start="0.00000119"/></ScalarVariable>
+
+        <ScalarVariable name="length"         valueReference="3"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="beam"         valueReference="4"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="depth"          valueReference="5"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="mass" valueReference="6" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="wetted_surface" valueReference="7"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+
+        <ScalarVariable name="shape_factor" valueReference="8"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="CR_m"         valueReference="9"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="CR_p"         valueReference="10"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="CD_lateral"   valueReference="11" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="lcg" valueReference="12" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="vcg" valueReference="13" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="deadrise_deg" valueReference="14" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="vertical_thruster_placement" valueReference="15" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="model_mixing_start" valueReference="16" causality="parameter" variability="fixed"><Real start="3.0"/></ScalarVariable>
+        <ScalarVariable name="model_mixing_end" valueReference="17" causality="parameter" variability="fixed"><Real start="4.0"/></ScalarVariable>
+
+        <ScalarVariable name="sway_linear_damping" valueReference="18" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="yaw_linear_damping" valueReference="19" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="velocity_surge" valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="velocity_sway"  valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="velocity_yaw"   valueReference="103" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="force_surge" valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="force_sway"  valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_yaw"  valueReference="203" causality="output"><Real/></ScalarVariable>
+
+        <ScalarVariable name="force_heave"  valueReference="204" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_roll"  valueReference="205" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_pitch"  valueReference="206" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

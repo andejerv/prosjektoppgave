@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure" version="0.1">
+
+    <BaseStepSize>0.1</BaseStepSize>
+
+    <Simulators>
+        <!-- Controller setup -->
+        <Simulator name="heading_controller" source="../../fmus_linux/heading_controller.fmu">
+            <InitialValues>
+                <InitialValue variable="target_heading"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="k_p">           <Real value="1.0"/></InitialValue>
+                <InitialValue variable="k_i">           <Real value="0.2"/></InitialValue>
+                <InitialValue variable="k_d">           <Real value="1.0"/></InitialValue>
+                <InitialValue variable="min_angle">     <Real value="-0.610865"/></InitialValue> <!-- - 35 degrees -->
+                <InitialValue variable="max_angle">     <Real value="0.610865"/></InitialValue>  <!-- + 35 degrees -->
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="speed_controller" source="../../fmus_linux/speed_controller.fmu">
+            <InitialValues>
+                <InitialValue variable="target_speed"><Real value="6.1733333"/></InitialValue> <!-- 12 knots -->
+                <InitialValue variable="k_p">         <Real value="5.0"/></InitialValue>
+                <InitialValue variable="k_i">         <Real value="0.25"/></InitialValue>
+                <InitialValue variable="k_d">         <Real value="0.0"/></InitialValue>
+                <InitialValue variable="min_loading"> <Real value="-1.0"/></InitialValue>
+                <InitialValue variable="max_loading"> <Real value="1.0"/></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="set_points_client" source="../../fmus_linux/set_points_client.fmu">
+            <InitialValues>
+            </InitialValues>
+        </Simulator>
+
+        <!-- Rigid body model that also performs the time integration -->
+        <Simulator name="rigid_body" source="../../fmus_linux/rigid_body.fmu">
+			<InitialValues>
+                <InitialValue variable="m">   <Real value="1925000"/></InitialValue>
+                <InitialValue variable="I[3]"><Real value="1390361000"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <!-- Hydrodynamic model for the hull -->
+        <Simulator name="hull_maneuvering" source="../../fmus_linux/hull_maneuvering.fmu">
+			<InitialValues>
+                <!-- Relevant geometric variables for the hydrodynamics -->
+                <InitialValue variable="length"><Real value="106.5"/></InitialValue>
+                <InitialValue variable="depth"><Real value="3.41"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="1278"/></InitialValue>
+
+                <!-- Straight ahead resistance parameters. Values from (corrected) CFD -->
+                <InitialValue variable="shape_factor">   <Real value="0.36046019"/></InitialValue> <!-- high value as it also contains roughness -->
+                <InitialValue variable="CR_m"><Real value="0.45606227"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="4.70818569"/></InitialValue>
+
+                <!-- MMG parameters. Drift values from CFD, yaw rate from empirical models -->
+                <InitialValue variable="Xvv">  <Real value="-0.04326595"/> </InitialValue>
+                <InitialValue variable="Xvr">  <Real value="0.002"/> </InitialValue>
+                <InitialValue variable="Xrr">  <Real value="0.011"/> </InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="1.57219827"/> </InitialValue>
+                <InitialValue variable="Yv">   <Real value="-0.11584535"/></InitialValue>
+                <InitialValue variable="Yr">   <Real value="0.083"/> </InitialValue>
+                <InitialValue variable="Yvvv"> <Real value="-6.0078787"/></InitialValue>
+                <InitialValue variable="Yvrr"> <Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"> <Real value="0.379"/> </InitialValue>
+                <InitialValue variable="Yrrr"> <Real value="0.008"/> </InitialValue>
+                <InitialValue variable="Nv">   <Real value="-0.04070471"/></InitialValue>
+                <InitialValue variable="Nr">   <Real value="-0.049"/></InitialValue>
+                <InitialValue variable="Nvvv"> <Real value="-0.30474735"/> </InitialValue>
+                <InitialValue variable="Nvrr"> <Real value="0.055"/> </InitialValue>
+                <InitialValue variable="Nvvr"> <Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"> <Real value="-0.013"/></InitialValue>
+
+                <InitialValue variable="low_speed_model"><Boolean value="false"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Rudder setup -->
+        <Simulator name="rudder" source="../../fmus_linux/rudder.fmu">
+			<InitialValues>
+                <InitialValue variable="area"> <Real value="4.25"/></InitialValue>
+                <InitialValue variable="chord"><Real value="2.0"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="-45"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="90"/></InitialValue> <!-- lpp = length between rudders -->
+
+                <InitialValue variable="cd_k"> <Real value="0.0"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="2.0"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="2.0"/></InitialValue>
+
+                <InitialValue variable="w0">   <Real value="0.350"/></InitialValue>
+                <InitialValue variable="gamma_positive"><Real value="0.75"/></InitialValue>
+                <InitialValue variable="gamma_negative"><Real value="0.75"/></InitialValue>
+                <InitialValue variable="lr_surge">   <Real value="-0.5"/></InitialValue>
+                <InitialValue variable="lr_sway">   <Real value="-0.5"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="1.5"/></InitialValue>
+
+                <InitialValue variable="normal_force_mode"><Boolean value="true"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <!-- Thruster setup. Deliberatly using simple models (this simulation is primarily a test of the hull model) -->
+		<Simulator name="thruster1" source="../../fmus_linux/simple_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="p0_x">          <Real value="-45"/></InitialValue>
+				<InitialValue variable="p0_y"          ><Real value="0.0"/></InitialValue>
+				<InitialValue variable="orientation0_x"><Real value="1.0"/></InitialValue>
+				<InitialValue variable="orientation0_y"><Real value="0.0"/></InitialValue>
+				<InitialValue variable="max_thrust">    <Real value="200000"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="steering_machinery" source="../../fmus_linux/steering_machinery.fmu">
+            <InitialValues>
+                <InitialValue variable="max_speed"><Real value="0.3490"/></InitialValue> <!-- Right above 20 deg/sec -->
+            </InitialValues>
+        </Simulator>
+
+        <!-- Wind loads model -->
+		<Simulator name="wind_loads" source="../../fmus_linux/wind_loads.fmu">
+			<InitialValues>
+                <InitialValue variable="Parameters.A_Fw">   <Real value="247"/></InitialValue>
+				<InitialValue variable="Parameters.A_Lw">   <Real value="1050"/></InitialValue>
+				<InitialValue variable="Parameters.CD_lAF"> <Real value="0.475"/></InitialValue>
+				<InitialValue variable="Parameters.CD_t">   <Real value="0.9"/></InitialValue>
+				<InitialValue variable="Parameters.H_Lw">   <Real value="1.0"/></InitialValue>
+				<InitialValue variable="Parameters.L_oa">   <Real value="101"/></InitialValue>
+				<InitialValue variable="Parameters.delta">  <Real value="0.8"/></InitialValue>
+				<InitialValue variable="Parameters.kappa">  <Real value="1.1"/></InitialValue>
+				<InitialValue variable="Parameters.rho_air"><Real value="1.225"/></InitialValue>
+				<InitialValue variable="Parameters.s_L">    <Real value="0.0"/></InitialValue>
+                <InitialValue variable="wind_direction">    <Real value="90"/></InitialValue>
+                <InitialValue variable="wind_speed">        <Real value="7.9"/></InitialValue>
+      </InitialValues>
+		</Simulator>
+
+    </Simulators>
+
+    <Functions>
+        <Sum name="surge_force_sum" inputCount="4"/>
+        <Sum name="sway_force_sum"  inputCount="4"/>
+        <Sum name="yaw_force_sum"   inputCount="4"/>
+    </Functions>
+
+    <Connections>
+        <!-- Add together external forces -->
+        <SignalConnection>
+            <Variable simulator="thruster1" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="rudder" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="wind_loads" name="tau_wind[0]"/>
+            <Signal function="surge_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster1" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="rudder" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="wind_loads" name="tau_wind[1]"/>
+            <Signal function="sway_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster1" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="rudder" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="wind_loads" name="tau_wind[5]"/>
+            <Signal function="yaw_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <!-- Pass external force to rigid body -->
+        <SignalConnection>
+            <Signal function="surge_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="sway_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="yaw_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force[6]"/>
+        </SignalConnection>
+
+
+        <!-- Send rigid body variables to external force models -->
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="rudder" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+		<VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="wind_loads" name="vessel_velocity"/>
+        </VariableGroupConnection>
+		<VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="position_6dof"/>
+            <VariableGroup simulator="wind_loads" name="vessel_position"/>
+        </VariableGroupConnection>
+
+        <!-- heading controller -->
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="eta[6]"/>
+            <Variable simulator="heading_controller" name="estimated_heading"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="heading_controller" name="angle"/>
+            <Variable simulator="steering_machinery" name="target_angle"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="steering_machinery" name="angle"/>
+            <Variable simulator="thruster1" name="angle"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="steering_machinery" name="angle"/>
+            <Variable simulator="rudder" name="angle"/>
+        </VariableConnection>
+
+        <!-- Speed controller -->
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="nu[1]"/>
+            <Variable simulator="speed_controller" name="estimated_u"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="nu[2]"/>
+            <Variable simulator="speed_controller" name="estimated_v"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="speed_controller" name="loading"/>
+            <Variable simulator="thruster1" name="loading"/>
+        </VariableConnection>
+
+        <!-- Set point client input -->
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="eta[1]"/>
+            <Variable simulator="set_points_client" name="x"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="eta[2]"/>
+            <Variable simulator="set_points_client" name="y"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="nu[1]"/>
+            <Variable simulator="set_points_client" name="u"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="nu[2]"/>
+            <Variable simulator="set_points_client" name="v"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="eta[6]"/>
+            <Variable simulator="set_points_client" name="heading"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="speed_controller" name="loading"/>
+            <Variable simulator="set_points_client" name="loading"/>
+        </VariableConnection>
+
+        <!-- Set point client output -->
+        <VariableConnection>
+            <Variable simulator="set_points_client"  name="heading_set_point"/>
+            <Variable simulator="heading_controller" name="target_heading"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="set_points_client"  name="heading_pid_on"/>
+            <Variable simulator="heading_controller" name="pid_on"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="set_points_client"  name="heading_gain_adjust"/>
+            <Variable simulator="heading_controller" name="gain_adjust"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="set_points_client"  name="speed_set_point"/>
+            <Variable simulator="speed_controller" name="target_speed"/>
+        </VariableConnection>
+
+    </Connections>
+
+</OspSystemStructure>

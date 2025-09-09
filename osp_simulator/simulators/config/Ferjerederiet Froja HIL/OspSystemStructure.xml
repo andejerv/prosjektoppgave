@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure
+        xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure"
+        version="0.1">
+    <BaseStepSize>0.01</BaseStepSize>
+    <Simulators>
+        <Simulator name="Vessel" source="../../fmus/rigid_body.fmu">
+            <InitialValues>
+                <InitialValue variable="initial_position[1]">
+					<!--Corresponds to Unity z coordinate-->
+                    <Real value="357.12"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[2]">
+					<!--Corresponds to Unity x coordinate-->
+                    <Real value="1649.76"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[6]">
+                    <Real value="8.026768"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[1]">
+                    <Real value="0.0"/>
+                </InitialValue>	
+                <InitialValue variable="initial_velocity[2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+                <!--Rigid body parameters-->
+                <InitialValue variable="m"><Real value="250000.0"/></InitialValue>
+                <InitialValue variable="m_added[1]"><Real value="25660.8"/></InitialValue>
+                <InitialValue variable="m_added[2]"><Real value="260107.2"/></InitialValue>
+                <InitialValue variable="m_added[3]"><Real value="251000.0"/></InitialValue>
+                <InitialValue variable="I[1]"><Real value="4192256.25"/></InitialValue>
+                <InitialValue variable="I[2]"><Real value="45562500.0"/></InitialValue>
+                <InitialValue variable="I[3]"><Real value="45562500.0"/></InitialValue>
+                <InitialValue variable="I_added[1]"><Real value="342225.0"/></InitialValue>
+                <InitialValue variable="I_added[2]"><Real value="28431000.0"/></InitialValue>
+                <InitialValue variable="I_added[3]"><Real value="37413446.4"/></InitialValue>
+
+                <!-- Quays -->
+                <InitialValue variable="L_vessel">
+                    <Real value="56.0"/>
+                </InitialValue>
+                <InitialValue variable="B_vessel">
+                    <Real value="11.7"/>
+                </InitialValue>
+                <InitialValue variable="k_quay">
+                    <Real value="100000"/>
+                </InitialValue>
+                <InitialValue variable="d_quay">
+                    <Real value="160000"/>
+                </InitialValue>
+                <InitialValue variable="mu_quay">
+                    <Real value="1"/>
+                </InitialValue>
+               
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        <!-- Hydrodynamic model for the hull -->
+        <Simulator name="hull_maneuvering" source="../../fmus/hydrodynamic_models/hull_maneuvering.fmu">
+			<InitialValues>
+                <InitialValue variable="Xvv"><Real value="-0.04"/></InitialValue>
+                <InitialValue variable="Xvr"><Real value="0.002"/></InitialValue>
+                <InitialValue variable="Xrr"><Real value="0.011"/></InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="0.771"/></InitialValue>
+                <InitialValue variable="Yv"><Real value="-0.315"/></InitialValue>
+                <InitialValue variable="Yr"><Real value="0.083"/></InitialValue>
+                <InitialValue variable="Yvvv"><Real value="-1.607"/></InitialValue>
+                <InitialValue variable="Yvrr"><Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"><Real value="0.379"/></InitialValue>
+                <InitialValue variable="Yrrr"><Real value="0.008"/></InitialValue>
+                <InitialValue variable="Nv"><Real value="-0.137"/></InitialValue>
+                <InitialValue variable="Nr"><Real value="-0.049"/></InitialValue>
+                <InitialValue variable="Nvvv"><Real value="-0.03"/></InitialValue>
+                <InitialValue variable="Nvrr"><Real value="0.055"/></InitialValue>
+                <InitialValue variable="Nvvr"><Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"><Real value="-0.013"/></InitialValue>
+                <InitialValue variable="shape_factor"><Real value="0.02557"/></InitialValue>
+                <InitialValue variable="CR_m"><Real value="3.77715"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="4.93023"/></InitialValue>
+                <InitialValue variable="CD_lateral"><Real value="0.045"/></InitialValue>
+                <InitialValue variable="length"><Real value="54"/></InitialValue>
+                <InitialValue variable="depth"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="438.54094"/></InitialValue>
+
+                <!-- Low speed model-->
+                <!-- Suggested values from Fossen (2011) -->
+                <InitialValue variable="CX_low"> <Real value="0.45"/></InitialValue>
+                <InitialValue variable="CY_low"> <Real value="0.70"/></InitialValue>
+                <InitialValue variable="CN_low"> <Real value="0.15"/></InitialValue>
+                <InitialValue variable="Nr_low"> <Real value="-10000000"/></InitialValue><!--TODO Check this-->
+
+                <InitialValue variable="drift_limit_low"> <Real value="0.785398"/></InitialValue>
+                <InitialValue variable="speed_limit_low"> <Real value="1.0"/></InitialValue>
+
+                <InitialValue variable="drift_transfer_range"> <Real value="0.1745"/></InitialValue>
+                <InitialValue variable="speed_transfer_range"> <Real value="0.5"/></InitialValue>
+
+                <InitialValue variable="low_speed_model"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Seakeeping model for the hull -->
+        <Simulator name="hull_seakeeping" source="../../fmus/hydrodynamic_models/hull_seakeeping.fmu">
+			<InitialValues>
+                <InitialValue variable="mass"><Real value="250000.0"/></InitialValue>
+                <InitialValue variable="waterplane_area"><Real value="473.85"/></InitialValue>
+                <InitialValue variable="GM_roll"><Real value="10.0"/></InitialValue>
+                <InitialValue variable="GM_pitch"><Real value="80.0"/></InitialValue>
+                <InitialValue variable="heave_damping"><Real value="915640.63838"/></InitialValue>
+                <InitialValue variable="roll_damping"><Real value="13533242.68944"/></InitialValue>
+                <InitialValue variable="pitch_damping"><Real value="72293214.70235"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+		<Simulator name="Thruster Front" source="../../fmus/hydrodynamic_models/ducted_propeller.fmu">
+			<InitialValues>
+                <InitialValue variable="nozzle_area"> <Real value="0.2"/></InitialValue>
+                <InitialValue variable="nozzle_chord"><Real value="0.1"/></InitialValue>
+
+                <InitialValue variable="longitudinal_position"><Real value="22.5"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="54"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue>
+                <InitialValue variable="normal_force_mode"><Boolean value="false"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.52"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Thruster Aft" source="../../fmus/hydrodynamic_models/ducted_propeller.fmu">
+			<InitialValues>
+                <InitialValue variable="nozzle_area"> <Real value="0.2"/></InitialValue>
+                <InitialValue variable="nozzle_chord"><Real value="0.1"/></InitialValue>
+
+                <InitialValue variable="longitudinal_position"><Real value="-22.5"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="54"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue>
+                <InitialValue variable="normal_force_mode"><Boolean value="false"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.52"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Steering Machinery Front" source="../../fmus/physical_components/steering_machinery.fmu">
+            <InitialValues>
+                <InitialValue variable="max_speed">
+                    <Real value="0.3490658503988659"/><!--rad/s-->
+                </InitialValue>
+                <InitialValue variable="initial_angle">
+                    <Real value="0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Steering Machinery Aft" source="../../fmus/physical_components/steering_machinery.fmu">
+            <InitialValues>
+                <InitialValue variable="max_speed">
+                    <Real value="0.3490658503988659"/><!--rad/s-->
+                </InitialValue>
+                <InitialValue variable="initial_angle">
+                    <Real value="0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="mooring" source="../../fmus/mooring.fmu">
+            <InitialValues>
+                <InitialValue variable="hatch_position_fore">
+                    <Real value="100.0"/>
+                </InitialValue>
+                <InitialValue variable="hatch_position_aft">
+                    <Real value="100.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+         
+        <Simulator name="Wave forces" source="../../fmus/wave_forces.fmu">
+            <InitialValues>
+                <InitialValue variable="wave_force_stddev[1,1]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind model" source="../../fmus/wind_model.fmu">
+            <InitialValues>
+                <InitialValue variable="mean_wind_direction">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="mean_wind_speed">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+       <Simulator name="Wind loads" source="../../fmus/wind_loads.fmu">
+            <InitialValues>
+                <InitialValue variable="A_Fw">
+                    <Real value="300"/>
+                </InitialValue>
+                <InitialValue variable="A_Lw">
+                    <Real value="800"/>
+                </InitialValue>
+                <InitialValue variable="CD_lAF">
+                    <Real value="0.475"/>
+                </InitialValue>
+                <InitialValue variable="CD_t">
+                    <Real value="0.9"/>
+                </InitialValue>
+                <InitialValue variable="H_Lw">
+                    <Real value="1.0"/>
+                </InitialValue>
+                <InitialValue variable="L_oa">
+                    <Real value="52"/>
+                </InitialValue>
+                <InitialValue variable="delta">
+                    <Real value="0.8"/>
+                </InitialValue>
+                <InitialValue variable="kappa">
+                    <Real value="1.1"/>
+                </InitialValue>
+                <InitialValue variable="rho_air">
+                    <Real value="1.225"/>
+                </InitialValue>
+                <InitialValue variable="s_L">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="gps_sensor_1" source="../../fmus/gps_sensor.fmu">
+            <InitialValues>
+                <InitialValue variable="antenna_pos_x">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="antenna_pos_y">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="antenna_pos_z">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="latitude_0">
+                    <Real value="63.133432"/>
+                </InitialValue>
+                <InitialValue variable="longitude_0">
+                    <Real value="14.373741"/>
+                </InitialValue>
+                <InitialValue variable="height_0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="gps_sensor_2" source="../../fmus/gps_sensor.fmu">
+            <InitialValues>
+                <InitialValue variable="antenna_pos_x">
+                    <Real value="-1.4"/>
+                </InitialValue>
+                <InitialValue variable="antenna_pos_y">
+                    <Real value="-0.75"/>
+                </InitialValue>
+                <InitialValue variable="antenna_pos_z">
+                    <Real value="-2.7"/>
+                </InitialValue>
+                <InitialValue variable="latitude_0">
+                    <Real value="63.133432"/>
+                </InitialValue>
+                <InitialValue variable="longitude_0">
+                    <Real value="14.373741"/>
+                </InitialValue>
+                <InitialValue variable="height_0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="gps_sender_2" source="../../fmus/gps_sender2.fmu" stepSize="0.2"/>
+
+        <Simulator name="vru_sensor" source="../../fmus/vru_sensor.fmu">
+            <InitialValues>
+                <InitialValue variable="roll_noise_mean">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="roll_noise_standard_deviation">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="pitch_noise_mean">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="pitch_noise_standard_deviation">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="enable_sensor_fault">
+                    <Boolean value="false"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="gyro_sensor" source="../../fmus/gyro_sensor.fmu">
+            <InitialValues>
+                <InitialValue variable="heading_noise_mean">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="heading_noise_standard_deviation">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="enable_sensor_fault">
+                    <Boolean value="false"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="gyro_sender" source="../../fmus/gyro_sender.fmu" stepSize="0.1">
+            <InitialValues>
+                <InitialValue variable="HeadingOk">
+                    <String value="T"/>
+                </InitialValue>
+                <InitialValue variable="RateOfTurnOk">
+                    <String value="A"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="wind_sensor" source="../../fmus/wind_sensor.fmu"/> 
+        <Simulator name="wind_sensor_sender" source="../../fmus/wind_sensor_sender.fmu" stepSize="0.2"/>
+
+                <Simulator name="Distance Sensor ZT1 FS-S" source="../../fmus/UltrasonicDistanceSensor.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="2.44865"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="1.57079632679"/>
+                </InitialValue>
+
+				<InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+            </InitialValues>    
+        </Simulator>
+
+
+        <Simulator name="Distance Sensor ZT2 FS-F" source="../../fmus/UltrasonicDistanceSensor_1.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="5.947866"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+				<InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT3 FP-F" source="../../fmus/UltrasonicDistanceSensor_2.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="5.94651"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT4 FP-P" source="../../fmus/UltrasonicDistanceSensor_3.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-2.452682"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="-1.57079632679"/>
+                </InitialValue>
+
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT5 AP-P" source="../../fmus/UltrasonicDistanceSensor_4.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-2.451359"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="-1.57079632679"/>
+                </InitialValue>
+
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Distance Sensor ZT6 AP-A" source="../../fmus/UltrasonicDistanceSensor_5.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-5.942653"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="3.141592653589793"/>
+                </InitialValue>
+
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Distance Sensor ZT7 AS-A" source="../../fmus/UltrasonicDistanceSensor_6.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-5.946009"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="3.141592653589793"/>
+                </InitialValue>
+
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT8 AS-S" source="../../fmus/UltrasonicDistanceSensor_7.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="2.453213"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="1.57079632679"/>
+                </InitialValue>
+
+                <InitialValue variable="quay_1_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="597.4910164149192" /></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="259.5595413028445" /></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="609.3087099761656" /></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="261.6433164568559" /></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8" /></InitialValue>
+                
+                <InitialValue variable="quay_2_en"><Boolean value="true" /></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="358.0688912268525" /></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="1678.3488458220966" /></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="346.247578123938" /></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="1676.2857034317458" /></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="4.8" /></InitialValue>
+            </InitialValues>
+        </Simulator>        
+
+        <Simulator name="mt_hil_interface" source="../../fmus/fmi_mt_driver.fmu" stepSize="0.1"/>
+
+        <Simulator name="hatch_control" source="../../fmus/fmi_hatch_control_modbus_tcp.fmu" stepSize="0.1">
+            <InitialValues>
+                <InitialValue variable="modbus_server_ip">
+                    <String value="192.168.10.99"/>
+                </InitialValue>
+                <InitialValue variable="hatch_command_timeout">
+                    <Real value="10"/>
+                </InitialValue>
+                <InitialValue variable="modbus_server_port">
+                    <Real value="502"/>
+                </InitialValue>
+                <InitialValue variable="coil_address_read">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_read_num_bits">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_address_write">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_write_num_bits">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="register_address_read">
+                    <Real value="200"/>
+                </InitialValue>
+                <InitialValue variable="register_read_num_regs">
+                    <Real value="1"/>
+                </InitialValue>
+                <InitialValue variable="register_address_write">
+                    <Real value="32000"/>
+                </InitialValue>
+                <InitialValue variable="register_write_num_regs">
+                    <Real value="1"/>
+                </InitialValue>
+                <InitialValue variable="hatch_start_position_fore">
+                    <Real value="100.0"/>
+                </InitialValue>
+                <InitialValue variable="hatch_start_position_aft">
+                    <Real value="100.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="ultrasound_distance_communication_zb1" source="../../fmus/fmi_ultrasonic_distance_sensor_communication_zb1.fmu" stepSize="0.2">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="192.168.10.100"/>
+                </InitialValue>
+                <InitialValue variable="local_ip">
+                    <String value="0.0.0.0"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="2001"/>
+                </InitialValue>
+                <InitialValue variable="local_port">
+                    <String value="1996"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="zb_sim_nav" source="../../fmus/fmi_zb_sim_nav.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="192.168.10.100"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="3000"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="zb_sim_clock" source="../../fmus/fmi_zb_sim_clock.fmu" stepSize="0.01">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="192.168.10.100"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="3001"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation" source="../../fmus/fmi_advanced_navigation.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="192.168.10.100"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_ip">
+                    <String value="192.168.0.21"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16718"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_port">
+                    <String value="6000"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="63.133432"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="14.373741"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation_gps_compass" source="../../fmus/fmi_advanced_navigation.fmu" stepSize="0.2">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="192.168.10.100"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16719"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_port">
+                    <String value="0"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="63.133432"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="14.373741"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+    </Simulators>
+    
+    <Functions>
+        <LinearTransformation name="deg2rad_1" factor="0.01745329251994329576923690768489" offset="0"/>
+        <LinearTransformation name="deg2rad_2" factor="0.01745329251994329576923690768489" offset="0"/>
+        <LinearTransformation name="rad2deg_1" factor="0.01745329251994329576923690768489" offset="0"/>
+        <LinearTransformation name="rad2deg_2" factor="0.01745329251994329576923690768489" offset="0"/>
+        <LinearTransformation name="mtcmd2rps_1" factor="20" offset="0"/>
+        <LinearTransformation name="mtcmd2rps_2" factor="20" offset="0"/>
+        
+        <VectorSum name="vessel_force_sum" inputCount="6" dimension="6"/>
+    </Functions>
+    
+    <Connections>
+        <!-- Hydro models for hull -->
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="velocity"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="displacement_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="displacement"/>
+        </VariableGroupConnection>
+
+        <!--Vessel force sum -->
+        <SignalGroupConnection>
+            <VariableGroup simulator="Thruster Front" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[0]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="Thruster Aft" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[1]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="Wave forces" name="wave_forces"/>
+            <SignalGroup function="vessel_force_sum" name="in[2]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="Wind loads" name="wind_loads"/>
+            <SignalGroup function="vessel_force_sum" name="in[3]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="hull_maneuvering" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[4]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="hull_seakeeping" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[5]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <SignalGroup function="vessel_force_sum" name="out"/>
+            <VariableGroup simulator="Vessel" name="external_force"/>
+        </SignalGroupConnection>
+
+        <!-- Wind -->
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_direction"/>
+            <Variable simulator="Wind loads" name="wind_direction"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_speed"/>
+            <Variable simulator="Wind loads" name="wind_speed"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_velocity"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_position"/>
+        </VariableGroupConnection>
+        
+        <!-- Thrusters -->
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Aft" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Front" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableConnection>
+            <Variable simulator="Steering Machinery Front" name="angle"/>
+            <Variable simulator="Thruster Front" name="angle"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Steering Machinery Aft" name="angle"/>
+            <Variable simulator="Thruster Aft" name="angle"/>
+        </VariableConnection>
+
+        <!-- Mooring -->
+        <VariableConnection>
+            <Variable simulator="hatch_control" name="hatch_position_fore"/>
+            <Variable simulator="mooring" name="hatch_position_fore"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="hatch_control" name="hatch_position_aft"/>
+            <Variable simulator="mooring" name="hatch_position_aft"/>
+        </VariableConnection>
+         <VariableConnection>
+            <Variable simulator="mooring" name="moored"/>
+            <Variable simulator="Vessel" name="lock_motion"/>
+        </VariableConnection>
+     
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="gps_sensor_2" name="nmea_gga"/>
+            <VariableGroup simulator="gps_sender_2" name="nmea_gga"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="gps_sensor_2" name="nmea_vtg"/>
+            <VariableGroup simulator="gps_sender_2" name="nmea_vtg"/>
+        </VariableGroupConnection>
+        <VariableConnection>
+            <Variable simulator="gyro_sensor" name="heading_measurement"/>
+            <Variable simulator="gyro_sender" name="Heading"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="gyro_sensor" name="rate_of_turn"/>
+            <Variable simulator="gyro_sender" name="RateOfTurn"/>
+        </VariableConnection>
+        
+        <VariableGroupConnection>
+            <VariableGroup simulator="wind_sensor" name="nmea_mwv"/>
+            <VariableGroup simulator="wind_sensor_sender" name="nmea_mwv"/>
+        </VariableGroupConnection>
+     
+        
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="vru_signal"/>
+            <VariableGroup simulator="vru_sensor" name="vru_input"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="gps_sensor_1" name="gnss_input"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="gps_sensor_1" name="gnss_velocity_input"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="gps_sensor_2" name="gnss_input"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="gps_sensor_2" name="gnss_velocity_input"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="gyro_signal"/>
+            <VariableGroup simulator="gyro_sensor" name="gyro_input"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Wind model" name="wind_output"/>
+            <VariableGroup simulator="wind_sensor" name="wind_sensor_input"/>
+        </VariableGroupConnection>
+        
+        <!--Thruster cmd/fbc-->
+        <SignalConnection>
+            <Variable simulator="mt_hil_interface" name="thr1_rpm_cmd"/>
+            <Signal function="mtcmd2rps_1" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="mtcmd2rps_1" name="out"/>
+            <Variable simulator="Thruster Front" name="rotations_per_second"/>
+        </SignalConnection>
+       <SignalConnection>
+            <Signal function="mtcmd2rps_1" name="out"/>
+            <Variable simulator="Thruster Front" name="rotations_per_second"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="mt_hil_interface" name="thr1_azm_cmd"/>
+            <Signal function="deg2rad_1" name="in"/>
+        </SignalConnection>
+        <VariableConnection>
+            <Variable simulator="mt_hil_interface" name="thr1_rpm_cmd"/>
+            <Variable simulator="mt_hil_interface" name="thr1_rpm_fba"/>
+        </VariableConnection>
+        <SignalConnection>
+            <Variable simulator="Steering Machinery Front" name="angle"/>
+            <Signal function="rad2deg_1" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="rad2deg_1" name="out"/>
+            <Variable simulator="mt_hil_interface" name="thr1_azm_fba"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="mt_hil_interface" name="thr2_rpm_cmd"/>
+            <Signal function="mtcmd2rps_2" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="mtcmd2rps_2" name="out"/>
+            <Variable simulator="Thruster Aft" name="rotations_per_second"/>
+        </SignalConnection>
+         <SignalConnection>
+            <Variable simulator="Steering Machinery Aft" name="angle"/>
+            <Signal function="rad2deg_2" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="rad2deg_2" name="out"/>
+            <Variable simulator="mt_hil_interface" name="thr2_azm_fba"/>
+        </SignalConnection>
+        <VariableConnection>
+            <Variable simulator="mt_hil_interface" name="thr2_rpm_cmd"/>
+            <Variable simulator="mt_hil_interface" name="thr2_rpm_fba"/>
+        </VariableConnection>
+       <SignalConnection>
+            <Variable simulator="Steering Machinery Aft" name="angle"/>
+            <Signal function="rad2deg_2" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="rad2deg_2" name="out"/>
+            <Variable simulator="mt_hil_interface" name="thr2_azm_fba"/>
+        </SignalConnection>
+
+        <!-- Distance sensors-->
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT1 FS-S" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT2 FS-F" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT3 FP-F" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT4 FP-P" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT5 AP-P" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT6 AP-A" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT7 AS-A" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT8 AS-S" name="position_3dof"/>
+        </VariableGroupConnection>
+        
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT1 FS-S" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_fore_stbd"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT2 FS-F" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_fore_stbd"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT3 FP-F" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_fore_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT4 FP-P" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_fore_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT5 AP-P" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_aft_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT6 AP-A" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_aft_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT7 AS-A" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_aft_stbd"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT8 AS-S" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_aft_stbd"/>
+        </VariableGroupConnection>
+        
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="twist_ned"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="acceleration_6dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_ned"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="acceleration_6dof"/>
+        </VariableGroupConnection>
+
+    </Connections>
+</OspSystemStructure>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="electric_drive"
+    guid="@FMU_UUID@"
+    description="First order model for the RPM dynamics of an electric drive, including saturation"
+    author="Tobias Rye Torben"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="electric_drive"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="max_rpm"    valueReference="1" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="time_constant"    valueReference="2" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="max_rpm_rate"    valueReference="3" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="rpm_command" valueReference="11" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="rpm"  valueReference="21" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

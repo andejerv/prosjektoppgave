@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure" version="0.1">
+
+    <BaseStepSize>0.01</BaseStepSize>
+
+    <Simulators>
+
+        <!-- Set up test controller that modifies rudder angle based on heading angle -->
+        <Simulator name="controller" source="../../fmus/maneuvering_test_controller.fmu">
+			<InitialValues>
+                <InitialValue variable="init_time">       <Real value="10"/></InitialValue>
+                <InitialValue variable="max_rudder_angle"><Real value="0.349066"/></InitialValue> <!-- 20 deg -->
+                <InitialValue variable="heading_execute"> <Real value="0.349066"/></InitialValue> <!-- 20 deg -->
+            </InitialValues>
+		</Simulator>
+
+
+        <!-- Rigid body model that also performs the time integration -->
+        <Simulator name="rigid_body" source="../../fmus/rigid_body_maneuvering.fmu">
+			<InitialValues>
+                <InitialValue variable="mass"> <Real value="320718910"/></InitialValue>
+                <InitialValue variable="moment_of_inertia"><Real value="2052601022720"/></InitialValue>
+
+                <InitialValue variable="longitudinal_center_of_gravity"><Real value="11.2"/></InitialValue>
+
+                <InitialValue variable="added_mass_surge"><Real value="24035934"/></InitialValue>
+                <InitialValue variable="added_mass_sway"> <Real value="252083963"/></InitialValue>
+                <InitialValue variable="added_mass_yaw">  <Real value="1317452681902"/></InitialValue>
+
+                <InitialValue variable="initial_velocity_surge"><Real value="7.9732"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+         <!-- Hydrodynamic model for the hull -->
+        <Simulator name="hull_maneuvering" source="../../fmus/hull_maneuvering.fmu">
+			<InitialValues>
+                <!-- Relevant geometric variables for the model -->
+                <InitialValue variable="length">        <Real value="320"/></InitialValue>
+                <InitialValue variable="depth">         <Real value="20.8"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="27194"/></InitialValue>
+
+                <!-- Straight ahead resistance parameters -->
+                <InitialValue variable="shape_factor"><Real value="-1.0"/></InitialValue>
+                <InitialValue variable="CR_m">        <Real value="0.0"/></InitialValue>
+                <InitialValue variable="CR_p">        <Real value="4.0"/></InitialValue>
+                <InitialValue variable="CD_lateral">  <Real value="0.022"/></InitialValue>
+
+                <!-- MMG parameters. From experimental values -->
+                <InitialValue variable="Xvv">  <Real value="-0.040"/> </InitialValue>
+                <InitialValue variable="Xvr">  <Real value="0.002"/> </InitialValue>
+                <InitialValue variable="Xrr">  <Real value="0.011"/> </InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="0.771"/> </InitialValue>
+                <InitialValue variable="Yv">   <Real value="-0.315"/></InitialValue>
+                <InitialValue variable="Yr">   <Real value="0.083"/> </InitialValue>
+                <InitialValue variable="Yvvv"> <Real value="-1.607"/></InitialValue>
+                <InitialValue variable="Yvrr"> <Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"> <Real value="0.379"/> </InitialValue>
+                <InitialValue variable="Yrrr"> <Real value="0.008"/> </InitialValue>
+                <InitialValue variable="Nv">   <Real value="-0.137"/></InitialValue>
+                <InitialValue variable="Nr">   <Real value="-0.049"/></InitialValue>
+                <InitialValue variable="Nvvv"> <Real value="-0.030"/> </InitialValue>
+                <InitialValue variable="Nvrr"> <Real value="0.055"/> </InitialValue>
+                <InitialValue variable="Nvvr"> <Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"> <Real value="-0.013"/></InitialValue>
+
+                <InitialValue variable="low_speed_model"><Boolean value="false"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+         <!-- Thruster setup -->
+		<Simulator name="propeller" source="../../fmus/propeller.fmu">
+			<InitialValues>
+                <InitialValue variable="diameter"><Real value="9.86"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="-153.6"/></InitialValue>
+
+				<InitialValue variable="wake_factor"><Real value="0.350"/></InitialValue>
+
+                <InitialValue variable="jet_stream_model_epsilon"><Real value="1.090"/></InitialValue>
+                <InitialValue variable="jet_stream_model_eta"><Real value="0.624051"/></InitialValue>
+                <InitialValue variable="jet_stream_model_kappa"><Real value="0.5"/></InitialValue>
+
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.22"/></InitialValue>
+
+				<InitialValue variable="thrust_coefficient_a0"><Real value="0.2931"/></InitialValue>
+                <InitialValue variable="thrust_coefficient_a1"><Real value="-0.2753"/></InitialValue>
+                <InitialValue variable="thrust_coefficient_a2"><Real value="-0.1385"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="1.53"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <!-- Rudder setup -->
+        <Simulator name="rudder" source="../../fmus/rudder.fmu">
+			<InitialValues>
+                <InitialValue variable="area"> <Real value="112.5"/></InitialValue>
+                <InitialValue variable="chord"><Real value="7.120"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="-160"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="320"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="0.0"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="1.827"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="1.827"/></InitialValue>
+
+                <InitialValue variable="w0">   <Real value="0.350"/></InitialValue>
+                <InitialValue variable="gamma_positive"><Real value="0.64"/></InitialValue>
+                <InitialValue variable="gamma_negative"><Real value="0.395"/></InitialValue>
+                <InitialValue variable="lr_surge">   <Real value="-0.48"/></InitialValue>
+                <InitialValue variable="lr_sway">   <Real value="-0.710"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.387"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.312"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.464"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="1.5"/></InitialValue>
+
+                <InitialValue variable="normal_force_mode"><Boolean value="true"/></InitialValue> <!-- ensure same model as uased in most maneuvering simulation -->
+
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="steering_machinery" source="../../fmus/steering_machinery.fmu">
+            <InitialValues>
+                <InitialValue variable="max_speed">  <Real value="0.026704"/></InitialValue> <!-- 1.53 deg / s -->
+            </InitialValues>
+        </Simulator>
+
+    </Simulators>
+
+    <Functions>
+        <Sum name="surge_force_sum" inputCount="3"/>
+        <Sum name="sway_force_sum"  inputCount="2"/>
+        <Sum name="yaw_force_sum"   inputCount="2"/>
+    </Functions>
+
+    <Connections>
+
+        <!-- hull forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <!-- rudder forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="rudder" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="rudder" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="rudder" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <!-- propeller forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="propeller" name="thrust"/>
+            <Signal function="surge_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <!-- add external forces to rigid body -->
+        <SignalConnection>
+            <Signal function="surge_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_surge"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="sway_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_sway"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="yaw_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_yaw"/>
+        </SignalConnection>
+
+         <!-- Send rigid body variables to external force models -->
+         <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="rudder" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="propeller" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <!-- Send rigid body variable to controller -->
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="heading"/>
+            <Variable simulator="controller" name="heading"/>
+        </VariableConnection>
+
+        <!-- Propeller rudder interaction -->
+        <VariableConnection>
+            <Variable simulator="propeller" name="surge_velocity_increase_factor"/>
+            <Variable simulator="rudder" name="surge_velocity_increase_factor"/>
+        </VariableConnection>
+
+        <!-- Set point to steering machinery -->
+        <VariableConnection>
+            <Variable simulator="controller" name="rudder_angle"/>
+            <Variable simulator="steering_machinery" name="target_angle"/>
+        </VariableConnection>
+
+        <!-- Rotate rudder -->
+        <VariableConnection>
+            <Variable simulator="steering_machinery" name="angle"/>
+            <Variable simulator="rudder" name="angle"/>
+        </VariableConnection>
+
+    </Connections>
+
+</OspSystemStructure>

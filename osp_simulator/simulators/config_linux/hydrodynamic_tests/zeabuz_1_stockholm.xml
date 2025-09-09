@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure" version="0.1">
+
+    <BaseStepSize>0.01</BaseStepSize>
+
+    <Simulators>
+        <!-- Rigid body model that also performs the time integration -->
+        <Simulator name="rigid_body" source="../../../cpp_fmus_linux/build/fmus_linux/rigid_body_maneuvering.fmu">
+			<InitialValues>
+                <InitialValue variable="mass"> <Real value="16116.7"/></InitialValue>
+                <InitialValue variable="moment_of_inertia"><Real value="145050"/></InitialValue><!-- Empirical, RoG=0.25Lpp -->
+
+                <InitialValue variable="longitudinal_center_of_gravity"><Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="added_mass_surge"><Real value="805.835"/></InitialValue>
+                <InitialValue variable="added_mass_sway"> <Real value="16116.7"/></InitialValue>
+                <InitialValue variable="added_mass_yaw">  <Real value="4497.2821"/></InitialValue>
+
+                <InitialValue variable="initial_position_x"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_position_y"> <Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_heading">  <Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="initial_velocity_surge"><Real value="2.73"/></InitialValue>
+                <InitialValue variable="initial_velocity_sway"> <Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_velocity_yaw">  <Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+         <!-- Hydrodynamic model for the hull -->
+        <Simulator name="hull_maneuvering" source="../../../cpp_fmus_linux/build/fmus_linux/hull_maneuvering.fmu">
+			<InitialValues>
+                <!-- Relevant geometric variables for the model -->
+                <InitialValue variable="length"><Real value="12"/></InitialValue>
+                <InitialValue variable="depth"><Real value="0.91"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="46.41"/></InitialValue>
+
+                <!-- Straight ahead resistance parameters -->
+                <InitialValue variable="shape_factor"><Real value="0.052"/></InitialValue>
+                <InitialValue variable="CR_m"><Real value="4.105"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="5.8"/></InitialValue>
+                <InitialValue variable="CD_lateral"><Real value="0.0"/></InitialValue>
+
+                <!-- MMG parameters. From CFD and Empirical values-->
+                <InitialValue variable="Xvv"><Real value="-0.04"/></InitialValue>
+                <InitialValue variable="Xvr"><Real value="0.002"/></InitialValue>
+                <InitialValue variable="Xrr"><Real value="0.011"/></InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="0.771"/></InitialValue>
+                <InitialValue variable="Yv"><Real value="-0.315"/></InitialValue>
+                <InitialValue variable="Yr"><Real value="0.083"/></InitialValue>
+                <InitialValue variable="Yvvv"><Real value="-1.607"/></InitialValue>
+                <InitialValue variable="Yvrr"><Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"><Real value="0.379"/></InitialValue>
+                <InitialValue variable="Yrrr"><Real value="0.008"/></InitialValue>
+                <InitialValue variable="Nv"><Real value="-0.137"/></InitialValue>
+                <InitialValue variable="Nr"><Real value="-0.049"/></InitialValue>
+                <InitialValue variable="Nvvv"><Real value="-0.03"/></InitialValue>
+                <InitialValue variable="Nvrr"><Real value="0.055"/></InitialValue>
+                <InitialValue variable="Nvvr"><Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"><Real value="-0.013"/></InitialValue>
+
+                <!-- Low speed model -->
+                <InitialValue variable="CX_low"> <Real value="0.05"/></InitialValue>
+                <InitialValue variable="CY_low"> <Real value="0.5"/></InitialValue>
+                <InitialValue variable="CN_low"> <Real value="0.110510346"/></InitialValue>
+                <InitialValue variable="Nr_low"> <Real value="-5000"/></InitialValue>
+
+                <InitialValue variable="drift_limit_low"> <Real value="0.785398"/></InitialValue>
+                <InitialValue variable="speed_limit_low"> <Real value="0.5"/></InitialValue>
+
+                <InitialValue variable="drift_transfer_range"> <Real value="0.1745"/></InitialValue>
+                <InitialValue variable="speed_transfer_range"> <Real value="0.2572"/></InitialValue>
+
+                <InitialValue variable="low_speed_model"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Aft/STB thruster setup -->
+		<Simulator name="thruster_AS" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="nozzle_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="nozzle_chord"><Real value="0.265"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="-5.07"/></InitialValue><!-- Measured from CAD model-->
+                <InitialValue variable="lateral_position"><Real value="1.82"/></InitialValue><!-- Measured from CAD model -->
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue><!-- CFD-->
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue><!-- Educated guess, insignificant effect -->
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue><!-- CFD -->
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue><!-- CFD -->
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="normal_force_mode"><Boolean value="false"/></InitialValue> <!-- Use lifting line model -->
+
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue><!-- Educated guess -->
+
+				<!--4Q propeller coefficients-->
+				<!--<InitialValue variable="AT"><String value="-0.1308,0.1098"/></InitialValue>
+				<InitialValue variable="AT"><String value="-0.1308,0.10985,0.1581,0.018367,0.016168,-0.0037402,-0.011736,0.0025483,0.001235,-0.0020772,0.0069749,0.0059838,-0.0014599,0.0083533,0.0011093,0.0041885,-0.00012438,0.0038034,0.00090073,0.0031147,-0.00010633"/></InitialValue>
+                <InitialValue variable="BT"><String value="0.0,-1.0708,0.024163,0.12784,-0.0014064,0.076213,0.013259,-0.00423,-0.0026246,0.016328,-0.00033979,0.0023506,-0.0069497,0.0061925,0.00035046,-0.0011571,-0.00032566,0.0006342,-0.0022749,-0.00036805,-0.001235"/></InitialValue>
+                <InitialValue variable="ATn"><String value="-0.12764,0.00068679,0.14639,0.023195,0.010292,0.0086651,-0.0039124,0.015984,0.0046295,0.00068371,0.001674,0.0083495,-0.00077063,0.0014936,0.0011017,0.0016804,-0.0010338,0.0022409,0.0011,0.00048406,-0.00033008"/></InitialValue>
+                <InitialValue variable="BTn"><String value="0.0,-0.241,0.018919,0.055513,-0.0012453,-0.0014748,-0.0021899,0.0056694,-0.0049911,0.0013631,0.0012877,-0.0035176,-0.0055571,0.00031438,-0.0011179,-0.0024577,-0.00055484,0.00010968,-0.00073945,-0.00154,0.00022408"/></InitialValue>
+                <InitialValue variable="AQ"><String value="0.019368,0.1705,-0.011901,-0.0025601,0.017763,0.0082085,-0.0034336,-0.024534,-0.0010289,-0.0074938,0.0015444,-0.014173,-0.0028034,0.014246,0.0034663,0.0020764,-0.0029424,0.0030149,0.0027714,0.00018423,-8.1634e-05"/></InitialValue>
+                <InitialValue variable="BQ"><String value="0.0,-0.99912,0.031924,0.081384,-0.00035096,0.10631,0.015116,-0.027045,-0.0059389,0.011085,0.0083787,0.015192,-0.0051507,0.014836,0.0025041,-0.00078615,-0.0024526,-0.00032187,-0.00048551,0.0035455,-0.00034936"/></InitialValue>
+                -->
+                
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Aft/Port thruster setup -->
+		<Simulator name="thruster_AP" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="nozzle_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="nozzle_chord"><Real value="0.265"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="-5.07"/></InitialValue><!-- Measured from CAD model-->
+                <InitialValue variable="lateral_position"><Real value="-1.82"/></InitialValue><!-- Measured from CAD model -->
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue><!-- CFD-->
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue><!-- Educated guess, insignificant effect -->
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue><!-- CFD -->
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue><!-- CFD -->
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="normal_force_mode"><Boolean value="false"/></InitialValue> <!-- Use lifting line model -->
+
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue><!-- Educated guess -->
+
+				<!--4Q propeller coefficients-->
+				<!--<InitialValue variable="AT"><String value="-0.1308,0.1098"/></InitialValue>
+				<InitialValue variable="AT"><String value="-0.1308,0.10985,0.1581,0.018367,0.016168,-0.0037402,-0.011736,0.0025483,0.001235,-0.0020772,0.0069749,0.0059838,-0.0014599,0.0083533,0.0011093,0.0041885,-0.00012438,0.0038034,0.00090073,0.0031147,-0.00010633"/></InitialValue>
+                <InitialValue variable="BT"><String value="0.0,-1.0708,0.024163,0.12784,-0.0014064,0.076213,0.013259,-0.00423,-0.0026246,0.016328,-0.00033979,0.0023506,-0.0069497,0.0061925,0.00035046,-0.0011571,-0.00032566,0.0006342,-0.0022749,-0.00036805,-0.001235"/></InitialValue>
+                <InitialValue variable="ATn"><String value="-0.12764,0.00068679,0.14639,0.023195,0.010292,0.0086651,-0.0039124,0.015984,0.0046295,0.00068371,0.001674,0.0083495,-0.00077063,0.0014936,0.0011017,0.0016804,-0.0010338,0.0022409,0.0011,0.00048406,-0.00033008"/></InitialValue>
+                <InitialValue variable="BTn"><String value="0.0,-0.241,0.018919,0.055513,-0.0012453,-0.0014748,-0.0021899,0.0056694,-0.0049911,0.0013631,0.0012877,-0.0035176,-0.0055571,0.00031438,-0.0011179,-0.0024577,-0.00055484,0.00010968,-0.00073945,-0.00154,0.00022408"/></InitialValue>
+                <InitialValue variable="AQ"><String value="0.019368,0.1705,-0.011901,-0.0025601,0.017763,0.0082085,-0.0034336,-0.024534,-0.0010289,-0.0074938,0.0015444,-0.014173,-0.0028034,0.014246,0.0034663,0.0020764,-0.0029424,0.0030149,0.0027714,0.00018423,-8.1634e-05"/></InitialValue>
+                <InitialValue variable="BQ"><String value="0.0,-0.99912,0.031924,0.081384,-0.00035096,0.10631,0.015116,-0.027045,-0.0059389,0.011085,0.0083787,0.015192,-0.0051507,0.014836,0.0025041,-0.00078615,-0.0024526,-0.00032187,-0.00048551,0.0035455,-0.00034936"/></InitialValue>
+                -->
+                
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Fore/STB thruster setup -->
+		<Simulator name="thruster_FS" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="nozzle_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="nozzle_chord"><Real value="0.265"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="5.07"/></InitialValue><!-- Measured from CAD model-->
+                <InitialValue variable="lateral_position"><Real value="1.82"/></InitialValue><!-- Measured from CAD model -->
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue><!-- CFD-->
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue><!-- Educated guess, insignificant effect -->
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue><!-- CFD -->
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue><!-- CFD -->
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="normal_force_mode"><Boolean value="false"/></InitialValue> <!-- Use lifting line model -->
+
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue><!-- Educated guess -->
+
+				<!--4Q propeller coefficients-->
+				<!--<InitialValue variable="AT"><String value="-0.1308,0.1098"/></InitialValue>
+				<InitialValue variable="AT"><String value="-0.1308,0.10985,0.1581,0.018367,0.016168,-0.0037402,-0.011736,0.0025483,0.001235,-0.0020772,0.0069749,0.0059838,-0.0014599,0.0083533,0.0011093,0.0041885,-0.00012438,0.0038034,0.00090073,0.0031147,-0.00010633"/></InitialValue>
+                <InitialValue variable="BT"><String value="0.0,-1.0708,0.024163,0.12784,-0.0014064,0.076213,0.013259,-0.00423,-0.0026246,0.016328,-0.00033979,0.0023506,-0.0069497,0.0061925,0.00035046,-0.0011571,-0.00032566,0.0006342,-0.0022749,-0.00036805,-0.001235"/></InitialValue>
+                <InitialValue variable="ATn"><String value="-0.12764,0.00068679,0.14639,0.023195,0.010292,0.0086651,-0.0039124,0.015984,0.0046295,0.00068371,0.001674,0.0083495,-0.00077063,0.0014936,0.0011017,0.0016804,-0.0010338,0.0022409,0.0011,0.00048406,-0.00033008"/></InitialValue>
+                <InitialValue variable="BTn"><String value="0.0,-0.241,0.018919,0.055513,-0.0012453,-0.0014748,-0.0021899,0.0056694,-0.0049911,0.0013631,0.0012877,-0.0035176,-0.0055571,0.00031438,-0.0011179,-0.0024577,-0.00055484,0.00010968,-0.00073945,-0.00154,0.00022408"/></InitialValue>
+                <InitialValue variable="AQ"><String value="0.019368,0.1705,-0.011901,-0.0025601,0.017763,0.0082085,-0.0034336,-0.024534,-0.0010289,-0.0074938,0.0015444,-0.014173,-0.0028034,0.014246,0.0034663,0.0020764,-0.0029424,0.0030149,0.0027714,0.00018423,-8.1634e-05"/></InitialValue>
+                <InitialValue variable="BQ"><String value="0.0,-0.99912,0.031924,0.081384,-0.00035096,0.10631,0.015116,-0.027045,-0.0059389,0.011085,0.0083787,0.015192,-0.0051507,0.014836,0.0025041,-0.00078615,-0.0024526,-0.00032187,-0.00048551,0.0035455,-0.00034936"/></InitialValue>
+                -->
+                
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Fore/Port thruster setup -->
+		<Simulator name="thruster_FP" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="nozzle_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="nozzle_chord"><Real value="0.265"/></InitialValue>
+                <InitialValue variable="longitudinal_position"><Real value="5.07"/></InitialValue><!-- Measured from CAD model-->
+                <InitialValue variable="lateral_position"><Real value="-1.82"/></InitialValue><!-- Measured from CAD model -->
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue><!-- CFD-->
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue><!-- Educated guess, insignificant effect -->
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue><!-- CFD -->
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue><!-- CFD -->
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue><!-- Educated guess -->
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="normal_force_mode"><Boolean value="false"/></InitialValue> <!-- Use lifting line model -->
+
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue><!-- Educated guess -->
+
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue><!-- Educated guess -->
+
+				<!--4Q propeller coefficients-->
+				<!--<InitialValue variable="AT"><String value="-0.1308,0.1098"/></InitialValue>
+				<InitialValue variable="AT"><String value="-0.1308,0.10985,0.1581,0.018367,0.016168,-0.0037402,-0.011736,0.0025483,0.001235,-0.0020772,0.0069749,0.0059838,-0.0014599,0.0083533,0.0011093,0.0041885,-0.00012438,0.0038034,0.00090073,0.0031147,-0.00010633"/></InitialValue>
+                <InitialValue variable="BT"><String value="0.0,-1.0708,0.024163,0.12784,-0.0014064,0.076213,0.013259,-0.00423,-0.0026246,0.016328,-0.00033979,0.0023506,-0.0069497,0.0061925,0.00035046,-0.0011571,-0.00032566,0.0006342,-0.0022749,-0.00036805,-0.001235"/></InitialValue>
+                <InitialValue variable="ATn"><String value="-0.12764,0.00068679,0.14639,0.023195,0.010292,0.0086651,-0.0039124,0.015984,0.0046295,0.00068371,0.001674,0.0083495,-0.00077063,0.0014936,0.0011017,0.0016804,-0.0010338,0.0022409,0.0011,0.00048406,-0.00033008"/></InitialValue>
+                <InitialValue variable="BTn"><String value="0.0,-0.241,0.018919,0.055513,-0.0012453,-0.0014748,-0.0021899,0.0056694,-0.0049911,0.0013631,0.0012877,-0.0035176,-0.0055571,0.00031438,-0.0011179,-0.0024577,-0.00055484,0.00010968,-0.00073945,-0.00154,0.00022408"/></InitialValue>
+                <InitialValue variable="AQ"><String value="0.019368,0.1705,-0.011901,-0.0025601,0.017763,0.0082085,-0.0034336,-0.024534,-0.0010289,-0.0074938,0.0015444,-0.014173,-0.0028034,0.014246,0.0034663,0.0020764,-0.0029424,0.0030149,0.0027714,0.00018423,-8.1634e-05"/></InitialValue>
+                <InitialValue variable="BQ"><String value="0.0,-0.99912,0.031924,0.081384,-0.00035096,0.10631,0.015116,-0.027045,-0.0059389,0.011085,0.0083787,0.015192,-0.0051507,0.014836,0.0025041,-0.00078615,-0.0024526,-0.00032187,-0.00048551,0.0035455,-0.00034936"/></InitialValue>
+                -->
+                
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="heading_controller" source="../../../cpp_fmus_linux/build/fmus_linux/heading_controller.fmu">
+            <InitialValues>
+                <InitialValue variable="target_heading"><Real value="0.1"/></InitialValue>
+                <InitialValue variable="k_p">           <Real value="20.0"/></InitialValue>
+                <InitialValue variable="k_i">           <Real value="0.0"/></InitialValue>
+                <InitialValue variable="k_d">           <Real value="100.0"/></InitialValue>
+                <InitialValue variable="min_angle">     <Real value="-0.52"/></InitialValue> <!-- -30 degrees -->
+                <InitialValue variable="max_angle">     <Real value="0.52"/></InitialValue>  <!-- + 30 degrees -->
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="speed_controller" source="../../../cpp_fmus_linux/build/fmus_linux/speed_controller.fmu">
+            <InitialValues>
+                <InitialValue variable="target_speed"><Real value="2.73"/></InitialValue>
+                <InitialValue variable="k_p">         <Real value="1000.0"/></InitialValue>
+                <InitialValue variable="k_i">         <Real value="100"/></InitialValue>
+                <InitialValue variable="k_d">         <Real value="0.0"/></InitialValue>
+                <InitialValue variable="min_loading"> <Real value="-20"/></InitialValue>
+                <InitialValue variable="max_loading"> <Real value="20"/></InitialValue>
+            </InitialValues>
+        </Simulator>
+    </Simulators>
+
+    <Functions>
+        <LinearTransformation name="flip_rudder_angle_sign_AP" offset="0.0" factor="-1.0"/>
+        <LinearTransformation name="flip_rudder_angle_sign_AS" offset="0.0" factor="-1.0"/>
+        <Sum name="surge_force_sum" inputCount="5"/>
+        <Sum name="sway_force_sum"  inputCount="5"/>
+        <Sum name="yaw_force_sum"   inputCount="5"/>
+    </Functions>
+
+    <Connections>
+
+        <!-- hull forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <!-- Thruster forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="thruster_AS" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_AS" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_AS" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+         <SignalConnection>
+            <Variable simulator="thruster_AP" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_AP" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_AP" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_FS" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_FS" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_FS" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+         <SignalConnection>
+            <Variable simulator="thruster_FP" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[4]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_FP" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[4]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="thruster_FP" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[4]"/>
+        </SignalConnection>
+
+        <!-- add external forces to rigid body -->
+        <SignalConnection>
+            <Signal function="surge_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_surge"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="sway_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_sway"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="yaw_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_yaw"/>
+        </SignalConnection>
+
+         <!-- Send rigid body variables to external force models -->
+         <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="thruster_AS" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="thruster_AP" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="thruster_FS" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="thruster_FP" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <!-- heading controller -->
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="heading"/>
+            <Variable simulator="heading_controller" name="estimated_heading"/>
+        </VariableConnection>
+
+        <SignalConnection>
+            <Variable simulator="heading_controller" name="angle"/>
+            <Signal function="flip_rudder_angle_sign_AP" name="in"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="heading_controller" name="angle"/>
+            <Signal function="flip_rudder_angle_sign_AS" name="in"/>
+        </SignalConnection>
+        
+        <SignalConnection>
+            <Signal function="flip_rudder_angle_sign_AP" name="out"/>
+            <Variable simulator="thruster_AP" name="angle"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="flip_rudder_angle_sign_AS" name="out"/>
+            <Variable simulator="thruster_AS" name="angle"/>
+        </SignalConnection>
+
+        <!-- Speed controller -->
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="velocity_surge"/>
+            <Variable simulator="speed_controller" name="estimated_u"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="rigid_body" name="velocity_sway"/>
+            <Variable simulator="speed_controller" name="estimated_v"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="speed_controller" name="loading"/>
+            <Variable simulator="thruster_AS" name="rotations_per_second"/>
+        </VariableConnection>
+
+        <VariableConnection>
+            <Variable simulator="speed_controller" name="loading"/>
+            <Variable simulator="thruster_AP" name="rotations_per_second"/>
+        </VariableConnection>
+
+    </Connections>
+
+</OspSystemStructure>

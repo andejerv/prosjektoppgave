@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="rigid_body_maneuvering"
+    guid="@FMU_UUID@"
+    description="Simple 3-Dof rigid body model"
+    author="Jarle Vinje Kramer"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="rigid_body_maneuvering"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="mass"              valueReference="1"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="moment_of_inertia" valueReference="2"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="added_mass_surge" valueReference="3"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="added_mass_sway"  valueReference="4"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="added_mass_yaw"   valueReference="5"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="initial_position_x" valueReference="6"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="initial_position_y" valueReference="7"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="initial_heading" valueReference="8"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        
+        <ScalarVariable name="initial_velocity_surge" valueReference="9"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="initial_velocity_sway" valueReference="10"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="initial_velocity_yaw" valueReference="11"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="longitudinal_center_of_gravity" valueReference="12"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        
+        <ScalarVariable name="external_force_surge" valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="external_force_sway"  valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="external_force_yaw"   valueReference="103" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        
+        <ScalarVariable name="x"       valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="y"       valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="heading" valueReference="203" causality="output"><Real/></ScalarVariable>
+
+        <ScalarVariable name="velocity_surge" valueReference="204" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="velocity_sway"  valueReference="205" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="velocity_yaw"   valueReference="206" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="steering_machinery"
+    guid="@FMU_UUID@"
+    description="Model for steering machinery"
+    author="Jarle Vinje Kramer"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="steering_machinery"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="max_speed"    valueReference="1" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="initial_angle"    valueReference="2" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="target_angle" valueReference="11" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="angle"  valueReference="21" causality="output"><Real/></ScalarVariable>
+
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

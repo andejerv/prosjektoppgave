@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_advanced_navigation"
+    guid="@FMU_UUID@"
+    description="FMU for advanced navigation mock."
+    author="Brage Saether"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_advanced_navigation"
+        canHandleVariableCommunicationStepSize="true"/>
+
+    <ModelVariables>
+	
+    <!-- Parameters -->
+    <ScalarVariable name="autonomy_machine_remote_ip" valueReference="0" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="mt_dp_remote_ip" valueReference="1" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_ip" valueReference="2" causality="parameter" variability="fixed">
+      <String start="0.0.0.0"/>
+    </ScalarVariable>
+	  <ScalarVariable name="autonomy_machine_remote_port" valueReference="3" causality="parameter" variability="fixed">
+      <String start="16718"/>
+    </ScalarVariable>
+    <ScalarVariable name="mt_dp_remote_port" valueReference="4" causality="parameter" variability="fixed">
+      <String start="5097"/>
+    </ScalarVariable>
+
+    <!-- Coordinates for Local NED frame at Piren -->
+    <ScalarVariable name="latitude0" valueReference="5" causality="parameter" variability="fixed">
+      <Real start="63.4389029083"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="longitude0" valueReference="6" causality="parameter" variability="fixed">
+      <Real start="10.39908278"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="height0" valueReference="7" causality="parameter" variability="fixed">
+      <Real start="39.923"/>
+    </ScalarVariable>
+
+    <!-- Dump all messages to file -->
+    <ScalarVariable name="dump_messages" valueReference="8" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="hdop" valueReference="42" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="vdop" valueReference="43" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="gps_satellites" valueReference="44" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="glonass_satellites" valueReference="45" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="beidou_satellites" valueReference="46" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="galileo_satellites" valueReference="47" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="sbas_satellites" valueReference="48" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="g_force" valueReference="49" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="lat_stddev " valueReference="50" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="lon_stddev " valueReference="51" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="heigth_stddev " valueReference="52" causality="parameter" variability="fixed">
+      <Real start="0.0"/>
+    </ScalarVariable>
+     <ScalarVariable name="fix_type" valueReference="53" causality="parameter" variability="fixed">
+      <Real start="7"/>
+    </ScalarVariable>
+    
+    <!-- Input -->
+    <ScalarVariable name="pose[0]" valueReference="11" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[1]" valueReference="12" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[2]" valueReference="13" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[3]" valueReference="14" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[4]" valueReference="15" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[5]" valueReference="16" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="twist_body[0]" valueReference="24" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[1]" valueReference="25" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[2]" valueReference="26" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[3]" valueReference="27" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[4]" valueReference="28" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_body[5]" valueReference="29" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="twist_ned[0]" valueReference="30" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[1]" valueReference="31" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[2]" valueReference="32" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[3]" valueReference="33" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[4]" valueReference="34" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="twist_ned[5]" valueReference="35" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+  <ScalarVariable name="acceleration[0]" valueReference="36" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="acceleration[1]" valueReference="37" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="acceleration[2]" valueReference="38" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="acceleration[3]" valueReference="39" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="acceleration[4]" valueReference="40" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="acceleration[5]" valueReference="41" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

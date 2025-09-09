@@ -1,0 +1,1 @@
+osp_config_gen /sim/osp_config_gen_linux/config_generation_plan.json --output_path /sim/simulators/config_linux --config /sim/osp_config_gen_linux/config_linux.yml

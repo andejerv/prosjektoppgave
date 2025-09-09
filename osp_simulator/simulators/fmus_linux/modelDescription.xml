@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<fmiModelDescription fmiVersion="2.0" generationDateAndTime="2023-09-07T20:50:25Z" generationTool="Simulink (R2023a)" guid="{e4d91995-3ca9-73ca-ef75-94a1acdad52a}" modelName="azimuth_thruster" numberOfEventIndicators="0" variableNamingConvention="structured" version="9.0">
+  <CoSimulation canBeInstantiatedOnlyOncePerProcess="true" canHandleVariableCommunicationStepSize="false" canNotUseMemoryManagementFunctions="true" modelIdentifier="azimuth_thruster"/>
+  <DefaultExperiment startTime="0" stepSize="0.01" stopTime="10"/>
+  <VendorAnnotations>
+    <Tool name="Simulink">
+      <Simulink>
+        <ImportCompatibility requireMATLABOnPath="no" requireRelease="all"/>
+        <SimulinkModelInterface>
+          <Inport blockPath="azimuth_thruster/azimuth_angle_command" dataType="double" dimension="[1]" portName="azimuth_angle_command" portNumber="1" sampleTime="[0 0]" uniquePortName="azimuth_angle_command" unit=""/>
+          <Inport blockPath="azimuth_thruster/propeller_rpm_command" dataType="double" dimension="[1]" portName="propeller_rpm_command" portNumber="2" sampleTime="[0 0]" uniquePortName="propeller_rpm_command" unit=""/>
+          <Outport blockPath="azimuth_thruster/six_dof_thrust" dataType="double" dimension="[6]" portName="six_dof_thrust" portNumber="1" sampleTime="[0 0]" uniquePortName="six_dof_thrust" unit=""/>
+          <Outport blockPath="azimuth_thruster/thrust_force" dataType="double" dimension="[1]" portName="thrust_force" portNumber="2" sampleTime="[0 0]" uniquePortName="thrust_force" unit=""/>
+          <Outport blockPath="azimuth_thruster/propeller_rpm" dataType="double" dimension="[1]" portName="propeller_rpm" portNumber="3" sampleTime="[0 0]" uniquePortName="propeller_rpm" unit=""/>
+          <Outport blockPath="azimuth_thruster/azimuth_angle" dataType="double" dimension="[1]" portName="azimuth_angle" portNumber="4" sampleTime="[0 0]" uniquePortName="azimuth_angle" unit=""/>
+        </SimulinkModelInterface>
+      </Simulink>
+    </Tool>
+  </VendorAnnotations>
+  <ModelVariables>
+    <ScalarVariable causality="input" description="azimuth_angle_command" name="azimuth_angle_command" valueReference="0" variability="continuous">
+      <Real start="0"/>
+      <!--Index = 1-->
+    </ScalarVariable>
+    <ScalarVariable causality="input" description="propeller_rpm_command" name="propeller_rpm_command" valueReference="1" variability="continuous">
+      <Real start="0"/>
+      <!--Index = 2-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="six_dof_thrust(1)" initial="calculated" name="six_dof_thrust[1]" valueReference="2" variability="continuous">
+      <Real/>
+      <!--Index = 3-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="six_dof_thrust(2)" initial="calculated" name="six_dof_thrust[2]" valueReference="3" variability="continuous">
+      <Real/>
+      <!--Index = 4-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="six_dof_thrust(3)" initial="calculated" name="six_dof_thrust[3]" valueReference="4" variability="continuous">
+      <Real/>
+      <!--Index = 5-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="six_dof_thrust(4)" initial="calculated" name="six_dof_thrust[4]" valueReference="5" variability="continuous">
+      <Real/>
+      <!--Index = 6-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="six_dof_thrust(5)" initial="calculated" name="six_dof_thrust[5]" valueReference="6" variability="continuous">
+      <Real/>
+      <!--Index = 7-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="six_dof_thrust(6)" initial="calculated" name="six_dof_thrust[6]" valueReference="7" variability="continuous">
+      <Real/>
+      <!--Index = 8-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="thrust_force" initial="calculated" name="thrust_force" valueReference="8" variability="continuous">
+      <Real/>
+      <!--Index = 9-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="propeller_rpm" initial="calculated" name="propeller_rpm" valueReference="9" variability="continuous">
+      <Real/>
+      <!--Index = 10-->
+    </ScalarVariable>
+    <ScalarVariable causality="output" description="azimuth_angle" initial="calculated" name="azimuth_angle" valueReference="10" variability="continuous">
+      <Real/>
+      <!--Index = 11-->
+    </ScalarVariable>
+    <ScalarVariable causality="independent" description="time" name="time" valueReference="11" variability="continuous">
+      <Real/>
+      <!--Index = 12-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="Lx" initial="exact" name="Lx" valueReference="12" variability="tunable">
+      <Real start="1.8"/>
+      <!--Index = 13-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="Ly" initial="exact" name="Ly" valueReference="13" variability="tunable">
+      <Real start="0"/>
+      <!--Index = 14-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="azimuth_epsilon" initial="exact" name="azimuth_epsilon" valueReference="14" variability="tunable">
+      <Real start="6.277"/>
+      <!--Index = 15-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="azimuth_turn_rate" initial="exact" name="azimuth_turn_rate" valueReference="15" variability="tunable">
+      <Real start="34.46"/>
+      <!--Index = 16-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="max_rpm" initial="exact" name="max_rpm" valueReference="16" variability="tunable">
+      <Real start="1060"/>
+      <!--Index = 17-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="min_rpm" initial="exact" name="min_rpm" valueReference="17" variability="tunable">
+      <Real start="-1080"/>
+      <!--Index = 18-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="rpm_to_thrust_polynomial(1,1)" initial="exact" name="rpm_to_thrust_polynomial[1,1]" valueReference="18" variability="tunable">
+      <Real start="-4.097e-13"/>
+      <!--Index = 19-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="rpm_to_thrust_polynomial(1,2)" initial="exact" name="rpm_to_thrust_polynomial[1,2]" valueReference="19" variability="tunable">
+      <Real start="-1.0815e-10"/>
+      <!--Index = 20-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="rpm_to_thrust_polynomial(1,3)" initial="exact" name="rpm_to_thrust_polynomial[1,3]" valueReference="20" variability="tunable">
+      <Real start="7.6933e-07"/>
+      <!--Index = 21-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="rpm_to_thrust_polynomial(1,4)" initial="exact" name="rpm_to_thrust_polynomial[1,4]" valueReference="21" variability="tunable">
+      <Real start="0.00021352"/>
+      <!--Index = 22-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="rpm_to_thrust_polynomial(1,5)" initial="exact" name="rpm_to_thrust_polynomial[1,5]" valueReference="22" variability="tunable">
+      <Real start="0.023968"/>
+      <!--Index = 23-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="rpm_to_thrust_polynomial(1,6)" initial="exact" name="rpm_to_thrust_polynomial[1,6]" valueReference="23" variability="tunable">
+      <Real start="0"/>
+      <!--Index = 24-->
+    </ScalarVariable>
+    <ScalarVariable causality="parameter" description="time_constant_rpm" initial="exact" name="time_constant_rpm" valueReference="24" variability="tunable">
+      <Real start="1.776"/>
+      <!--Index = 25-->
+    </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="3"/>
+      <Unknown index="4"/>
+      <Unknown index="5"/>
+      <Unknown index="6"/>
+      <Unknown index="7"/>
+      <Unknown index="8"/>
+      <Unknown index="9"/>
+      <Unknown index="10"/>
+      <Unknown index="11"/>
+    </Outputs>
+    <InitialUnknowns>
+      <Unknown index="3"/>
+      <Unknown index="4"/>
+      <Unknown index="5"/>
+      <Unknown index="6"/>
+      <Unknown index="7"/>
+      <Unknown index="8"/>
+      <Unknown index="9"/>
+      <Unknown index="10"/>
+      <Unknown index="11"/>
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

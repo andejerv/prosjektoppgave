@@ -1,0 +1,13 @@
+jobs:
+  - job: publish_simulation_config
+    displayName: Publish Simulation Config
+    pool:
+      vmImage:  'ubuntu-latest'
+    steps:
+    - template: azure-templates/step-template-download-osp-libs-windows.yml
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.SourcesDirectory)/osp_simulator_windows
+        artifactName: osp_simulator_windows
+      displayName: Publish OSP Simulator as Build Artifact

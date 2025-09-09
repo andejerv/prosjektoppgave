@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<OspModelDescription xmlns="https://open-simulation-platform.com/OspModelDescription/1.0.0" version="1.0">
+        
+    <UnitDefinitions>
+        <Unit name="m">
+            <BaseUnit kg="0" m="1" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad">
+            <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="m/s">
+            <BaseUnit kg="0" m="1" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad/s">
+            <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N">
+            <BaseUnit kg="1" m="1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N.m">
+            <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+    </UnitDefinitions>
+
+    <VariableGroups>
+        <Generic name="pose">
+            <Variable ref="pose[0]" unit="m"/>
+            <Variable ref="pose[1]" unit="m"/>
+            <Variable ref="pose[2]" unit="m"/>
+            <Variable ref="pose[3]" unit="rad"/>
+            <Variable ref="pose[4]" unit="rad"/>
+            <Variable ref="pose[5]" unit="rad"/>
+        </Generic>
+
+        <Generic name="joystick_commands">
+            <Variable ref="joystick_command_surge" unit="N"/>
+            <Variable ref="joystick_command_sway" unit="N"/>
+            <Variable ref="joystick_command_yaw" unit="N.m"/>
+        </Generic>
+
+        <Generic name="dp_commands">
+            <Variable ref="dp_ref.north_pos_d" unit="m"/>
+            <Variable ref="dp_ref.east_pos_d" unit="m"/>
+            <Variable ref="dp_ref.yaw_d" unit="rad"/>
+            <Variable ref="dp_ref.north_vel_d" unit="m/s"/>
+            <Variable ref="dp_ref.east_vel_d" unit="m/s"/>
+            <Variable ref="dp_ref.yaw_rate_d" unit="rad/s"/>
+            <Variable ref="dp_ref.north_acc_d" unit="m/s^2"/>
+            <Variable ref="dp_ref.east_acc_d" unit="m/s^2"/>
+            <Variable ref="dp_ref.yaw_acc_d" unit="rad/s^2"/>
+            <Variable ref="dp_ref.surge_integrator_mode"/>
+            <Variable ref="dp_ref.sway_integrator_mode"/>
+            <Variable ref="dp_ref.heading_integrator_mode"/>
+        </Generic>
+
+        <Generic name="autopilot_commands">
+            <Variable ref="autopilot_ref.heading_d" unit="rad"/>
+            <Variable ref="autopilot_ref.yaw_rate_d" unit="rad/s"/>
+            <Variable ref="autopilot_ref.yaw_acc_d" unit="rad/s^2"/>
+            <Variable ref="autopilot_ref.surge_speed_d" unit="m/s"/>
+            <Variable ref="autopilot_ref.surge_acc_d" unit="m/s^s"/>
+            <Variable ref="autopilot_ref.surge_integrator_mode"/>
+            <Variable ref="autopilot_ref.heading_integrator_mode"/>
+        </Generic>
+    </VariableGroups>
+</OspModelDescription>

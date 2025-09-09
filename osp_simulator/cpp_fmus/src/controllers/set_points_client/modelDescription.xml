@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="set_points_client"
+    guid="@FMU_UUID@"
+    description="gRPC client that gets set points for the speed and heading controllers"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="set_points_client"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="connection_string" valueReference="1" causality="parameter" variability="tunable" initial="exact"><String start="localhost:12346"/></ScalarVariable>
+        
+        <ScalarVariable name="x"       valueReference="11" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="y"       valueReference="12" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="u"       valueReference="13" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="v"       valueReference="14" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="heading" valueReference="15" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="loading" valueReference="16" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        
+        <ScalarVariable name="speed_set_point"   valueReference="21" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="heading_set_point" valueReference="22" causality="output"><Real/></ScalarVariable>
+        
+        <ScalarVariable name="speed_pid_on"   valueReference="23" causality="output" variability="discrete"><Boolean/></ScalarVariable>
+        <ScalarVariable name="heading_pid_on" valueReference="24" causality="output" variability="discrete"><Boolean/></ScalarVariable>
+
+        <ScalarVariable name="speed_gain_adjust"   valueReference="25" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="heading_gain_adjust" valueReference="26" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

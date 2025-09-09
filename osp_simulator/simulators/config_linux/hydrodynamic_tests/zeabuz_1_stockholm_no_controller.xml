@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure" version="0.1">
+
+    <BaseStepSize>0.01</BaseStepSize>
+
+    <Simulators>
+        <!-- Rigid body model that also performs the time integration -->
+        <Simulator name="rigid_body" source="../../../cpp_fmus_linux/build/fmus_linux/rigid_body_maneuvering.fmu">
+			<InitialValues>
+                <InitialValue variable="mass"> <Real value="16116.7"/></InitialValue>
+                <InitialValue variable="moment_of_inertia"><Real value="145050"/></InitialValue><!-- Empirical, RoG=0.25Lpp -->
+
+                <InitialValue variable="longitudinal_center_of_gravity"><Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="added_mass_surge"><Real value="805.835"/></InitialValue>
+                <InitialValue variable="added_mass_sway"> <Real value="16116.7"/></InitialValue>
+                <InitialValue variable="added_mass_yaw">  <Real value="4497.2821"/></InitialValue>
+
+                <InitialValue variable="initial_position_x"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_position_y"> <Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_heading">  <Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="initial_velocity_surge"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_velocity_sway"> <Real value="0.0"/></InitialValue>
+                <InitialValue variable="initial_velocity_yaw">  <Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+         <!-- Hydrodynamic model for the hull -->
+       <Simulator name="hull_maneuvering" source="../../../cpp_fmus_linux/build/fmus_linux/hull_maneuvering.fmu">
+			<InitialValues>
+                <!-- Relevant geometric variables for the model -->
+                <InitialValue variable="length"><Real value="12"/></InitialValue>
+                <InitialValue variable="depth"><Real value="0.91"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="46.41"/></InitialValue>
+
+                <!-- Straight ahead resistance parameters -->
+                <InitialValue variable="shape_factor"><Real value="0.052"/></InitialValue>
+                <InitialValue variable="CR_m"><Real value="4.105"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="5.8"/></InitialValue>
+                <InitialValue variable="CD_lateral"><Real value="0.0"/></InitialValue>
+
+                <!-- MMG parameters-->
+                <InitialValue variable="Xvv"><Real value="-0.04"/></InitialValue>
+                <InitialValue variable="Xvr"><Real value="0.002"/></InitialValue>
+                <InitialValue variable="Xrr"><Real value="0.011"/></InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="0.771"/></InitialValue>
+                <InitialValue variable="Yv"><Real value="-0.315"/></InitialValue>
+                <InitialValue variable="Yr"><Real value="0.083"/></InitialValue>
+                <InitialValue variable="Yvvv"><Real value="-1.607"/></InitialValue>
+                <InitialValue variable="Yvrr"><Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"><Real value="0.379"/></InitialValue>
+                <InitialValue variable="Yrrr"><Real value="0.008"/></InitialValue>
+                <InitialValue variable="Nv"><Real value="-0.137"/></InitialValue>
+                <InitialValue variable="Nr"><Real value="-0.049"/></InitialValue>
+                <InitialValue variable="Nvvv"><Real value="-0.03"/></InitialValue>
+                <InitialValue variable="Nvrr"><Real value="0.055"/></InitialValue>
+                <InitialValue variable="Nvvr"><Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"><Real value="-0.013"/></InitialValue>
+
+                <!-- Low speed model -->
+                <InitialValue variable="CX_low"> <Real value="0.05"/></InitialValue>
+                <InitialValue variable="CY_low"> <Real value="0.5"/></InitialValue>
+                <InitialValue variable="CN_low"> <Real value="0.110510346"/></InitialValue>
+                <InitialValue variable="Nr_low"> <Real value="-5000"/></InitialValue>
+
+                <InitialValue variable="speed_limit_low"> <Real value="0.5"/></InitialValue>
+                <InitialValue variable="speed_transfer_range"> <Real value="0.2572"/></InitialValue>
+
+                <InitialValue variable="low_speed_model"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Thruster Front STB" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="rudder_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="rudder_chord"><Real value="0.265"/></InitialValue>
+
+                <InitialValue variable="longitudinal_position"><Real value="5.07"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="1.82"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue>
+
+                <InitialValue variable="propeller_geometry"><String value="WAGENINGEN_B4_BAR55_PD1"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Thruster Front Port" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="rudder_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="rudder_chord"><Real value="0.265"/></InitialValue>
+                
+                <InitialValue variable="longitudinal_position"><Real value="5.07"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="-1.82"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue>
+
+                <InitialValue variable="propeller_geometry"><String value="WAGENINGEN_B4_BAR55_PD1"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Thruster Aft STB" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="rudder_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="rudder_chord"><Real value="0.265"/></InitialValue>
+
+                <InitialValue variable="longitudinal_position"><Real value="-5.07"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="1.82"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue>
+
+                <InitialValue variable="propeller_geometry"><String value="WAGENINGEN_B4_BAR55_PD1"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Thruster Aft Port" source="../../../cpp_fmus_linux/build/fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="rudder_area"> <Real value="0.1153"/></InitialValue>
+                <InitialValue variable="rudder_chord"><Real value="0.265"/></InitialValue>
+                
+                <InitialValue variable="longitudinal_position"><Real value="-5.07"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="-1.82"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="12"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cl_stall"><Real value="0.6"/></InitialValue>
+
+                <InitialValue variable="propeller_geometry"><String value="WAGENINGEN_B4_BAR55_PD1"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.355"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.029"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+    </Simulators>
+
+    <Functions>
+        <Sum name="surge_force_sum" inputCount="5"/>
+        <Sum name="sway_force_sum"  inputCount="5"/>
+        <Sum name="yaw_force_sum"   inputCount="5"/>
+    </Functions>
+
+    <Connections>
+
+        <!-- hull forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[0]"/>
+        </SignalConnection>
+
+        <!-- Thruster forces to force sum -->
+        <SignalConnection>
+            <Variable simulator="Thruster Aft STB" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Aft STB" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Aft STB" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[1]"/>
+        </SignalConnection>
+
+         <SignalConnection>
+            <Variable simulator="Thruster Aft Port" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Aft Port" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Aft Port" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Front STB" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Front STB" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Front STB" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[3]"/>
+        </SignalConnection>
+
+         <SignalConnection>
+            <Variable simulator="Thruster Front Port" name="force_surge"/>
+            <Signal function="surge_force_sum" name="in[4]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Front Port" name="force_sway"/>
+            <Signal function="sway_force_sum" name="in[4]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Thruster Front Port" name="moment_yaw"/>
+            <Signal function="yaw_force_sum" name="in[4]"/>
+        </SignalConnection>
+
+        <!-- add external forces to rigid body -->
+        <SignalConnection>
+            <Signal function="surge_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_surge"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="sway_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_sway"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="yaw_force_sum" name="out"/>
+            <Variable simulator="rigid_body" name="external_force_yaw"/>
+        </SignalConnection>
+
+         <!-- Send rigid body variables to external force models -->
+         <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Aft STB" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Aft Port" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Front STB" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="rigid_body" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Front Port" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+    </Connections>
+
+</OspSystemStructure>

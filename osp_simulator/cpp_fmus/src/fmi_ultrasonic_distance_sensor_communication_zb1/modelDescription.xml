@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_ultrasonic_distance_sensor_communication_zb1"
+    guid="@FMU_UUID@"
+    description="FMU for communication with dp interface on Zeabuz 1"
+    author="Brage Saether / Tobias Rye Torben"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_ultrasonic_distance_sensor_communication_zb1"
+        canHandleVariableCommunicationStepSize="false"/>
+
+    <UnitDefinitions>
+        <Unit name="m">
+            <BaseUnit kg="0" m="1" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad">
+            <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="m/s">
+            <BaseUnit kg="0" m="1" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad/s">
+            <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N">
+            <BaseUnit kg="1" m="1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N.m">
+            <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+    </UnitDefinitions>
+
+    <ModelVariables>
+	
+    <!-- Parameters -->
+    <ScalarVariable name="remote_ip" valueReference="0" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_ip" valueReference="1" causality="parameter" variability="fixed">
+      <String start="0.0.0.0"/>
+    </ScalarVariable>
+	  <ScalarVariable name="remote_port" valueReference="2" causality="parameter" variability="fixed">
+      <String start="2001"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_port" valueReference="3" causality="parameter" variability="fixed" description="Port that is bound to and data is sent from. No data is received on this port.">
+      <String start="1996"/>
+    </ScalarVariable>
+    <ScalarVariable name="dump_messages" valueReference="4" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    
+    <!-- Inputs -->
+    <ScalarVariable name="ultrasonic_dist_fore_stbd_measurement" valueReference="10" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_fore_stbd_measurement_valid" valueReference="11" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_fore_port_measurement" valueReference="12" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_fore_port_measurement_valid" valueReference="13" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_aft_port_measurement" valueReference="14" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_aft_port_measurement_valid" valueReference="15" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_aft_stbd_measurement" valueReference="16" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_aft_stbd_measurement_valid" valueReference="17 " causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="ultrasonic_dist_alongside_fore_stbd_measurement" valueReference="18" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_fore_stbd_measurement_valid" valueReference="19" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_aft_stbd_measurement" valueReference="20" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_aft_stbd_measurement_valid" valueReference="21 " causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_fore_port_measurement" valueReference="22" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_fore_port_measurement_valid" valueReference="23" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_aft_port_measurement" valueReference="24" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="ultrasonic_dist_alongside_aft_port_measurement_valid" valueReference="25" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+
+
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

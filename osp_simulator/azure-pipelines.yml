@@ -1,0 +1,36 @@
+
+variables:
+  - group: zeabuz-conan 
+  
+  - name: dockerRegistryServiceConnection
+    value: 'zeabuz-azure-container-registry'
+
+  - name: containerRegistry
+    value: 'zeabuz.azurecr.io'
+
+  - name: imageRepository 
+    value: 'zeabuz-osp-simulator'
+
+trigger:
+  paths:
+    exclude:
+      - 'simulink_models/*'
+
+resources:
+  pipelines:
+  - pipeline: osp_simulator_simulink_fmus # Name of the pipeline resource.
+    source: osp_simulator_simulink_fmus # The name of the pipeline referenced by this pipeline resource.
+    trigger: true # Run app-ci pipeline when any run of the pipeline completes
+
+stages:
+- stage: Build_and_test
+  displayName: Build and Test
+  jobs:
+    - template: job-template-build-cpp-fmus.yml
+    - template: job-template-build-osp-config-gen.yml
+
+- stage: Build_Docker
+  displayName: Publish OSP simulators
+  jobs:
+    - template: job-template-build-docker-image.yml
+    - template: job-template-publish-windows-simulation-config.yml

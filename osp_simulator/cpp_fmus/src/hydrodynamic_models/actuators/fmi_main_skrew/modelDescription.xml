@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="main_skrew"
+    guid="@FMU_UUID@"
+    description="Simple one-quadrant-propeller model based on second order polynomials for thrust and torque coefficients as a function of advance ratio"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="main_skrew"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="density"  valueReference="1"  causality="parameter" variability="fixed"><Real start="1025.9"/></ScalarVariable>
+        <ScalarVariable name="diameter" valueReference="2"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="longitudinal_position" valueReference="3"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        
+        <ScalarVariable name="wake_factor" valueReference="4"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="jet_stream_model_kappa"   valueReference="7" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="jet_stream_model_eta"     valueReference="8" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="jet_stream_model_epsilon" valueReference="9" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        
+        <ScalarVariable name="thrust_deduction_factor" valueReference="10"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="thrust_coefficient_a0" valueReference="11"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="thrust_coefficient_a1" valueReference="12"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="thrust_coefficient_a2" valueReference="13"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="torque_coefficient_a0" valueReference="14"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="torque_coefficient_a1" valueReference="15"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="torque_coefficient_a2" valueReference="16"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+       
+
+        <ScalarVariable name="ship_velocity_surge" valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="ship_velocity_sway"  valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="ship_velocity_yaw"   valueReference="103" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="rotations_per_second" valueReference="104" causality="input"><Real start="0.0"/></ScalarVariable>
+
+
+        <ScalarVariable name="thrust" valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="torque" valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="power"  valueReference="203" causality="output"><Real/></ScalarVariable>
+
+        <ScalarVariable name="surge_velocity_increase_factor" valueReference="204" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

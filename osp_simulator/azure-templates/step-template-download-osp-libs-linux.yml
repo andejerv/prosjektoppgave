@@ -1,0 +1,107 @@
+steps:
+  - task: DownloadGitHubRelease@0
+    inputs:
+      connection: GITHUB_ZEABUZ_SERVICE_CONNECTION 
+      userRepository: open-simulation-platform/cosim-cli
+      defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag      
+      version: 'v0.7.1'          
+      downloadPath: '$(Pipeline.Workspace)/downloads'
+
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(Pipeline.Workspace)/downloads/*linux64*.zip'
+      destinationFolder: '$(Build.SourcesDirectory)/osp/cosim-cli'
+      cleanDestinationFolder: true
+      overwriteExistingFiles: true
+
+  - task: DownloadGitHubRelease@0
+    inputs:
+      connection: GITHUB_ZEABUZ_SERVICE_CONNECTION 
+      userRepository: open-simulation-platform/cosim-demo-app
+      defaultVersionType: 'specificTag' # Options: latest, specificVersion, specificTag      
+      version: 'v0.10.1'          
+      downloadPath: '$(Pipeline.Workspace)/demo_downloads'
+
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '$(Pipeline.Workspace)/demo_downloads/*linux64*.zip'
+      destinationFolder: '$(Build.SourcesDirectory)/osp/cosim-demo-app'
+      cleanDestinationFolder: true
+      overwriteExistingFiles: true
+
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download cpp fmus artifacts'
+    inputs:
+      artifactName: CPP-FMUs (ubuntu-22.04)
+      downloadPath: $(Pipeline.Workspace)/downloads/fmus_linux
+
+  # Only download from branch-pipeline on resource trigger, otherwise build most likely doesn't exist
+  - ${{ if eq(variables['Build.Reason'], 'ResourceTrigger') }}:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific' 
+        project: 'technology' 
+        definition: 'osp_simulator_simulink_fmus'
+        buildVersionToDownload: 'latestFromBranch'
+        branchName: '$(Build.SourceBranch)'
+        artifactName: 'Simulink-FMUs (x86_64-linux)'
+        targetPath: '$(Build.SourcesDirectory)/osp/simulators/fmus_linux'
+      displayName: Download Simulink FMUs from branch
+  - ${{ else }}:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific' 
+        project: 'technology' 
+        definition: 'osp_simulator_simulink_fmus'
+        buildVersionToDownload: 'latestFromBranch'
+        branchName: 'refs/heads/main'
+        artifactName: 'Simulink-FMUs (x86_64-linux)'
+        targetPath: '$(Build.SourcesDirectory)/osp/simulators/fmus_linux'
+      displayName: Download Simulink FMUs from main
+
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download OSP config gen'
+    inputs:
+      artifactName: osp_config_gen_linux
+      downloadPath: $(Build.SourcesDirectory)/osp
+
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)/utils/osp_config_gen
+      Contents: |
+        config_linux.yml
+        config_generation_plan.json
+        run_config_gen.sh
+      TargetFolder: $(Build.SourcesDirectory)/osp/osp_config_gen_linux
+    displayName: Copy OSP config gen configuration
+
+  - task: CopyFiles@2
+    inputs:
+        SourceFolder: $(Build.SourcesDirectory)/simulators/config_linux
+        Contents: '**'
+        TargetFolder: $(Build.SourcesDirectory)/osp/simulators/config_linux
+    displayName: Copy simulator configs
+
+  - task: CopyFiles@2
+    inputs:
+        SourceFolder: $(Pipeline.Workspace)/downloads/fmus_linux/CPP-FMUs (ubuntu-22.04)
+        Contents: '**'
+        TargetFolder: $(Build.SourcesDirectory)/osp/simulators/fmus_linux
+    displayName: Copy cpp fmus to staging folder
+
+  - task: CopyFiles@2
+    inputs:
+        SourceFolder: $(Build.SourcesDirectory)/simulators/fmus_linux
+        Contents: '*.xml'
+        TargetFolder: $(Build.SourcesDirectory)/osp/simulators/fmus_linux
+    displayName: Copy simulators xml
+
+  - script: ls -R
+    displayName: Debug
+    workingDirectory: $(Build.SourcesDirectory)/osp/simulators/fmus_linux
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: $(Build.SourcesDirectory)/osp/simulators
+      ArtifactName: simulators_linux
+    displayName: Publish packaged Simulators directory

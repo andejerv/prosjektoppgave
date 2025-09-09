@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="simple_thruster"
+    guid="@FMU_UUID@"
+    description="Simple thruster model that produce a constant force vector"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="simple_thruster"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="p0_x"           valueReference="1" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="p0_y"           valueReference="2" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="orientation0_x" valueReference="3" causality="parameter" variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="orientation0_y" valueReference="4" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="max_thrust"     valueReference="5" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="angle"   valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="loading" valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="force_surge" valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="force_sway"  valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_yaw"  valueReference="203" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

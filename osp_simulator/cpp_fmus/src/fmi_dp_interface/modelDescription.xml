@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_dp_interface"
+    guid="@FMU_UUID@"
+    description="FMU for communication with dp interface."
+    author="Brage Saether"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_dp_interface"
+        canHandleVariableCommunicationStepSize="true"/>
+
+    <ModelVariables>
+	
+    <!-- Parameters -->
+    <ScalarVariable name="remote_ip" valueReference="0" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_ip" valueReference="1" causality="parameter" variability="fixed">
+      <String start="0.0.0.0"/>
+    </ScalarVariable>
+	  <ScalarVariable name="remote_port" valueReference="2" causality="parameter" variability="fixed">
+      <String start="5096"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_port" valueReference="3" causality="parameter" variability="fixed">
+      <String start="5095"/>
+    </ScalarVariable>
+
+    <!-- Coordinates for Local NED frame at Piren -->
+    <ScalarVariable name="latitude0" valueReference="21" causality="parameter" variability="fixed">
+      <Real start="63.4389029083"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="longitude0" valueReference="22" causality="parameter" variability="fixed">
+      <Real start="10.39908278"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="height0" valueReference="23" causality="parameter" variability="fixed">
+      <Real start="39.923"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="publish_time_step" valueReference="24" causality="parameter" variability="fixed">
+      <Real start="1.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="publish_dp_mode_time_step" valueReference="41" causality="parameter" variability="fixed">
+      <Real start="0.1"/>
+    </ScalarVariable>
+
+    <!-- Dump all messages to file -->
+    <ScalarVariable name="dump_messages" valueReference="25" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+
+    <!-- Output -->
+    <ScalarVariable name="autonomy_enable" valueReference="4" causality="output" variability="discrete">
+      <Boolean/>
+    </ScalarVariable>
+
+    <ScalarVariable name="set_control_mode" valueReference="5" causality="output" variability="discrete">
+      <String/>
+    </ScalarVariable>
+
+    <ScalarVariable name="joystick_command_surge" valueReference="6" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="joystick_command_sway" valueReference="7" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="joystick_command_yaw" valueReference="8" causality="output">
+      <Real/>
+    </ScalarVariable>
+
+    <ScalarVariable name="dp_ref.north_pos_d" valueReference="9" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.east_pos_d" valueReference="10" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.yaw_d" valueReference="11" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.north_vel_d" valueReference="12" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.east_vel_d" valueReference="13" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.yaw_rate_d" valueReference="14" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.north_acc_d" valueReference="15" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.east_acc_d" valueReference="16" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.yaw_acc_d" valueReference="17" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.surge_integrator_mode" valueReference="36" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.sway_integrator_mode" valueReference="37" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="dp_ref.heading_integrator_mode" valueReference="38" causality="output">
+      <Real/>
+    </ScalarVariable>
+
+    <ScalarVariable name="autopilot_ref.heading_d" valueReference="31" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="autopilot_ref.yaw_rate_d" valueReference="32" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="autopilot_ref.yaw_acc_d" valueReference="33" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="autopilot_ref.surge_speed_d" valueReference="34" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="autopilot_ref.surge_acc_d" valueReference="35" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="autopilot_ref.surge_integrator_mode" valueReference="39" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="autopilot_ref.heading_integrator_mode" valueReference="40" causality="output">
+      <Real/>
+    </ScalarVariable>
+
+    <!-- Input -->
+    <ScalarVariable name="control_mode" valueReference="18" causality="input" variability="discrete">
+      <String start="STANDBY"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="ready_for_autonomy" valueReference="19" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="autonomy_enabled" valueReference="20" causality="input" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="pose[0]" valueReference="25" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[1]" valueReference="26" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[2]" valueReference="27" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[3]" valueReference="28" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[4]" valueReference="29" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="pose[5]" valueReference="30" causality="input">
+      <Real start="0.0"/>
+    </ScalarVariable>
+
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

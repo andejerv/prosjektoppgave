@@ -1,0 +1,64 @@
+ma2:
+  initial_position:
+    # Support for adding custom initial positions, other than docks
+    midpoint: [-487.18, -326.5, 2.7]
+  fosenkaia:
+    width: 4
+    depth: 4.8
+  ravnkloa:
+    width: 4
+    depth: 4.8
+  
+estelle:
+  initial_position:
+    # Support for adding custom initial positions, other than docks
+    midpoint: [350.13, 316.06, 2.3]
+  fosenkaia:
+    width: 12
+    depth: 4.8
+    outrigger:
+      docking_side: "right"
+      alignment: "right"
+      length: 12
+      depth: 0.71
+      offset: 0.135
+  ravnkloa:
+    width: 9
+    depth: 4.8
+    outrigger:
+      docking_side: "right"
+      alignment: "left"
+      length: 12
+      depth: 0.71
+      offset: 0.135
+
+froja:
+  initial_position:
+  fosenkaia:
+    width: 12
+    depth: 4.8
+  ravnkloa:
+    width: 12
+    depth: 4.8
+
+sim_type:
+  SIL:
+    osp_ip: "127.0.0.1"
+    autonomy_ip: "127.0.0.1"
+    mt_dp_ip: "127.0.0.1"
+  HIL-NO-DP:
+    osp_ip: "192.168.10.99"
+    autonomy_ip: "192.168.10.100"
+    mt_dp_ip: "127.0.0.1"
+
+fmu_path: "../../fmus/"
+
+wave_loads:
+  none:
+    [0.0,   0.0,   0.0,    0.0,    0.0,    0.0]
+  low:
+    [200.0, 200.0, 2000.0, 500.0,  500.0,  100.0]
+  medium:
+    [400.0, 400.0, 4000.0, 1000.0, 1000.0, 200.0]
+  high:
+    [800.0, 800.0, 8000.0, 2000.0, 2000.0, 400.0]

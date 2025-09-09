@@ -1,0 +1,41 @@
+steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download cpp fmus artifacts'
+    inputs:
+      artifactName: CPP-FMUs (windows-2019)
+      downloadPath: $(Pipeline.Workspace)/downloads/fmus
+
+  - task: UniversalPackages@0
+    displayName: Download Simulink FMUs universal package
+    inputs:
+      command: download
+      feedsToUse: 'internal'
+      vstsFeed: 'zeabuz'
+      vstsFeedPackage: 'simulink-fmus-windows'
+      vstsPackageVersion: '*'
+      downloadDirectory: $(Build.SourcesDirectory)/osp_simulator_windows/simulators/fmus
+
+  - task: CopyFiles@2
+    inputs:
+        SourceFolder: $(Build.SourcesDirectory)/simulators/config
+        Contents: '**'
+        TargetFolder: $(Build.SourcesDirectory)/osp_simulator_windows/simulators/config
+    displayName: Copy simulator configs
+
+  - task: CopyFiles@2
+    inputs:
+        SourceFolder: $(Pipeline.Workspace)/downloads/fmus/CPP-FMUs (windows-2019)
+        Contents: '**'
+        TargetFolder: $(Build.SourcesDirectory)/osp_simulator_windows/simulators/fmus
+    displayName: Copy cpp fmus to staging folder
+
+  - task: CopyFiles@2
+    inputs:
+        SourceFolder: $(Build.SourcesDirectory)/simulators/fmus
+        Contents: '**'
+        TargetFolder: $(Build.SourcesDirectory)/osp_simulator_windows/simulators/fmus
+    displayName: Copy simulators xml and prebuilt FMUs
+
+  - script: ls -R
+    displayName: Debug
+    workingDirectory: $(Build.SourcesDirectory)/osp_simulator_windows/simulators/fmus

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="hull_maneuvering"
+    guid="@FMU_UUID@"
+    description="Hydrodynamic hull model"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="hull_maneuvering"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="density"             valueReference="1"  causality="parameter" variability="fixed"><Real start="1025.9"/></ScalarVariable>
+        <ScalarVariable name="kinematic_viscosity" valueReference="2"  causality="parameter" variability="fixed"><Real start="0.00000119"/></ScalarVariable>
+
+        <ScalarVariable name="length"         valueReference="3"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="depth"          valueReference="4"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="wetted_surface" valueReference="5"  causality="parameter"  variability="fixed"><Real start="1.0"/></ScalarVariable>
+
+        <ScalarVariable name="shape_factor" valueReference="6"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="CR_m"         valueReference="7"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="CR_p"         valueReference="8"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="CD_lateral"   valueReference="9" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="Xvv"    valueReference="10"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Xvr"    valueReference="11" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Xrr"    valueReference="12" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Xvvvv"  valueReference="13" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="Yv"     valueReference="14" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Yr"     valueReference="15" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Yvvv"   valueReference="16" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Yvvr"   valueReference="17" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Yvrr"   valueReference="18" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Yrrr"   valueReference="19" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="Nv"     valueReference="20" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Nr"     valueReference="21" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Nvvv"   valueReference="22" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Nvvr"   valueReference="23" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Nvrr"   valueReference="24" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="Nrrr"   valueReference="25" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="CX_low" valueReference="26" causality="parameter" variability="fixed"><Real start="0.04"/></ScalarVariable>
+        <ScalarVariable name="CY_low" valueReference="27" causality="parameter" variability="fixed"><Real start="0.70"/></ScalarVariable>
+        <ScalarVariable name="CN_low" valueReference="28" causality="parameter" variability="fixed"><Real start="0.15"/></ScalarVariable>
+        <ScalarVariable name="Nr_low" valueReference="29" causality="parameter" variability="fixed"><Real start="0.15"/></ScalarVariable>
+
+        <ScalarVariable name="speed_limit_low" valueReference="30" causality="parameter" variability="fixed"><Real start="0.2572"/></ScalarVariable>
+        <ScalarVariable name="speed_transfer_range" valueReference="31" causality="parameter" variability="fixed"><Real start="0.2572"/></ScalarVariable>
+
+        <ScalarVariable name="low_speed_model" valueReference="32" causality="parameter" variability="fixed"><Boolean start="true"/></ScalarVariable>
+        <ScalarVariable name="high_speed_model" valueReference="33" causality="parameter" variability="fixed"><Boolean start="true"/></ScalarVariable>
+
+
+        <ScalarVariable name="velocity_surge" valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="velocity_sway"  valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="velocity_yaw"   valueReference="103" causality="input"><Real start="0.0"/></ScalarVariable>
+
+
+        <ScalarVariable name="force_surge" valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="force_sway"  valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_yaw"  valueReference="203" causality="output"><Real/></ScalarVariable>
+
+        <ScalarVariable name="force_heave"  valueReference="204" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_roll"  valueReference="205" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_pitch"  valueReference="206" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

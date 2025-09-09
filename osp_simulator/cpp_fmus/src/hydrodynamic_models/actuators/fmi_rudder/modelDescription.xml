@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="rudder"
+    guid="@FMU_UUID@"
+    description="Rudder model. Lift, drag and interaction effects with the hull and propeller"
+    author="Jarle Vinje Kramer"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="rudder"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+        <ScalarVariable name="density" valueReference="1" causality="parameter" variability="fixed"><Real start="1025.9"/></ScalarVariable>
+        <ScalarVariable name="kinematic_viscosity"  valueReference="2" causality="parameter" variability="fixed"><Real start="1.19e-6"/></ScalarVariable>
+
+        <ScalarVariable name="area"  valueReference="3" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="chord" valueReference="4" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="longitudinal_position" valueReference="5" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="ship_length" valueReference="6" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="effective_aspect_ratio_lift" valueReference="7" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="effective_aspect_ratio_drag" valueReference="8" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="cd_k"  valueReference="9"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="cd_a2" valueReference="10" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="cd_stall_max"  valueReference="11"  causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="cd_stall_power" valueReference="12" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="cl_stall_mean" valueReference="13" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="cl_post_stall_max" valueReference="14" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="w0"    valueReference="15" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="gamma_positive" valueReference="16" causality="parameter" variability="fixed"><Real start="1.0"/></ScalarVariable>
+        <ScalarVariable name="gamma_negative" valueReference="17" causality="parameter" variability="fixed"><Real start="1.0"/></ScalarVariable>
+
+        <ScalarVariable name="lr_surge" valueReference="18" causality="parameter" variability="fixed"><Real start="-0.5"/></ScalarVariable>
+        <ScalarVariable name="lr_sway"  valueReference="19" causality="parameter" variability="fixed"><Real start="-0.5"/></ScalarVariable>
+
+        <ScalarVariable name="tr" valueReference="20" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="ah" valueReference="21" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="xh" valueReference="22" causality="parameter" variability="fixed"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="normal_force_mode" valueReference="23" causality="parameter" variability="fixed"><Boolean start="true"/></ScalarVariable>
+
+        
+        <ScalarVariable name="ship_velocity_surge" valueReference="101" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="ship_velocity_sway"  valueReference="102" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="ship_velocity_yaw"   valueReference="103" causality="input"><Real start="0.0"/></ScalarVariable>
+
+        <ScalarVariable name="angle"  valueReference="104" causality="input"><Real start="0.0"/></ScalarVariable>
+        <ScalarVariable name="surge_velocity_increase_factor" valueReference="105" causality="input"><Real start="1.0"/></ScalarVariable>
+
+        
+        <ScalarVariable name="force_surge" valueReference="201" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="force_sway"  valueReference="202" causality="output"><Real/></ScalarVariable>
+        <ScalarVariable name="moment_yaw"  valueReference="203" causality="output"><Real/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

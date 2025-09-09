@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<OspModelDescription xmlns="https://open-simulation-platform.com/OspModelDescription/1.0.0" version="1.0">
+        
+    <UnitDefinitions>
+        <Unit name="m">
+            <BaseUnit kg="0" m="1" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad">
+            <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="m/s">
+            <BaseUnit kg="0" m="1" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad/s">
+            <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N">
+            <BaseUnit kg="1" m="1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N.m">
+            <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+    </UnitDefinitions>
+
+    <VariableGroups>
+		
+        <Generic name="ultrasonic_sensor_fore_port">
+            <Variable ref="ultrasonic_dist_fore_port_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_fore_port_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_fore_stbd">
+            <Variable ref="ultrasonic_dist_fore_stbd_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_fore_stbd_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_aft_port">
+            <Variable ref="ultrasonic_dist_aft_port_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_aft_port_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_aft_stbd">
+            <Variable ref="ultrasonic_dist_aft_stbd_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_aft_stbd_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_alongside_fore_port">
+            <Variable ref="ultrasonic_dist_alongside_fore_port_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_alongside_fore_port_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_alongside_fore_stbd">
+            <Variable ref="ultrasonic_dist_alongside_fore_stbd_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_alongside_fore_stbd_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_alongside_aft_port">
+            <Variable ref="ultrasonic_dist_alongside_aft_port_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_alongside_aft_port_measurement_valid"/>
+        </Generic>
+
+        <Generic name="ultrasonic_sensor_alongside_aft_stbd">
+            <Variable ref="ultrasonic_dist_alongside_aft_stbd_measurement" unit="m"/>
+            <Variable ref="ultrasonic_dist_alongside_aft_stbd_measurement_valid"/>
+        </Generic>
+
+    </VariableGroups>
+</OspModelDescription>

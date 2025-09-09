@@ -1,0 +1,92 @@
+parameters:
+- name: vmImage
+  default: 'ubuntu-latest'
+
+jobs:
+  - job: cpp_fmus
+    displayName: Build cppfmus
+
+    strategy:
+      matrix:
+        ubuntu-22.04-Test:
+          imageName: 'ubuntu-22.04'
+          config: 'Debug'
+          testing: 'True'
+          publishArtifacts: 'False'
+
+        ubuntu-22.04:
+          imageName: 'ubuntu-22.04'
+          config: 'Release'
+          testing: 'False'
+          publishArtifacts: 'True'
+      
+        windows-2019:
+          imageName: 'windows-2019'
+          config: 'Release'
+          testing: 'False'
+          publishArtifacts: 'True'
+      
+    pool:
+      vmImage:  $(imageName)
+
+    steps:
+    
+    - checkout: self
+      target: host
+      path: $(Build.Repository.Name)
+      displayName: Checkout osp_simulator 
+
+    - bash: |
+        sudo apt-get update
+        sudo apt-get install gcovr
+        pip install conan==1.*
+      displayName: Install Dependencies
+
+    - bash: |
+        conan config set general.revisions_enabled=True
+        conan remote add zeabuz https://zeabuz.jfrog.io/artifactory/api/conan/default-conan
+        conan user -p $(CONAN_PASSWORD_ZEABUZ) -r zeabuz $(CONAN_LOGIN_USERNAME_ZEABUZ)
+      displayName: 'Install and configure Conan'
+
+    - bash: |
+        conan profile new default --detect --force
+        conan profile update settings.compiler.libcxx=libstdc++11 default
+      condition: eq( variables['imageName'], 'ubuntu-22.04' )
+      displayName: 'Configure Conan for Linux'
+
+    - script: conan install . -if build -s build_type=$(config) --build=missing
+      workingDirectory: $(Pipeline.Workspace)/osp_simulator/cpp_fmus
+      displayName: Install Conan dependencies
+
+    - task: CMake@1
+      displayName: 'CMake Configure'
+      inputs:
+        workingDirectory: $(Pipeline.Workspace)/osp_simulator/cpp_fmus/build
+        cmakeArgs: '.. -DCMAKE_BUILD_TYPE=$(config) -DCODE_COVERAGE=$(testing) -DBUILD_TESTING=$(testing)'
+
+    - task: CMake@1
+      displayName: 'CMake build'
+      inputs:
+        workingDirectory: $(Pipeline.Workspace)/osp_simulator/cpp_fmus/build
+        cmakeArgs: '--build . --parallel --config $(config)'
+
+    - bash: |
+          ./osp_cpp_fmi_tests --gtest_output=xml:osp_cpp_fmi_test_results.xml
+      workingDirectory: $(Pipeline.Workspace)/osp_simulator/cpp_fmus/build/bin
+      displayName: 'Run all tests'
+      continueOnError: true
+      condition: eq ( variables['testing'], 'True')
+
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: junit
+        testResultsFiles: '$(Pipeline.Workspace)/osp_simulator/cpp_fmus/build/bin/osp_cpp_fmi_test_results.xml'
+        failTaskOnFailedTests: true 
+      condition: eq( variables['testing'], 'True' ) 
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'cpp_fmus/build/fmus/'
+        ArtifactName: 'CPP-FMUs ($(imageName))'
+        publishLocation: 'Container'
+      condition: eq ( variables['publishArtifacts'], 'True')

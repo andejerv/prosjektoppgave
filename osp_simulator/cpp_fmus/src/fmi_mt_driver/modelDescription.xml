@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmu_mt_driver"
+    guid="@FMU_UUID@"
+    description="FMU for communication MT DP control system."
+    author="Halvor Platou"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_mt_driver"
+        canHandleVariableCommunicationStepSize="false"/>
+    <ModelVariables>
+	
+    <!-- Parameters -->
+    <ScalarVariable name="remote_ip" valueReference="0" causality="parameter" variability="fixed">
+      <String start="192.168.0.21"/>
+    </ScalarVariable>
+	  <ScalarVariable name="remote_port" valueReference="1" causality="parameter" variability="fixed">
+      <String start="5080"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_ip" valueReference="102" causality="parameter" variability="fixed">
+      <String start="0.0.0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="local_port" valueReference="2" causality="parameter" variability="fixed">
+      <String start="5081"/>
+    </ScalarVariable>
+
+    <!-- Inputs -->
+    <ScalarVariable name="thr1_rpm_fba" valueReference="3" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr1_azm_fba" valueReference="4" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr1_running" valueReference="93" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr1_ready" valueReference="94" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="thr2_rpm_fba" valueReference="5" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr2_azm_fba" valueReference="6" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr2_running" valueReference="95" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr2_ready" valueReference="96" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="thr3_rpm_fba" valueReference="7" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr3_azm_fba" valueReference="8" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr3_running" valueReference="97" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr3_ready" valueReference="98" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+
+    <ScalarVariable name="thr4_rpm_fba" valueReference="9" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr4_azm_fba" valueReference="10" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr4_running" valueReference="99" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr4_ready" valueReference="100" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="thr1_pitch_reduction" valueReference="60" causality="input">
+      <Real start="0"/>
+    </ScalarVariable>
+    
+    <ScalarVariable name="emergency_joystick" valueReference="101" causality="input">
+      <Real start="1"/>
+    </ScalarVariable>
+    
+    <!-- Outputs -->
+    <ScalarVariable name="thr1_rpm_cmd" valueReference="21" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr1_azm_cmd" valueReference="22" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr2_rpm_cmd" valueReference="23" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr2_azm_cmd" valueReference="24" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr3_rpm_cmd" valueReference="25" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr3_azm_cmd" valueReference="26" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr4_rpm_cmd" valueReference="27" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="thr4_azm_cmd" valueReference="28" causality="output">
+      <Real/>
+    </ScalarVariable>
+
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

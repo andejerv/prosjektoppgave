@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<OspModelDescription xmlns="http://opensimulationplatform.com/MSMI/OSPModelDescription">
+    <VariableGroups>
+        <Generic name="wind_output">
+            <Variable ref="wind_direction"/>
+            <Variable ref="wind_speed"/>
+        </Generic>
+
+    </VariableGroups>
+</OspModelDescription>

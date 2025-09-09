@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<OspModelDescription xmlns="http://opensimulationplatform.com/MSMI/OSPModelDescription">
+    <VariableGroups>
+        
+        <Generic name="gps_input">
+            <Variable ref="UTCTime"/>
+            <Variable ref="Latitude"/>
+            <Variable ref="LatitudeDirection"/>
+            <Variable ref="Longitude"/>
+            <Variable ref="LongitudeDirection"/>
+            <Variable ref="Quality"/>
+            <Variable ref="NumberOfSatellites"/>
+            <Variable ref="HorizontalDilution"/>
+        </Generic>
+
+        <Generic name="gyro_input">
+            <Variable ref="Heading"/>
+            <Variable ref="RateOfTurn"/>
+        </Generic>
+
+        <Generic name="vru_input">
+            <Variable ref="RollAngle"/>
+            <Variable ref="PitchAngle"/>
+        </Generic>
+
+        <LinearVelocity name="vessel_input">
+            <Variable ref="SurgeVelocity"/>
+            <Variable ref="SwayVelocity"/>
+            <Variable ref="SurgeAcceleration"/>
+            <Variable ref="SwayAcceleration"/>
+        </LinearVelocity>
+
+    </VariableGroups>
+</OspModelDescription>

@@ -1,0 +1,33 @@
+{
+    "description": "Turning circle maneuvering validation",
+    "defaults": {
+      "action": "override"
+    },
+    "events": [
+        {
+          "time": 0,
+          "model" : "thruster_AP",
+          "variable": "rotations_per_second",
+          "value": 14.0
+        },
+        {
+          "time": 0,
+          "model" : "thruster_AS",
+          "variable": "rotations_per_second",
+          "value": 14.0
+        },
+        {
+            "time": 50,
+            "model" : "thruster_AP",
+            "variable": "angle",
+            "value": 0.1745
+        },
+        {
+            "time": 50,
+            "model" : "thruster_AS",
+            "variable": "angle",
+            "value": 0.1745
+        }
+      ],
+    "end": 1000
+  }

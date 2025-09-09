@@ -1,0 +1,10 @@
+trigger:
+  paths:
+    include:
+      - 'simulink_models/*'
+  
+stages:
+- stage: Build_and_test
+  displayName: Build and Test
+  jobs:
+    - template: job-template-build-simulink-fmus.yml

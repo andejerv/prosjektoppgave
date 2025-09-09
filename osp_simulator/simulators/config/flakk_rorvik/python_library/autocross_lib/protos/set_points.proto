@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package set_points;
+
+service SetPoints {
+    rpc GetSetPoints(SetPointsRequest) returns (SetPointsResponse) {}
+}
+
+message SetPointsRequest {
+    double t       = 1;
+    double x       = 2;
+    double y       = 3;
+    double u       = 4;
+    double v       = 5;
+    double heading = 6;
+    double loading = 7;
+}
+
+message SetPointsResponse {
+    double speed_set_point   = 1;
+    double heading_set_point = 2;
+
+    bool speed_pid_on   = 3;
+    bool heading_pid_on = 4;
+
+    double speed_gain_adjust   = 5;
+    double heading_gain_adjust = 6;
+}

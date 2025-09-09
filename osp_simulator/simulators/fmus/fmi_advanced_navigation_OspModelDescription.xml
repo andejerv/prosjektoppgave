@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<OspModelDescription xmlns="https://open-simulation-platform.com/OspModelDescription/1.0.0" version="1.0">
+        
+    <UnitDefinitions>
+        <Unit name="m">
+            <BaseUnit kg="0" m="1" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad">
+            <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="m/s">
+            <BaseUnit kg="0" m="1" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad/s">
+            <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N">
+            <BaseUnit kg="1" m="1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N.m">
+            <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+    </UnitDefinitions>
+
+    <VariableGroups>
+
+        <Generic name="pose">
+            <Variable ref="pose[0]" unit="m"/>
+            <Variable ref="pose[1]" unit="m"/>
+            <Variable ref="pose[2]" unit="m"/>
+            <Variable ref="pose[3]" unit="rad"/>
+            <Variable ref="pose[4]" unit="rad"/>
+            <Variable ref="pose[5]" unit="rad"/>
+        </Generic>
+
+        <Generic name="twist_body">
+            <Variable ref="twist_body[0]" unit="m/s"/>
+            <Variable ref="twist_body[1]" unit="m/s"/>
+            <Variable ref="twist_body[2]" unit="m/s"/>
+            <Variable ref="twist_body[3]" unit="rad/s"/>
+            <Variable ref="twist_body[4]" unit="rad/s"/>
+            <Variable ref="twist_body[5]" unit="rad/s"/>
+        </Generic>
+        
+        <Generic name="twist_ned">
+            <Variable ref="twist_ned[0]" unit="m/s"/>
+            <Variable ref="twist_ned[1]" unit="m/s"/>
+            <Variable ref="twist_ned[2]" unit="m/s"/>
+            <Variable ref="twist_ned[3]" unit="rad/s"/>
+            <Variable ref="twist_ned[4]" unit="rad/s"/>
+            <Variable ref="twist_ned[5]" unit="rad/s"/>
+        </Generic>
+
+        <Generic name="acceleration_6dof">
+            <Variable ref="acceleration[0]" unit="m/s^2"/>
+            <Variable ref="acceleration[1]" unit="m/s^2"/>
+            <Variable ref="acceleration[2]" unit="m/s^2"/>
+            <Variable ref="acceleration[3]" unit="rad/s^2"/>
+            <Variable ref="acceleration[4]" unit="rad/s^2"/>
+            <Variable ref="acceleration[5]" unit="rad/s^2"/>
+        </Generic>
+
+    </VariableGroups>
+</OspModelDescription>

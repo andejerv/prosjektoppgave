@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_zb_sim_clock"
+    guid="@FMU_UUID@"
+    description="FMU for communication with autonomy for navigation."
+    author="Brage Saether"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_zb_sim_clock"
+        canHandleVariableCommunicationStepSize="false"/>
+    <ModelVariables>
+
+    <!-- Parameters -->
+    <ScalarVariable name="remote_ip" valueReference="0" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="remote_port" valueReference="2" causality="parameter" variability="fixed">
+      <String start="3001"/>
+    </ScalarVariable>
+    <ScalarVariable name="dump_messages" valueReference="4" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+  </ModelVariables>
+
+  <ModelStructure/>
+</fmiModelDescription>

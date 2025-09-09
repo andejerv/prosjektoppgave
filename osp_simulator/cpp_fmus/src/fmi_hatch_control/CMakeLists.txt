@@ -1,0 +1,2 @@
+add_subdirectory(modbus_tcp_protocol)
+add_subdirectory(nmea_protocol)

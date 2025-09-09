@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="mooring"
+    guid="@FMU_UUID@"
+    description="Model for mooring the vessel when the hatches are lowered"
+    author="Tobias Rye Torben"
+    version="1.0">
+
+    <CoSimulation
+        modelIdentifier="mooring"
+        canHandleVariableCommunicationStepSize="true" />
+
+    <ModelVariables>
+
+        <ScalarVariable name="hatch_position_fore" valueReference="101" causality="input"><Real start="100"/></ScalarVariable>
+        <ScalarVariable name="hatch_position_aft" valueReference="102" causality="input"><Real start="100"/></ScalarVariable>
+       
+        <ScalarVariable name="moored"  valueReference="201" causality="output"><Boolean/></ScalarVariable>
+    </ModelVariables>
+
+    <ModelStructure/>
+
+</fmiModelDescription>

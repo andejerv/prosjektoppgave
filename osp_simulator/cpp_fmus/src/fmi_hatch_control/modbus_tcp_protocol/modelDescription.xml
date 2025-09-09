@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<fmiModelDescription
+    fmiVersion="2.0"
+    modelName="fmi_hatch_control_modbus_tcp"
+    guid="@FMU_UUID@"
+    description="FMU for hatch control with modbus tcp protocol."
+    author="Brage Saether"
+    version="0.0">
+
+    <CoSimulation
+        modelIdentifier="fmi_hatch_control_modbus_tcp"
+        canHandleVariableCommunicationStepSize="false"/>
+
+    <UnitDefinitions>
+        <Unit name="m">
+            <BaseUnit kg="0" m="1" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad">
+            <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="m/s">
+            <BaseUnit kg="0" m="1" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="rad/s">
+            <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N">
+            <BaseUnit kg="1" m="1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+        <Unit name="N.m">
+            <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0" offset="0.0"/>
+        </Unit>
+    </UnitDefinitions>
+    <ModelVariables>
+    <!-- Parameters -->
+    <ScalarVariable name="hatch_command_timeout" valueReference="1" causality="parameter" variability="fixed">
+      <Real start="12"/>
+    </ScalarVariable>
+    <ScalarVariable name="hatch_id_fore" valueReference="2" causality="parameter" variability="fixed">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="hatch_id_aft" valueReference="3" causality="parameter" variability="fixed">
+      <Real start="2"/>
+    </ScalarVariable>
+    <ScalarVariable name="emergency_stop_active" valueReference="4" causality="parameter" variability="discrete">
+      <Boolean start="false"/>
+    </ScalarVariable>
+   <!-- Modbus Tcp-->
+   <ScalarVariable name="modbus_server_port" valueReference="5" causality="parameter" variability="fixed">
+      <Real start="502"/>
+    </ScalarVariable>
+    <ScalarVariable name="modbus_server_ip" valueReference="6" causality="parameter" variability="fixed">
+      <String start="127.0.0.1"/>
+    </ScalarVariable>
+    <ScalarVariable name="auto_manual_mode" valueReference="7" causality="parameter" variability="discrete">
+      <Boolean start="true"/>
+    </ScalarVariable>
+    <ScalarVariable name="coil_address_read" valueReference="8" causality="parameter" variability="fixed">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="coil_read_num_bits" valueReference="9" causality="parameter" variability="fixed">
+      <Real start="0"/>
+    </ScalarVariable>
+	  <ScalarVariable name="coil_address_write" valueReference="10" causality="parameter" variability="fixed">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="coil_write_num_bits" valueReference="11" causality="parameter" variability="fixed">
+      <Real start="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="register_address_read" valueReference="12" causality="parameter" variability="fixed">
+      <Real start="200"/>
+    </ScalarVariable>
+    <ScalarVariable name="register_read_num_regs" valueReference="13" causality="parameter" variability="fixed">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="register_address_write" valueReference="14" causality="parameter" variability="fixed">
+      <Real start="32000"/>
+    </ScalarVariable>
+    <ScalarVariable name="register_write_num_regs" valueReference="15" causality="parameter" variability="fixed">
+      <Real start="1"/>
+    </ScalarVariable>
+    <ScalarVariable name="modbus_debug_enable" valueReference="16" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="hatch_start_position_fore" valueReference="17" causality="parameter" variability="fixed">
+      <Real start="100.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="hatch_start_position_aft" valueReference="18" causality="parameter" variability="fixed">
+      <Real start="100.0"/>
+    </ScalarVariable>
+    <!-- Output -->
+    <ScalarVariable name="hatch_position_fore" valueReference="19" causality="output">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="hatch_position_aft" valueReference="20" causality="output">
+      <Real/>
+    </ScalarVariable>
+    </ModelVariables>
+  <ModelStructure/>
+</fmiModelDescription>

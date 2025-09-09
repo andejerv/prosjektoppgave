@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure
+        xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure"
+        version="0.1">
+    <BaseStepSize>0.01</BaseStepSize>
+    <Simulators>
+        <Simulator name="Vessel" source="../../fmus_linux/rigid_body.fmu">
+            <InitialValues>
+                <InitialValue variable="initial_position[1]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[1]">
+                    <Real value="0.0"/>
+                </InitialValue>	
+                <InitialValue variable="initial_velocity[2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+                <!--Rigid body parameters-->
+                <InitialValue variable="m"><Real value="3385.371"/></InitialValue>
+                <InitialValue variable="m_added[1]"><Real value="259.13322"/></InitialValue>
+                <InitialValue variable="m_added[2]"><Real value="2626.66858"/></InitialValue>
+                <InitialValue variable="m_added[3]"><Real value="3398.91248"/></InitialValue>
+                <InitialValue variable="I[1]"><Real value="3832.56497"/></InitialValue>
+                <InitialValue variable="I[2]"><Real value="13882.13696"/></InitialValue>
+                <InitialValue variable="I[3]"><Real value="13882.13696"/></InitialValue>
+                <InitialValue variable="I_added[1]"><Real value="312.86245"/></InitialValue>
+                <InitialValue variable="I_added[2]"><Real value="8662.45346"/></InitialValue>
+                <InitialValue variable="I_added[3]"><Real value="8500.86539"/></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        <!-- Hydrodynamic model for the hull -->
+        <Simulator name="hull_maneuvering" source="../../fmus_linux/hull_maneuvering.fmu">
+			<InitialValues>
+                <InitialValue variable="Xvv"><Real value="-0.04"/></InitialValue>
+                <InitialValue variable="Xvr"><Real value="0.002"/></InitialValue>
+                <InitialValue variable="Xrr"><Real value="0.011"/></InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="0.771"/></InitialValue>
+                <InitialValue variable="Yv"><Real value="-0.315"/></InitialValue>
+                <InitialValue variable="Yr"><Real value="0.083"/></InitialValue>
+                <InitialValue variable="Yvvv"><Real value="-1.607"/></InitialValue>
+                <InitialValue variable="Yvrr"><Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"><Real value="0.379"/></InitialValue>
+                <InitialValue variable="Yrrr"><Real value="0.008"/></InitialValue>
+                <InitialValue variable="Nv"><Real value="-0.0315"/></InitialValue>
+                <InitialValue variable="Nr"><Real value="-0.06351"/></InitialValue>
+                <InitialValue variable="Nvvv"><Real value="-0.03"/></InitialValue>
+                <InitialValue variable="Nvrr"><Real value="0.055"/></InitialValue>
+                <InitialValue variable="Nvvr"><Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"><Real value="-0.013"/></InitialValue>
+                <InitialValue variable="shape_factor"><Real value="0.04771"/></InitialValue>
+                <InitialValue variable="CR_m"><Real value="0.0168"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="2.14441"/></InitialValue>
+                <InitialValue variable="CD_lateral"><Real value="0.08"/></InitialValue>
+                <InitialValue variable="length"><Real value="8.1"/></InitialValue>
+                <InitialValue variable="depth"><Real value="0.35"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="18.54978"/></InitialValue>
+
+
+
+
+                <!-- Low speed model -->
+                <InitialValue variable="CX_low"> <Real value="0.08"/></InitialValue>
+                <InitialValue variable="CY_low"> <Real value="1.5"/></InitialValue>
+                <InitialValue variable="CN_low"> <Real value="0.15"/></InitialValue>
+                <InitialValue variable="Nr_low"> <Real value="-1000"/></InitialValue>
+
+                <!-- Model mixing -->
+                <InitialValue variable="speed_limit_low"> <Real value="0.5"/></InitialValue>
+                <InitialValue variable="speed_transfer_range"> <Real value="0.25"/></InitialValue>
+                <InitialValue variable="low_speed_model"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Seakeeping model for the hull -->
+        <Simulator name="hull_seakeeping" source="../../fmus_linux/hull_seakeeping.fmu">
+			<InitialValues>
+                <InitialValue variable="mass"><Real value="3385.371"/></InitialValue>
+                <InitialValue variable="waterplane_area"><Real value="18.468"/></InitialValue>
+                <InitialValue variable="GM_roll"><Real value="3.0"/></InitialValue>
+                <InitialValue variable="GM_pitch"><Real value="9.0"/></InitialValue>
+                <InitialValue variable="heave_damping"><Real value="21301.91131"/></InitialValue>
+                <InitialValue variable="roll_damping"><Real value="6095.77467"/></InitialValue>
+                <InitialValue variable="pitch_damping"><Real value="49244.30873"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Thruster STB" source="../../fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="rudder_area"> <Real value="0.1"/></InitialValue>
+                <InitialValue variable="rudder_chord"><Real value="0.2"/></InitialValue>
+
+                <InitialValue variable="longitudinal_position"><Real value="-4.0"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="1.075"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="8.1"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cd_stall_max"><Real value="1.0"/></InitialValue>
+                <InitialValue variable="cd_stall_power"><Real value="1.6"/></InitialValue>
+
+                <InitialValue variable="cl_stall_mean"><Real value="0.6"/></InitialValue>
+                <InitialValue variable="cl_post_stall_max"><Real value="1.0"/></InitialValue>
+
+                <InitialValue variable="propeller_geometry"><String value="WAGENINGEN_B4_BAR70_PD08"/></InitialValue>
+                <InitialValue variable="pitch_scaling_factor"><Real value="1.0"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.28702"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+         <Simulator name="Steering machinery STB" source="../../fmus_linux/steering_machinery.fmu">
+            <InitialValues>
+                <InitialValue variable="max_speed">
+                    <Real value="0.2"/><!--rad/s-->
+                </InitialValue>
+                <InitialValue variable="initial_angle">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Electric drive STB" source="../../fmus_linux/electric_drive.fmu">
+            <InitialValues>
+                <InitialValue variable="max_rpm">
+                    <Real value="1700"/>
+                </InitialValue>
+                <InitialValue variable="time_constant">
+                    <Real value="0.5"/>
+                </InitialValue>
+                <InitialValue variable="max_rpm_rate">
+                    <Real value="1000"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="propulsion_interface" source="../../fmus_linux/cstrider_propulsion_interface.fmu">
+            <InitialValues>
+                <InitialValue variable="modbus_server_ip">
+                    <String value="133.13.0.3" />
+                </InitialValue>
+                <InitialValue variable="modbus_server_port">
+                    <Integer value="10502" />
+                </InitialValue>
+                <InitialValue variable="holding_register_base_address">
+                    <Integer value="0" />
+                </InitialValue>
+                <InitialValue variable="num_holding_registers">
+                    <Integer value="252" />
+                </InitialValue>
+                <InitialValue variable="zeabuz_system_heartbeat_signal_address">
+                    <Integer value="1" />
+                </InitialValue>
+                <InitialValue variable="zeabuz_system_available_signal_address">
+                    <Integer value="2" />
+                </InitialValue>
+                <InitialValue variable="stb_propulsion_command_signal_address">
+                    <Integer value="3" />
+                </InitialValue>
+                <InitialValue variable="stb_steering_command_signal_address">
+                    <Integer value="4" />
+                </InitialValue>
+                <InitialValue variable="port_propulsion_command_signal_address">
+                    <Integer value="5" />
+                </InitialValue>
+                <InitialValue variable="propulsion_system_heartbeat_signal_address">
+                    <Integer value="50" />
+                </InitialValue>
+                <InitialValue variable="ready_for_zeabuz_system_signal_address">
+                    <Integer value="51" />
+                </InitialValue>
+                <InitialValue variable="stb_propulsion_ready_signal_address">
+                    <Integer value="52" />
+                </InitialValue>
+                <InitialValue variable="stb_propulsion_feedback_signal_address">
+                    <Integer value="53" />
+                </InitialValue>
+                <InitialValue variable="stb_steering_ready_signal_address">
+                    <Integer value="54" />
+                </InitialValue>
+                <InitialValue variable="stb_steering_feedback_signal_address">
+                    <Integer value="55" />
+                </InitialValue>
+                <InitialValue variable="port_propulsion_ready_signal_address">
+                    <Integer value="56" />
+                </InitialValue>
+                <InitialValue variable="port_propulsion_feedback_signal_address">
+                    <Integer value="57" />
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Thruster Port" source="../../fmus_linux/azimuth_thruster.fmu">
+			<InitialValues>
+                <InitialValue variable="rudder_area"> <Real value="0.1"/></InitialValue>
+                <InitialValue variable="rudder_chord"><Real value="0.2"/></InitialValue>
+
+                <InitialValue variable="longitudinal_position"><Real value="-4.0"/></InitialValue>
+                <InitialValue variable="lateral_position"><Real value="-1.075"/></InitialValue>
+
+                <InitialValue variable="ship_length"><Real value="8.1"/></InitialValue>
+
+                <InitialValue variable="cd_k"> <Real value="19.92625501"/></InitialValue>
+                <InitialValue variable="cd_a2"><Real value="0.0"/></InitialValue>
+                
+                <InitialValue variable="effective_aspect_ratio_lift"><Real value="0.8"/></InitialValue>
+                <InitialValue variable="effective_aspect_ratio_drag"><Real value="0.55"/></InitialValue>
+
+                <InitialValue variable="tr"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="ah"><Real value="0.22"/></InitialValue>
+                <InitialValue variable="xh"><Real value="-0.055"/></InitialValue>
+
+                <InitialValue variable="cd_stall_max"><Real value="1.0"/></InitialValue>
+                <InitialValue variable="cd_stall_power"><Real value="1.6"/></InitialValue>
+
+                <InitialValue variable="cl_stall_mean"><Real value="0.6"/></InitialValue>
+                <InitialValue variable="cl_post_stall_max"><Real value="1.0"/></InitialValue>
+
+                <InitialValue variable="propeller_geometry"><String value="WAGENINGEN_B4_BAR70_PD08"/></InitialValue>
+                <InitialValue variable="pitch_scaling_factor"><Real value="1.0"/></InitialValue>
+                <InitialValue variable="propeller_diameter"><Real value="0.28702"/></InitialValue>
+				<InitialValue variable="wake_factor"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="thrust_deduction_factor"><Real value="0.0"/></InitialValue>
+
+                <InitialValue variable="rotations_per_second"><Real value="0.0"/></InitialValue>
+                <InitialValue variable="angle"><Real value="0.0"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+         <Simulator name="Steering machinery Port" source="../../fmus_linux/steering_machinery.fmu">
+            <InitialValues>
+                <InitialValue variable="max_speed">
+                    <Real value="0.2"/><!--rad/s-->
+                </InitialValue>
+                <InitialValue variable="initial_angle">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Electric drive Port" source="../../fmus_linux/electric_drive.fmu">
+            <InitialValues>
+                <InitialValue variable="max_rpm">
+                    <Real value="1700"/>
+                </InitialValue>
+                <InitialValue variable="time_constant">
+                    <Real value="0.5"/>
+                </InitialValue>
+                <InitialValue variable="max_rpm_rate">
+                    <Real value="1000"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Wave forces" source="../../fmus_linux/wave_forces.fmu">
+            <InitialValues>
+                <InitialValue variable="wave_force_stddev[1,1]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind model" source="../../fmus_linux/wind_model.fmu">
+            <InitialValues>
+                <InitialValue variable="mean_wind_direction">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="mean_wind_speed">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind loads" source="../../fmus_linux/wind_loads.fmu">
+            <InitialValues>
+                <InitialValue variable="A_Fw">
+                    <Real value="7.5"/>
+                </InitialValue>
+                <InitialValue variable="A_Lw">
+                    <Real value="15"/>
+                </InitialValue>
+                <InitialValue variable="CD_lAF">
+                    <Real value="0.55"/>
+                </InitialValue>
+                <InitialValue variable="CD_t">
+                    <Real value="0.9"/>
+                </InitialValue>
+                <InitialValue variable="H_Lw">
+                    <Real value="1.0"/>
+                </InitialValue>
+                <InitialValue variable="L_oa">
+                    <Real value="8.1"/>
+                </InitialValue>
+                <InitialValue variable="delta">
+                    <Real value="0.6"/>
+                </InitialValue>
+                <InitialValue variable="kappa">
+                    <Real value="1.1"/>
+                </InitialValue>
+                <InitialValue variable="rho_air">
+                    <Real value="1.225"/>
+                </InitialValue>
+                <InitialValue variable="s_L">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="zb_sim_clock" source="../../fmus_linux/fmi_zb_sim_clock.fmu" stepSize="0.01">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="3001"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation_gps_compass" source="../../fmus_linux/fmi_advanced_navigation.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="133.13.0.2"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16718"/>
+                </InitialValue>
+                <!-- Marstrand varv-->
+                <InitialValue variable="latitude0">
+                    <Real value="57.886905"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="11.593746"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="36.1123"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+    </Simulators>
+    
+    <Functions>
+        <LinearTransformation name="rpm2rps_1" factor="0.016666666666666666" offset="0"/>
+        <LinearTransformation name="rpm2rps_2" factor="0.016666666666666666" offset="0"/>
+
+        <VectorSum name="vessel_force_sum" inputCount="6" dimension="6"/>
+    </Functions>
+    
+    <Connections>
+       <SignalGroupConnection>
+            <VariableGroup simulator="Thruster STB" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[0]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="Thruster Port" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[1]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="Wave forces" name="wave_forces"/>
+            <SignalGroup function="vessel_force_sum" name="in[2]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="Wind loads" name="wind_loads"/>
+            <SignalGroup function="vessel_force_sum" name="in[3]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="hull_maneuvering" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[4]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <VariableGroup simulator="hull_seakeeping" name="force_body_6dof"/>
+            <SignalGroup function="vessel_force_sum" name="in[5]"/>
+        </SignalGroupConnection>
+        <SignalGroupConnection>
+            <SignalGroup function="vessel_force_sum" name="out"/>
+            <VariableGroup simulator="Vessel" name="external_force"/>
+        </SignalGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="velocity"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="displacement_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="displacement"/>
+        </VariableGroupConnection>
+
+        <!-- Wind -->
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_direction"/>
+            <Variable simulator="Wind loads" name="wind_direction"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_speed"/>
+            <Variable simulator="Wind loads" name="wind_speed"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_velocity"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_position"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="position_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_ned"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="acceleration_6dof"/>
+        </VariableGroupConnection>
+
+         <!-- Thrusters -->
+        <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster STB" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+         <VariableGroupConnection>
+            <VariableGroup simulator="Vessel" name="velocity_body_3dof"/>
+            <VariableGroup simulator="Thruster Port" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+       <!-- Propulsion interface -->
+       <VariableConnection>
+            <Variable simulator="propulsion_interface" name="port_rpm_cmd"/>
+            <Variable simulator="Electric drive Port" name="rpm_command"/>
+       </VariableConnection>
+       <VariableConnection>
+            <Variable simulator="propulsion_interface" name="port_angle_cmd"/>
+            <Variable simulator="Steering machinery Port" name="target_angle"/>
+        </VariableConnection>
+       <VariableConnection>
+            <Variable simulator="propulsion_interface" name="stb_rpm_cmd"/>
+            <Variable simulator="Electric drive STB" name="rpm_command"/>
+        </VariableConnection>
+       <VariableConnection>
+            <Variable simulator="propulsion_interface" name="stb_angle_cmd"/>
+            <Variable simulator="Steering machinery STB" name="target_angle"/>
+        </VariableConnection>
+       <VariableConnection>
+            <Variable simulator="Electric drive Port" name="rpm"/>
+            <Variable simulator="propulsion_interface" name="port_rpm_fb"/>
+        </VariableConnection>
+       <VariableConnection>
+            <Variable simulator="Steering machinery Port" name="angle"/>
+            <Variable simulator="propulsion_interface" name="port_angle_fb"/>
+        </VariableConnection>
+       <VariableConnection>
+            <Variable simulator="Electric drive STB" name="rpm"/>
+            <Variable simulator="propulsion_interface" name="stb_rpm_fb"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Steering machinery STB" name="angle"/>
+            <Variable simulator="propulsion_interface" name="stb_angle_fb"/>
+        </VariableConnection>
+       
+        <VariableConnection>
+            <Variable simulator="Steering machinery STB" name="angle"/>
+            <Variable simulator="Thruster STB" name="angle"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Steering machinery Port" name="angle"/>
+            <Variable simulator="Thruster Port" name="angle"/>
+        </VariableConnection>
+
+        <SignalConnection>
+            <Variable simulator="Electric drive STB" name="rpm"/>
+            <Signal function="rpm2rps_1" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="rpm2rps_1" name="out"/>
+            <Variable simulator="Thruster STB" name="rotations_per_second"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Electric drive Port" name="rpm"/>
+            <Signal function="rpm2rps_2" name="in"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="rpm2rps_2" name="out"/>
+            <Variable simulator="Thruster Port" name="rotations_per_second"/>
+        </SignalConnection>
+
+    </Connections>
+</OspSystemStructure>

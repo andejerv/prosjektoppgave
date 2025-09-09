@@ -1,0 +1,14 @@
+{
+    "configs": [
+        {
+            "config_name": "stockholm_sil_south",
+            "vessel": "estelle",
+            "initial_position": "ravnkloa"
+        },
+        {
+            "config_name": "trondheim_sil_north",
+            "vessel": "ma2",
+            "initial_position": "fosenkaia"
+        }
+    ]
+}

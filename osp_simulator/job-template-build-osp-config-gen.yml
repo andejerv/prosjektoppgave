@@ -1,0 +1,89 @@
+jobs:
+  - job: osp_config_gen
+    displayName: OSP config generator unittest
+
+    strategy:
+      matrix:
+        ubuntu:
+          name: 'linux'
+          imageName: 'ubuntu-latest'
+        windows:
+          name: 'windows'
+          imageName: 'windows-2019'
+      
+    pool:
+      vmImage:  $(imageName)
+
+    steps:
+    - checkout: self
+      path: s/osp_simulator
+
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific'
+        project: 'technology'
+        definition: 68
+        buildVersionToDownload: 'latestFromBranch'
+        branchName: refs/heads/main
+        artifactName: 'ma2_config_test_system_dependencies'
+        targetPath: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen/resources/ma2_config_test_system_dependencies
+      displayName: Download ma2 config repo deps
+
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific'
+        project: 'technology'
+        definition: 67
+        buildVersionToDownload: 'latestFromBranch'
+        branchName: refs/heads/main
+        artifactName: 'stockholm_config_test_system_dependencies'
+        targetPath: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen/resources/stockholm_config_test_system_dependencies
+      displayName: Download stockholm config repo deps
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.10' 
+        addToPath: true 
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install pytest coverage pyinstaller
+        pip install -r requirements.txt
+        pip install -e .
+      workingDirectory: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen
+      displayName: 'Install dependencies'
+
+    - script: |
+        coverage run --source=src --branch -m pytest --junit-xml=$(Pipeline.Workspace)/test-report.xml -o junit_suite_name=OSPConfigGenTests
+        coverage xml -o $(Pipeline.Workspace)/coverage-report.xml
+      workingDirectory: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen
+      displayName: 'Run all tests and generate coverage report'
+
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'cobertura'
+        summaryFileLocation: '$(Pipeline.Workspace)/coverage-report.xml'
+
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: JUnit
+        testResultsFiles: '$(Pipeline.Workspace)/test-report.xml'
+        failTaskOnFailedTests: true
+
+    - script: |
+        pyinstaller --add-data config.yml:. -y src/osp_config_gen.py
+      workingDirectory: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen
+      displayName: Build OSP Config Gen executable
+
+    - task: CopyFiles@2
+      inputs:          
+        SourceFolder: "$(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen/resources"
+        Contents: '**'         
+        targetFolder: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen/dist/osp_config_gen/_internal/resources
+      displayName: Copy resources to OSP Config Gen build
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Pipeline.Workspace)/s/osp_simulator/utils/osp_config_gen/dist/osp_config_gen
+        artifactName: osp_config_gen_$(name)
+      displayName: Publish OSP Config Gen executable for $(name)

@@ -1,0 +1,1267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OspSystemStructure
+        xmlns="http://opensimulationplatform.com/MSMI/OSPSystemStructure"
+        version="0.1">
+    <BaseStepSize>0.01</BaseStepSize>
+    <Simulators>
+        <Simulator name="Zeabuz 1" source="../../fmus/rigid_body.fmu">
+            <InitialValues>
+                <InitialValue variable="initial_position[1]"><!--TODO: Based on size value-->
+					<!--Corresponds to Unity z coordinate-->
+                    <!--<Real value="612.88"/>NORTH SIDE -->
+                    <Real value="87.50"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[2]"><!--TODO: Based on size value-->
+					<!--Corresponds to Unity x coordinate-->
+                    <!--<Real value="137.82"/>NORTH-->
+                    <Real value="494.90"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_position[6]">
+                    <!--<Real value="-3.1373"/>NORTH-->
+                    <Real value="3.05084265359"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[1]">
+                    <Real value="0.0"/>
+                </InitialValue>	
+                <InitialValue variable="initial_velocity[2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="initial_velocity[6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+                <!--Rigid body parameters-->
+                <InitialValue variable="m">
+                    <Real value="16116.7"/>
+                </InitialValue>
+
+                <InitialValue variable="m_added[1]">
+                    <Real value="805.835"/>
+                </InitialValue>
+                <InitialValue variable="m_added[2]">
+                    <Real value="16116.7"/>
+                </InitialValue>
+                <InitialValue variable="m_added[3]">
+                    <Real value="8058"/><!--Educated guess (0.5*m)-->
+                </InitialValue>
+                
+                <InitialValue variable="I[1]">
+                    <Real value="49357"/><!--Based on empirical value RoG = 0.35*B in roll-->
+                </InitialValue>
+                <InitialValue variable="I[2]">
+                    <Real value="145050"/><!--Based on empirical value RoG = 0.25*Lpp in pitch-->
+                </InitialValue>
+                <InitialValue variable="I[3]">
+                    <Real value="145050"/><!--Based on empirical value RoG = 0.25*Lpp in yaw-->
+                </InitialValue>
+
+                <InitialValue variable="I_added[1]"><!--Educated guess (0.5*I[1])-->
+                    <Real value="24679"/>
+                </InitialValue>
+                <InitialValue variable="I_added[2]"><!--Educated guess-->
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="I_added[3]">
+                    <Real value="4497.2821"/>
+                </InitialValue>
+
+                <!-- Quays -->
+                <InitialValue variable="L_vessel">
+                    <Real value="12.25"/>
+                </InitialValue>
+                <InitialValue variable="B_vessel">
+                    <Real value="5.25"/>
+                </InitialValue>
+                <InitialValue variable="k_quay">
+                    <Real value="100000"/>
+                </InitialValue>
+                <InitialValue variable="d_quay">
+                    <Real value="160000"/>
+                </InitialValue>
+                <InitialValue variable="mu_quay">
+                    <Real value="1"/>
+                </InitialValue>
+               
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        <!-- Hydrodynamic model for the hull -->
+        <Simulator name="hull_maneuvering" source="../../fmus/hull_maneuvering.fmu">
+			<InitialValues>
+                <!-- Relevant geometric variables for the model -->
+                <InitialValue variable="length"><Real value="12"/></InitialValue>
+                <InitialValue variable="depth"><Real value="0.91"/></InitialValue>
+                <InitialValue variable="wetted_surface"><Real value="46.41"/></InitialValue>
+
+                <!-- Straight ahead resistance parameters -->
+                <InitialValue variable="shape_factor"><Real value="0.052"/></InitialValue>
+                <InitialValue variable="CR_m"><Real value="4.105"/></InitialValue>
+                <InitialValue variable="CR_p"><Real value="5.8"/></InitialValue>
+                <InitialValue variable="CD_lateral"><Real value="0.0"/></InitialValue>
+
+                <!-- MMG parameters-->
+                <InitialValue variable="Xvv"><Real value="-0.04"/></InitialValue>
+                <InitialValue variable="Xvr"><Real value="0.002"/></InitialValue>
+                <InitialValue variable="Xrr"><Real value="0.011"/></InitialValue>
+                <InitialValue variable="Xvvvv"><Real value="0.771"/></InitialValue>
+                <InitialValue variable="Yv"><Real value="-0.315"/></InitialValue>
+                <InitialValue variable="Yr"><Real value="0.083"/></InitialValue>
+                <InitialValue variable="Yvvv"><Real value="-1.607"/></InitialValue>
+                <InitialValue variable="Yvrr"><Real value="-0.391"/></InitialValue>
+                <InitialValue variable="Yvvr"><Real value="0.379"/></InitialValue>
+                <InitialValue variable="Yrrr"><Real value="0.008"/></InitialValue>
+                <InitialValue variable="Nv"><Real value="-0.137"/></InitialValue>
+                <InitialValue variable="Nr"><Real value="-0.049"/></InitialValue>
+                <InitialValue variable="Nvvv"><Real value="-0.03"/></InitialValue>
+                <InitialValue variable="Nvrr"><Real value="0.055"/></InitialValue>
+                <InitialValue variable="Nvvr"><Real value="-0.294"/></InitialValue>
+                <InitialValue variable="Nrrr"><Real value="-0.013"/></InitialValue>
+
+                <!-- Low speed model -->
+                <InitialValue variable="CX_low"> <Real value="0.05"/></InitialValue>
+                <InitialValue variable="CY_low"> <Real value="0.5"/></InitialValue>
+                <InitialValue variable="CN_low"> <Real value="0.110510346"/></InitialValue>
+                <InitialValue variable="Nr_low"> <Real value="-5000"/></InitialValue>
+
+                <InitialValue variable="speed_limit_low"> <Real value="0.5"/></InitialValue>
+                <InitialValue variable="speed_transfer_range"> <Real value="0.2572"/></InitialValue>
+
+                <InitialValue variable="low_speed_model"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="high_speed_model"><Boolean value="true"/></InitialValue>
+
+            </InitialValues>
+		</Simulator>
+
+        <!-- Seakeeping model for the hull -->
+        <Simulator name="hull_seakeeping" source="../../fmus/hull_seakeeping.fmu">
+			<InitialValues>
+                <!-- Linear damping coefficients. Calculated to have damping ratios of [0.3, 0.15, 0.3] -->
+                <InitialValue variable="heave_damping"><Real value="46418.3301399822"/></InitialValue>
+                <InitialValue variable="roll_damping"><Real value="60895.7369070032"/></InitialValue>
+                <InitialValue variable="pitch_damping"><Real value="303539.5095152156"/></InitialValue>
+
+                <!-- Restoring force. Based on Zeabuz 1 hydrostatics -->
+                <InitialValue variable="mass"><Real value="16116.7"/></InitialValue>
+                <InitialValue variable="waterplane_area"><Real value="24.6"/></InitialValue>
+                <InitialValue variable="GM_roll"><Real value="3.52"/></InitialValue>
+                <InitialValue variable="GM_pitch"><Real value="11.16"/></InitialValue>
+            </InitialValues>
+		</Simulator>
+
+        <Simulator name="Wave forces" source="../../fmus/wave_forces.fmu">
+            <InitialValues>
+                <InitialValue variable="wave_force_stddev[1,1]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,2]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,3]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,4]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,5]">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wave_force_stddev[1,6]">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind model" source="../../fmus/wind_model.fmu">
+            <InitialValues>
+                <InitialValue variable="mean_wind_direction">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="mean_wind_speed">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_direction_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_noise_power">
+                    <Real value="0.0"/>
+                </InitialValue>
+                <InitialValue variable="wind_speed_time_constant">
+                    <Real value="10.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Wind loads" source="../../fmus/wind_loads.fmu">
+            <InitialValues>
+                <InitialValue variable="A_Fw">
+                    <Real value="19"/>
+                </InitialValue>
+                <InitialValue variable="A_Lw">
+                    <Real value="45.6"/>
+                </InitialValue>
+                <InitialValue variable="CD_lAF">
+                    <Real value="0.475"/>
+                </InitialValue>
+                <InitialValue variable="CD_t">
+                    <Real value="0.9"/>
+                </InitialValue>
+                <InitialValue variable="H_Lw">
+                    <Real value="1.0"/>
+                </InitialValue>
+                <InitialValue variable="L_oa">
+                    <Real value="12"/>
+                </InitialValue>
+                <InitialValue variable="delta">
+                    <Real value="0.8"/>
+                </InitialValue>
+                <InitialValue variable="kappa">
+                    <Real value="1.1"/>
+                </InitialValue>
+                <InitialValue variable="rho_air">
+                    <Real value="1.225"/>
+                </InitialValue>
+                <InitialValue variable="s_L">
+                    <Real value="0.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT1 FS-S" source="../../fmus/UltrasonicDistanceSensor.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="2.44865"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="1.57079632679"/>
+                </InitialValue>
+
+				<!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+            </InitialValues>    
+        </Simulator>
+
+
+        <Simulator name="Distance Sensor ZT2 FS-F" source="../../fmus/UltrasonicDistanceSensor_1.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="5.947866"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+				<!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT3 FP-F" source="../../fmus/UltrasonicDistanceSensor_2.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="5.94651"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="0.0"/>
+                </InitialValue>
+
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT4 FP-P" source="../../fmus/UltrasonicDistanceSensor_3.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-2.452682"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="-1.57079632679"/>
+                </InitialValue>
+
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT5 AP-P" source="../../fmus/UltrasonicDistanceSensor_4.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-2.451359"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="-1.57079632679"/>
+                </InitialValue>
+
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Distance Sensor ZT6 AP-A" source="../../fmus/UltrasonicDistanceSensor_5.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-5.942653"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="-1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="3.141592653589793"/>
+                </InitialValue>
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+
+            </InitialValues>
+        </Simulator>
+        
+        <Simulator name="Distance Sensor ZT7 AS-A" source="../../fmus/UltrasonicDistanceSensor_6.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-5.946009"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="1.5"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="3.141592653589793"/>
+                </InitialValue>
+
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="Distance Sensor ZT8 AS-S" source="../../fmus/UltrasonicDistanceSensor_7.fmu">
+            <InitialValues>
+                <InitialValue variable="min_range">
+                    <Real value="0.15"/>
+                </InitialValue>
+                <InitialValue variable="max_range">
+                    <Real value="2.0"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_x">
+                    <Real value="-4.913"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_y">
+                    <Real value="2.453213"/>
+                </InitialValue>
+                <InitialValue variable="sensor_pose_psi">
+                    <Real value="1.57079632679"/>
+                </InitialValue>
+
+                <!-- South quay main block -->
+                <InitialValue variable="quay_1_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_1_p0[1]"><Real value="81.73730603916813"/></InitialValue>
+                <InitialValue variable="quay_1_p0[2]"><Real value="498.8836394557981"/></InitialValue>
+                <InitialValue variable="quay_1_p1[1]"><Real value="80.92167664357352"/></InitialValue>
+                <InitialValue variable="quay_1_p1[2]"><Real value="489.9206740598456"/></InitialValue>
+                <InitialValue variable="quay_1_depth"><Real value="4.8"/></InitialValue>
+                <!-- South quay outrigger -->
+                <InitialValue variable="quay_2_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_2_p0[1]"><Real value="93.61134802940731"/></InitialValue>
+                <InitialValue variable="quay_2_p0[2]"><Real value="496.95461073282974"/></InitialValue>
+                <InitialValue variable="quay_2_p1[1]"><Real value="81.66072750147063"/></InitialValue>
+                <InitialValue variable="quay_2_p1[2]"><Real value="498.04211659362255"/></InitialValue>
+                <InitialValue variable="quay_2_depth"><Real value="0.71"/></InitialValue>
+                <!-- North quay main block -->
+                <InitialValue variable="quay_3_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_3_p0[1]"><Real value="619.016624410391"/></InitialValue>
+                <InitialValue variable="quay_3_p0[2]"><Real value="129.50126383518116"/></InitialValue>
+                <InitialValue variable="quay_3_p1[1]"><Real value="618.9651127255138"/></InitialValue>
+                <InitialValue variable="quay_3_p1[2]"><Real value="141.50115327410188"/></InitialValue>
+                <InitialValue variable="quay_3_depth"><Real value="4.8"/></InitialValue>
+                <!-- North quay outrigger -->
+                <InitialValue variable="quay_4_en"><Boolean value="true"/></InitialValue>
+                <InitialValue variable="quay_4_p0[1]"><Real value="606.991215224254"/></InitialValue>
+                <InitialValue variable="quay_4_p0[2]"><Real value="135.3946973765025"/></InitialValue>
+                <InitialValue variable="quay_4_p1[1]"><Real value="618.9911046631747"/></InitialValue>
+                <InitialValue variable="quay_4_p1[2]"><Real value="135.44620906137982"/></InitialValue>
+                <InitialValue variable="quay_4_depth"><Real value="0.71"/></InitialValue>
+            </InitialValues>
+        </Simulator>        
+
+        <Simulator name="DP Mock" source="../../fmus/fmi_dp_mock.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="enableReadyForAutonomy">
+                    <Boolean value="true"/>
+                </InitialValue>
+                <InitialValue variable="desiredControlMode">
+                    <String value="STANDBY"/>
+                </InitialValue>
+                <InitialValue variable="Kp[0]">
+                    <Real value="1485"/>
+                </InitialValue>
+                <InitialValue variable="Ki[0]">
+                    <Real value="74.25"/>
+                </InitialValue>
+                <InitialValue variable="Kd[0]">
+                    <Real value="19700"/>
+                </InitialValue>
+                <InitialValue variable="Kp[1]">
+                    <Real value="1800"/>
+                </InitialValue>
+                <InitialValue variable="Ki[1]">
+                    <Real value="90"/>
+                </InitialValue>
+                <InitialValue variable="Kd[1]">
+                    <Real value="23000"/>
+                </InitialValue>
+                <InitialValue variable="Kp[2]">
+                    <Real value="100000"/>
+                </InitialValue>
+                <InitialValue variable="Ki[2]">
+                    <Real value="657"/>
+                </InitialValue>
+                <InitialValue variable="Kd[2]">
+                    <Real value="173000"/>
+                </InitialValue>
+                <InitialValue variable="GeneralizedForcesSaturation[0]">
+                    <Real value="10000"/>
+                </InitialValue>
+                <InitialValue variable="GeneralizedForcesSaturation[1]">
+                    <Real value="10000"/>
+                </InitialValue>
+                <InitialValue variable="GeneralizedForcesSaturation[2]">
+                    <Real value="35000"/>
+                </InitialValue>
+                <InitialValue variable="IntegralActionSaturation[0]">
+                    <Real value="1000"/>
+                </InitialValue>
+                <InitialValue variable="IntegralActionSaturation[1]">
+                    <Real value="1000"/>
+                </InitialValue>
+                <InitialValue variable="IntegralActionSaturation[2]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="MassMatrixDiagonal[0]">
+                    <Real value="16500"/>
+                </InitialValue>
+                <InitialValue variable="MassMatrixDiagonal[1]">
+                    <Real value="20000"/>
+                </InitialValue>
+                <InitialValue variable="MassMatrixDiagonal[2]">
+                    <Real value="146000"/>
+                </InitialValue>
+                <InitialValue variable="DampingMatrixDiagonal[0]">
+                    <Real value="100"/>
+                </InitialValue>
+                <InitialValue variable="DampingMatrixDiagonal[1]">
+                    <Real value="1000"/>
+                </InitialValue>
+                <InitialValue variable="DampingMatrixDiagonal[2]">
+                    <Real value="2200"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.heading_pid.Kp">
+                    <Real value="70000"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.heading_pid.Ki">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.heading_pid.Kd">
+                    <Real value="100000"/>
+                </InitialValue>
+                  <InitialValue variable="autopilot.surge_speed_pid.Kp">
+                    <Real value="3000"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.surge_speed_pid.Ki">
+                    <Real value="50"/>
+                </InitialValue>
+                <InitialValue variable="autopilot.surge_speed_pid.Kd">
+                    <Real value="1000"/>
+                </InitialValue> 
+                <InitialValue variable="MaxEffort[0]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="MaxEffort[1]">
+                    <Real value="5000"/>
+                </InitialValue>
+                <InitialValue variable="MaxEffort[2]">
+                    <Real value="5000"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="hatch_control" source="../../fmus/fmi_hatch_control_modbus_tcp.fmu" stepSize="0.1">
+            <InitialValues>
+                <InitialValue variable="modbus_server_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="hatch_command_timeout">
+                    <Real value="10"/>
+                </InitialValue>
+                <InitialValue variable="modbus_server_port">
+                    <Real value="502"/>
+                </InitialValue>
+                <InitialValue variable="coil_address_read">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_read_num_bits">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_address_write">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="coil_write_num_bits">
+                    <Real value="0"/>
+                </InitialValue>
+                <InitialValue variable="register_address_read">
+                    <Real value="200"/>
+                </InitialValue>
+                <InitialValue variable="register_read_num_regs">
+                    <Real value="1"/>
+                </InitialValue>
+                <InitialValue variable="register_address_write">
+                    <Real value="32000"/>
+                </InitialValue>
+                <InitialValue variable="register_write_num_regs">
+                    <Real value="1"/>
+                </InitialValue>
+                <InitialValue variable="hatch_start_position_fore">
+                    <Real value="100.0"/>
+                </InitialValue>
+                <InitialValue variable="hatch_start_position_aft">
+                    <Real value="100.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="mooring" source="../../fmus/mooring.fmu">
+            <InitialValues>
+                <InitialValue variable="hatch_position_fore">
+                    <Real value="100.0"/>
+                </InitialValue>
+                <InitialValue variable="hatch_position_aft">
+                    <Real value="100.0"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="dp_interface" source="../../fmus/fmi_dp_interface.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="local_ip">
+                    <String value="0.0.0.0"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="5096"/>
+                </InitialValue>
+                <InitialValue variable="local_port">
+                    <String value="5095"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="59.320629"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="18.041725"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+                <InitialValue variable="publish_time_step">
+                    <Real value="1.0"/>
+                </InitialValue>
+                <InitialValue variable="publish_dp_mode_time_step">
+                    <Real value="0.1"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="ultrasound_distance_communication_zb1" source="../../fmus/fmi_ultrasonic_distance_sensor_communication_zb1.fmu" stepSize="0.2">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="local_ip">
+                    <String value="0.0.0.0"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="2001"/>
+                </InitialValue>
+                <InitialValue variable="local_port">
+                    <String value="1996"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="zb_sim_clock" source="../../fmus/fmi_zb_sim_clock.fmu" stepSize="0.01">
+            <InitialValues>
+                <InitialValue variable="remote_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="remote_port">
+                    <String value="3001"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation" source="../../fmus/fmi_advanced_navigation.fmu" stepSize="0.05">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16718"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_port">
+                    <String value="6097"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="59.320629"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="18.041725"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+
+        <Simulator name="advanced_navigation_gps_compass" source="../../fmus/fmi_advanced_navigation.fmu" stepSize="0.2">
+            <InitialValues>
+                <InitialValue variable="autonomy_machine_remote_ip">
+                    <String value="127.0.0.1"/>
+                </InitialValue>
+                <InitialValue variable="autonomy_machine_remote_port">
+                    <String value="16719"/>
+                </InitialValue>
+                <InitialValue variable="mt_dp_remote_port">
+                    <String value="0"/>
+                </InitialValue>
+                <InitialValue variable="latitude0">
+                    <Real value="59.320629"/>
+                </InitialValue>
+                <InitialValue variable="longitude0">
+                    <Real value="18.041725"/>
+                </InitialValue>
+                <InitialValue variable="height0">
+                    <Real value="0.01"/>
+                </InitialValue>
+            </InitialValues>
+        </Simulator>
+    </Simulators>
+    
+    <Functions>
+        <Sum name="vessel_force_sum[1]" inputCount="4"/>
+        <Sum name="vessel_force_sum[2]" inputCount="4"/>
+        <Sum name="vessel_force_sum[3]" inputCount="3"/>
+        <Sum name="vessel_force_sum[4]" inputCount="3"/>
+        <Sum name="vessel_force_sum[5]" inputCount="3"/>
+        <Sum name="vessel_force_sum[6]" inputCount="4"/>
+    </Functions>
+    
+    <Connections>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[1]"/>
+            <Signal function="vessel_force_sum[1]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[2]"/>
+            <Signal function="vessel_force_sum[2]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[3]"/>
+            <Signal function="vessel_force_sum[3]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[4]"/>
+            <Signal function="vessel_force_sum[4]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[5]"/>
+            <Signal function="vessel_force_sum[5]" name="in[0]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wave forces" name="wave_forces[6]"/>
+            <Signal function="vessel_force_sum[6]" name="in[0]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[1]"/>
+            <Signal function="vessel_force_sum[1]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[2]"/>
+            <Signal function="vessel_force_sum[2]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[3]"/>
+            <Signal function="vessel_force_sum[3]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[4]"/>
+            <Signal function="vessel_force_sum[4]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[5]"/>
+            <Signal function="vessel_force_sum[5]" name="in[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="Wind loads" name="tau_wind[6]"/>
+            <Signal function="vessel_force_sum[6]" name="in[1]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="DP Mock" name="generalizedForces[0]"/>
+            <Signal function="vessel_force_sum[1]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="DP Mock" name="generalizedForces[1]"/>
+            <Signal function="vessel_force_sum[2]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="DP Mock" name="generalizedForces[2]"/>
+            <Signal function="vessel_force_sum[6]" name="in[2]"/>
+        </SignalConnection>
+        
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_surge"/>
+            <Signal function="vessel_force_sum[1]" name="in[3]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="force_sway"/>
+            <Signal function="vessel_force_sum[2]" name="in[3]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_maneuvering" name="moment_yaw"/>
+            <Signal function="vessel_force_sum[6]" name="in[3]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Variable simulator="hull_seakeeping" name="force_heave"/>
+            <Signal function="vessel_force_sum[3]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_seakeeping" name="moment_roll"/>
+            <Signal function="vessel_force_sum[4]" name="in[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Variable simulator="hull_seakeeping" name="moment_pitch"/>
+            <Signal function="vessel_force_sum[5]" name="in[2]"/>
+        </SignalConnection>
+
+        <SignalConnection>
+            <Signal function="vessel_force_sum[1]" name="out"/>
+            <Variable simulator="Zeabuz 1" name="external_force[1]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[2]" name="out"/>
+            <Variable simulator="Zeabuz 1" name="external_force[2]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[3]" name="out"/>
+            <Variable simulator="Zeabuz 1" name="external_force[3]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[4]" name="out"/>
+            <Variable simulator="Zeabuz 1" name="external_force[4]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[5]" name="out"/>
+            <Variable simulator="Zeabuz 1" name="external_force[5]"/>
+        </SignalConnection>
+        <SignalConnection>
+            <Signal function="vessel_force_sum[6]" name="out"/>
+            <Variable simulator="Zeabuz 1" name="external_force[6]"/>
+        </SignalConnection>
+
+        <VariableConnection>
+            <Variable simulator="hatch_control" name="hatch_position_fore"/>
+            <Variable simulator="mooring" name="hatch_position_fore"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="hatch_control" name="hatch_position_aft"/>
+            <Variable simulator="mooring" name="hatch_position_aft"/>
+        </VariableConnection>
+         <VariableConnection>
+            <Variable simulator="mooring" name="moored"/>
+            <Variable simulator="Zeabuz 1" name="lock_motion"/>
+        </VariableConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_body_3dof"/>
+            <VariableGroup simulator="hull_maneuvering" name="velocity_body_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="velocity"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="displacement_seakeeping"/>
+            <VariableGroup simulator="hull_seakeeping" name="displacement"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="DP Mock" name="position_measurements_3dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_body_3dof"/>
+            <VariableGroup simulator="DP Mock" name="velocity_measurements_3dof"/>
+        </VariableGroupConnection>
+
+
+        <!-- Current-->
+        <!-- <VariableGroupConnection>
+            <VariableGroup simulator="Current model" name="current_velocity"/>
+            <VariableGroup simulator="Zeabuz 1" name="current_velocity"/>
+        </VariableGroupConnection> -->
+
+        <!-- Wind -->
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_direction"/>
+            <Variable simulator="Wind loads" name="wind_direction"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="Wind model" name="wind_speed"/>
+            <Variable simulator="Wind loads" name="wind_speed"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_body_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_velocity"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_6dof"/>
+            <VariableGroup simulator="Wind loads" name="vessel_position"/>
+        </VariableGroupConnection>
+        
+        <!-- Docking -->
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT1 FS-S" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT2 FS-F" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT3 FP-F" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT4 FP-P" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT5 AP-P" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT6 AP-A" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT7 AS-A" name="position_3dof"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_3dof"/>
+            <VariableGroup simulator="Distance Sensor ZT8 AS-S" name="position_3dof"/>
+        </VariableGroupConnection>
+        
+        <!-- Autonomy-->
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT1 FS-S" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_fore_stbd"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT2 FS-F" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_fore_stbd"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT3 FP-F" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_fore_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT4 FP-P" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_fore_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT5 AP-P" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_aft_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT6 AP-A" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_aft_port"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT7 AS-A" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_aft_stbd"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Distance Sensor ZT8 AS-S" name="sensor_output"/>
+            <VariableGroup simulator="ultrasound_distance_communication_zb1" name="ultrasonic_sensor_alongside_aft_stbd"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_body_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="twist_ned"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation" name="acceleration_6dof"/>
+        </VariableGroupConnection>
+
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="pose"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_body_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_body"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="velocity_ned_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="twist_ned"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="acceleration_6dof"/>
+            <VariableGroup simulator="advanced_navigation_gps_compass" name="acceleration_6dof"/>
+        </VariableGroupConnection>
+
+        <VariableConnection>
+            <Variable simulator="DP Mock" name="controlMode"/>
+            <Variable simulator="dp_interface" name="control_mode"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="dp_interface" name="set_control_mode"/>
+            <Variable simulator="DP Mock" name="desiredControlMode"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="DP Mock" name="readyForAutonomyEnabled"/>
+            <Variable simulator="dp_interface" name="ready_for_autonomy"/>
+        </VariableConnection>
+        <VariableConnection>
+            <Variable simulator="DP Mock" name="autonomyModeEnabled"/>
+            <Variable simulator="dp_interface" name="autonomy_enabled"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="Zeabuz 1" name="position_6dof"/>
+            <VariableGroup simulator="dp_interface" name="pose"/>
+        </VariableGroupConnection>
+
+        <VariableConnection>
+            <Variable simulator="dp_interface" name="autonomy_enable"/>
+            <Variable simulator="DP Mock" name="enableAutonomyMode"/>
+        </VariableConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="dp_interface" name="joystick_commands"/>
+            <VariableGroup simulator="DP Mock" name="autonomy_joystick_commands"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="dp_interface" name="dp_commands"/>
+            <VariableGroup simulator="DP Mock" name="autonomy_dp_commands"/>
+        </VariableGroupConnection>
+        <VariableGroupConnection>
+            <VariableGroup simulator="dp_interface" name="autopilot_commands"/>
+            <VariableGroup simulator="DP Mock" name="autonomy_autopilot_commands"/>
+        </VariableGroupConnection>
+
+    </Connections>
+</OspSystemStructure>
