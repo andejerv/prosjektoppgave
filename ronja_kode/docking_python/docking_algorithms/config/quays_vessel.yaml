@@ -1,0 +1,13 @@
+quays:
+  front_segment:
+    corner: [81.7373, 498.8836]
+    end: [80.9217, 489.9206]
+
+  side_segment:
+    corner: [81.6607, 498.0421]
+    end: [93.6113, 496.9546]
+  thickness: 0.87
+
+vessel:
+  length : 12.25
+  width: 5.25

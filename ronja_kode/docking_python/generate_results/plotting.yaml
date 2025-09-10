@@ -1,0 +1,14 @@
+plotting_colors:
+  desired_traj: [0.0, 0.3647, 0.9686]
+  actual_traj: [0.9216, 0.0863, 0.0]
+  control_error: [0.9216, 0.0863, 0.0]
+  wp: 'k'
+  quay: [0.7216, 0.6078, 0.1647]
+
+plotly:
+  plotting_colors:
+    desired_traj: "rgb(0.0, 0.3647, 0.9686)"
+    actual_traj: "rgb(0.9216, 0.0863, 0.0)"
+    control_error: "rgb(0.9216, 0.0863, 0.0)"
+    wp: "rgb(0, 0, 0)"
+    quay: "rgb(0.7216, 0.6078, 0.1647)"

@@ -1,0 +1,23 @@
+no_disturbances:
+  horizon: 1000
+  docking_pose: [87.53, 494.87, 3.05084265359] # computed: [87.52, 494.87, 3.05084265359]  # original: [87.5, 494.9, 3.05084265359]
+  sidequay_extension_length: 6.5 # 6.5 for side-center, 5 otherwise
+  # sidequay_extension_point:
+  frontquay_unit_normal: [0.9958853703460269, -0.09062190204777651] 
+  sidequay_unit_normal: [-0.09062516, -0.99588507]
+  # ref_line_unit_normal: [-0.09062516, -0.99588507]  # center line
+  # ref_line_unit_normal: [-0.17707418749501908, -0.984197506663667] # diagonal line 5 deg
+  # ref_line_unit_normal: [-0.2617883, -0.96501913] # diagonal line 10 deg
+  ref_line_unit_normal: [-0.42576959, -0.90483162] # diagonal line 20 deg
+
+with_disturbances:
+  horizon: 1000
+  docking_pose: [87.53, 494.87, 3.05084265359] # computed: [87.52, 494.87, 3.05084265359]  # original: [87.5, 494.9, 3.05084265359]
+  sidequay_extension_length: 6.5  # 6.5 for side-center, 5 otherwise
+  # sidequay_extension_point:
+  frontquay_unit_normal: [0.9958853703460269, -0.09062190204777651] 
+  sidequay_unit_normal: [-0.09062516, -0.99588507]
+  # ref_line_unit_normal: [-0.09062516, -0.99588507]  # center line
+  # ref_line_unit_normal: [-0.17707418749501908, -0.984197506663667] # diagonal line 5 deg
+  # ref_line_unit_normal: [-0.2617883, -0.96501913] # diagonal line 10 deg
+  ref_line_unit_normal: [-0.42576959, -0.90483162] # diagonal line 20 deg

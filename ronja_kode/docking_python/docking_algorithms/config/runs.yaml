@@ -1,0 +1,49 @@
+end_stage_forces:
+  l_quay:
+    surge: 20
+    sway: -10
+  h_quay:
+    surge: 20
+    sway: 0
+
+run1:
+  waypoints:
+    wp2:
+      pose: [100, 490, 3.05084265359]
+      x_ep_threshold: 1
+      speed: 0.5
+      is_reached: false
+    wp1:
+      pose: [86.6, 495.2, 3.05084265359]  # [87.5, 494.9, 3.05084265359] (goal)  [86.57,  495.1, 3.05084265359] (wp1) 
+      x_ep_threshold: 1
+      speed: 0.0
+      is_reached: false
+
+run2:
+  waypoints:
+    wp2:
+      pose: [95.47, 486, 2.300898264]
+      x_ep_threshold: 1
+      speed: 0.2
+      is_reached: false
+    wp1:
+      pose: [87.5, 494.9, 3.05084265359]
+      x_ep_threshold: 0.5
+      speed: 0.1
+      is_reached: false
+
+run3:
+  waypoints:
+    wp2:
+      pose: [95.47, 486, 3.05084265359]
+      x_ep_threshold: 1
+      speed: 0.2
+      is_reached: false
+    wp1:
+      pose: [87.5, 494.9, 3.05084265359]
+      x_ep_threshold: 0.5
+      speed: 0.1
+      is_reached: false
+
+
+    

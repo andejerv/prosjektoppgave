@@ -1,0 +1,54 @@
+no_disturbances:
+  gains:
+    default:
+      kp: [800, 800, 6000]    # Original: [1000, 1550, 60000]   New MPC tuning: [15500, 1550, 6000]     LOS tuning: [800, 800, 6000]
+      ki: [0, 0, 0]              # Original: [0, 0, 0]             New MPC tuning : [0, 0, 0]              LOS tuning: [0, 0, 0]
+      kd: [2200, 2200, 6000]    # Original: [2000, 2400, 20000]   New MPC tuning: [2400, 2400, 10000]     LOS tuning: [2200, 2200, 6000]
+    phase2:
+      kp: [0, 0, 8000]
+      ki: [0, 0, 0]
+      kd: [1000, 700, 6000]
+
+with_disturbances:
+  gains:
+    default:
+      kp: [800, 800, 6000]
+      ki: [0, 0, 0]
+      kd: [2200, 2200, 6000]
+    phase2:
+      kp: [0, 0, 8000]
+      ki: [0, 0, 0]
+      kd: [1000, 700, 6000]
+
+small_disturbances:
+  gains:
+    default:
+      kp: [1500, 1850, 80000]
+      ki: [0, 0, 0]
+      kd: [1800, 2200, 12000]
+    phase2:
+      kp: [0, 0, 8000]
+      ki: [0, 0, 0]
+      kd: [1000, 700, 6000]
+
+moderate_disturbances:
+  gains:
+    default:
+      kp: [1500, 1850, 80000]
+      ki: [0, 0, 0]
+      kd: [1900, 2300, 13000]
+    phase2:
+      kp: [0, 0, 8000]
+      ki: [0, 0, 0]
+      kd: [1000, 700, 6000]
+
+large_disturbances:
+  gains:
+    default:
+      kp: [1500, 1850, 80000]
+      ki: [0, 0, 0]
+      kd: [1900, 2300, 13000]
+    phase2:
+      kp: [0, 0, 8000]
+      ki: [0, 0, 0]
+      kd: [1000, 700, 6000]

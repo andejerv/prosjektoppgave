@@ -1,0 +1,15 @@
+look_ahead: 2
+decel_accel: 0.3 # comfortable acceleration: 0.2-0.5 m/s^2
+heading_decel_accel: 0.1
+# The below is currently unused
+deceleration_thresholds: [100, 3, 100]  # eta_0, WP2, WP1
+deceleration_threshold:
+  wp2: 3
+yep_threshold: 0.3  # allowed deviation from line before penalty is applied
+max_y_ep: 2  # [m] max allowed cross-track distance before high penalty on speed
+sigma: 1
+k: 0.5
+lambda_along: 0.1
+lambda_cross: 0.1
+lambda_tot_exp: 8
+
