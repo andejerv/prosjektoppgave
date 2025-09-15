@@ -3,6 +3,7 @@ from casadi import MX, DM, Function, vertcat, vcat, nlpsol
 from casadi import pi, inf
 
 # Setup
+X_init = [1, 2, pi, 0, 0, 0, 0, 0, 0] # POS VEL ACC
 
 MAX_VEL = 1
 MAX_ANG_VEL = 1
@@ -12,8 +13,6 @@ MAX_ANG_ACCEL = 1
 
 MAX_JERK = 1
 MAX_ANG_JERK = 1
-
-
 
 T = 20. # Time horizon
 N = 200 # number of control intervals
@@ -72,8 +71,6 @@ lbg = []
 ubg = []
 
 # Formulate the NLP
-X_init = [1, 2, pi, 0, 0, 0, 0, 0, 0] # POS VEL ACC
-
 Xk = MX(X_init)
 for k in range(N):
     # New NLP variable for the control
