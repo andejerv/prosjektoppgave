@@ -6,19 +6,19 @@ from casadi import (
     MX, DM, Function, nlpsol, vertcat, inf, pi
 )
 
-from constraint_functions import c_avoid_rectangle
+from constraint_functions import c_avoid_rectangle, c_SAT
 
 def get_config() -> dict:
     cfg = dict(
         # Initial state
-        X_init = [5, 10, pi, 0, 0, 0, 0, 0, 0],
+        X_init = [5, 10, -pi/2, 0, 0, 0, 0, 0, 0],
         # Limits
         MAX_VEL = 2,
         MAX_ANG_VEL = 1,
         MAX_ACC = 1,
         MAX_ANG_ACCEL = 1,
-        MAX_JERK = 1,
-        MAX_ANG_JERK = 1,
+        MAX_JERK = 10,
+        MAX_ANG_JERK = 10,
         T_LB = 1e-3,
         T_UB = 100,
         T_w0 = 20,
@@ -27,7 +27,8 @@ def get_config() -> dict:
         N = 400,
         M = 1, # Time steps per control interval
         # Obstacles
-        rect = [[2,3,1,3], [0, -1, 1, 0.9]]
+        boat = [0.9,0.9],
+        rect = [[2,3,0.9,3], [0, -2, 1, 0.9]]
     )
     return cfg
 
@@ -183,11 +184,21 @@ def build_nlp_mult_shooting(F: Function, cfg: dict) -> tuple[dict, list, list, l
     x_init = cfg['X_init']
     N = int(cfg['N'])
     eps = float(cfg['TERMINAL_EPS'])
+    boat = cfg['boat']
     rects = cfg['rect']
 
-    x_interpolate = np.linspace(x_init[0], 0, N)
-    y_interpolate = np.linspace(x_init[1], 0, N)
-    psi_interpolate = np.linspace(x_init[2], 0, N)
+    x_interpolate = np.concatenate((
+        np.linspace(x_init[0], 0, N-(N//2)),
+        np.zeros(N//2)
+    ))
+    y_interpolate = np.concatenate((
+        x_init[1]*np.ones(N-N//2),
+        np.linspace(x_init[1], 0, N//2)
+    ))
+    psi_interpolate = np.concatenate((
+        np.linspace(x_init[2], 0, N//2),
+        np.zeros(N//2)
+    ))
 
     # Start with an empty NLP
     w=[]
@@ -262,7 +273,7 @@ def build_nlp_mult_shooting(F: Function, cfg: dict) -> tuple[dict, list, list, l
 
         # Add obstacle constraints
         for r in rects:
-            constraint = c_avoid_rectangle(Xk, r[0], r[1], r[2], r[3])
+            constraint = c_SAT(Xk, boat[0], boat[1], r[0], r[1], r[2], r[3])
             g += constraint[0]
             lbg += constraint[1]
             ubg += constraint[2]
@@ -292,7 +303,14 @@ def build_nlp_mult_shooting(F: Function, cfg: dict) -> tuple[dict, list, list, l
 
 
 def solve_nlp(prob, w0, lbw, ubw, lbg, ubg) -> dict:
-    solver = nlpsol('solver', 'ipopt', prob)
+    opts = {
+        'ipopt': {
+            'max_iter': 20000,
+            #'print_level': 0,
+            #'sb': 'yes'
+        }
+    }
+    solver = nlpsol('solver', 'ipopt', prob, opts)
     sol = solver(x0=w0, lbx=lbw, ubx=ubw, lbg=lbg, ubg=ubg)
     return sol
 
@@ -375,6 +393,42 @@ def plot_solution(x_opt: ndarray, u_opt: ndarray, t, cfg):
     plt.legend(['x', 'y', r'$\psi$'])
     plt.grid()
     ax = plt.gca()  # get current axes
+    # Plot boat
+    L = 0.5    # boat length
+    W = 0.5    # boat width
+    plot_every = 20   # e.g., 3 or 10
+
+    for k in range(0, len(tgrid), plot_every):
+        x = x_opt[0, k]
+        y = x_opt[1, k]
+        theta = x_opt[2, k] - np.pi/2                  # radians assumed
+        ct, st = np.cos(theta), np.sin(theta)
+
+        # rectangle corners in boat-local frame (centered at 0,0)
+        corners_local = np.array([
+            [ L/2,  W/2],
+            [ L/2, -W/2],
+            [-L/2, -W/2],
+            [-L/2,  W/2],
+        ])
+
+        # rotate + translate to world frame
+        corners_world = np.column_stack((
+            x + corners_local[:,0]*ct - corners_local[:,1]*st,
+            y + corners_local[:,0]*st + corners_local[:,1]*ct
+        ))
+
+        poly = patches.Polygon(corners_world, closed=True,
+                            facecolor='C1', edgecolor='k', alpha=0.5, zorder=3)
+        ax.add_patch(poly)
+
+        # heading/bow marker
+        bow_x = x + (L/2)*ct
+        bow_y = y + (L/2)*st
+        ax.plot([x, bow_x], [y, bow_y], linewidth=1.2, zorder=4)
+        
+
+    # Plot obstacles
     for r in cfg['rect']:
         rect = patches.Rectangle(
             (r[0]-r[2], r[1]-r[3]),      # bottom-left corner (x, y)
